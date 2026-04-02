@@ -55,4 +55,4 @@ Default `config.json` is updated to `panel.size: 4` and `panel.aggregation: "mea
 
 * Jung, H. & Na, W. (2026). Logarithmic Scores, Power-Law Discoveries: Disentangling Measurement from Coverage in Agent-Based Evaluation. arXiv:2604.00477.
 * Relates to: [0004 — Domain-specific rubrics](0004-rubric-per-domain.md) (rubric diversity and judge persona diversity address the same coverage gap from different angles)
-* Relates to: [0006 — Meta-Judge override thresholds](0006-meta-judge-override-thresholds.md
+* Relates to: [0006 — Meta-Judge override thresholds](0006-meta-judge-override-thresholds.md)

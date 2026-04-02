@@ -18,7 +18,30 @@ This was encountered directly: the first scaffold had an invalid `hooks.json` (u
 - This is not a fixable limitation — it is a structural property of any self-hosting system. The Go compiler was written in C first. The first version of Tribunal must be written without Tribunal.
 - The bootstrap phase is always manual. All subsequent changes can go through the loop.
 
+## Considered Options
+
+* **Option A: Manual bootstrap then self-hosted iteration**
+  - Write and validate the initial scaffold by hand against Claude Code plugin docs.
+  - Once installed and runnable, use Tribunal for all subsequent changes.
+  - Accept that bootstrap is always manual; iteration is always Tribunal-hosted.
+
+* **Option B: External schema validation tool**
+  - Use a separate JSON Schema validator or linter to validate `plugin.json` and `hooks.json`.
+  - Run external tool before installation, bypassing the need for a runnable Tribunal.
+  - **Rejected:** Still requires something outside Tribunal. Adds tooling dependency without eliminating the fundamental constraint. The external tool itself would need validation.
+
+* **Option C: Accept perpetual external validation**
+  - Never attempt to self-host. Always validate Tribunal with external tools or manual review.
+  - **Rejected:** Defeats the core value proposition of Tribunal. If we don't trust the loop to improve itself, why trust it to improve anything else? Self-hosting is a forcing function for quality.
+
+* **Option D: Incremental bootstrap with minimal seed**
+  - Start with the smallest possible valid plugin (one agent, no hooks, minimal config).
+  - Add features incrementally, validating each addition with the running (partial) Tribunal.
+  - **Rejected:** Still requires a manual first step — just a smaller one. Doesn't eliminate the bootstrap constraint, only shrinks the manual surface. Adds complexity to the development workflow for marginal benefit.
+
 ## Decision Outcome
+
+Chosen: **Option A** — Manual bootstrap then self-hosted iteration.
 
 Tribunal adopts a two-phase development model:
 
