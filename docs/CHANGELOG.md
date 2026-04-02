@@ -20,6 +20,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - `rubrics/claude-plugin.md` correctness criteria refinement — encode valid fields per hook type, fix agent name frontmatter pattern
 - [ADR-0007](adr/0007-skeptical-actor.md) accepted — Actor performs structured pre-submission self-challenge using universal probes (correctness, completeness, edge cases, adversarial) plus domain-specific probes delegated to persona judges when not applicable
 - `agents/actor.md` updated with mandatory pre-submission skepticism phase implementing ADR-0007
+- `rubrics/adr.md` created — domain-specific rubric for evaluating ADRs with heavy citation accuracy weighting (25%) to catch hallucinated references
 
 ---
 
