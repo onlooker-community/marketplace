@@ -18,6 +18,8 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - Four-persona judge panel (`agents/personas/judge-security.md`, `judge-maintainability.md`, `judge-adversarial.md`, `judge-domain.md`) per [ADR-0005](adr/0005-judge-persona-panel.md)
 - `config.json` default `panel.size` updated to 4 for new personas
 - `rubrics/claude-plugin.md` correctness criteria refinement — encode valid fields per hook type, fix agent name frontmatter pattern
+- [ADR-0007](adr/0007-skeptical-actor.md) accepted — Actor performs structured pre-submission self-challenge using universal probes (correctness, completeness, edge cases, adversarial) plus domain-specific probes delegated to persona judges when not applicable
+- `agents/actor.md` updated with mandatory pre-submission skepticism phase implementing ADR-0007
 
 ---
 
@@ -99,7 +101,7 @@ This is the first version captured in the changelog. The plugin was bootstrapped
 - Score–coverage dissociation in agent panels: Jung & Na, 2026 —
   `arxiv.org/abs/2604.00477` (informs ADR-0005 persona panel design)
 - Skeptical self-refinement: Fu et al., 2026 — `arxiv.org/abs/2604.00790`
-  (informs planned ADR-0007 skeptical Actor)
+  (informs [ADR-0007](adr/0007-skeptical-actor.md) skeptical Actor)
 
 ---
 
