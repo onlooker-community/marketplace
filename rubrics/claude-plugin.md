@@ -10,10 +10,70 @@ Verify all required fields and formatting rules:
 - `name` field is present and follows namespacing conventions (lowercase, hyphen-separated, e.g., `my-plugin` or `namespace-plugin`)
 - `version` field is present and uses valid semver format (e.g., `1.0.0`, `0.1.2`)
 - `description` field is present and non-empty
-- `agents` array (if present) uses relative paths with `./` prefix (e.g., `./agents/my-agent.md`)
-- `commands` array (if present) uses relative paths with `./` prefix (e.g., `./commands/my-command.sh`)
 - All paths reference files that should exist in the plugin directory structure
-- No extraneous or misspelled top-level fields
+- Other metadata fields are as follows:
+
+| Field |	Type |	Description |	Example |
+| --- | --- | --- | --- |
+| version |	string |	Semantic version. If also set in the marketplace entry, plugin.json takes priority. You only need to set it in one place. |	"2.1.0" |
+| description |	string |	Brief explanation of plugin purpose |	"Deployment automation tools" |
+| author	| object	| Author information	| `{"name": "Dev Team", "email": "dev@company.com"}` |
+| homepage	| string	 | Documentation URL	| "https://docs.example.com" |
+| repository |	string	| Source code URL |	"https://github.com/user/plugin" |
+| license	| string	| License identifier |	"MIT", "Apache-2.0" |
+| keywords	| array |	Discovery tags	| ["deployment", "ci-cd"] |
+
+- Component fields are as follows:
+
+
+| Field          | Type                  | Description                                                                                                                                               | Example                                |
+| :------------- | :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------- |
+| `commands`     | string\|array         | Custom command files/directories (replaces default `commands/`)                                                                                           | `"./custom/cmd.md"` or `["./cmd1.md"]` |
+| `agents`       | string\|array         | Custom agent files (replaces default `agents/`)                                                                                                           | `"./custom/agents/reviewer.md"`        |
+| `skills`       | string\|array         | Custom skill directories (replaces default `skills/`)                                                                                                     | `"./custom/skills/"`                   |
+| `hooks`        | string\|array\|object | Hook config paths or inline config                                                                                                                        | `"./my-extra-hooks.json"`              |
+| `mcpServers`   | string\|array\|object | MCP config paths or inline config                                                                                                                         | `"./my-extra-mcp-config.json"`         |
+| `outputStyles` | string\|array         | Custom output style files/directories (replaces default `output-styles/`)                                                                                 | `"./styles/"`                          |
+| `lspServers`   | string\|array\|object | [Language Server Protocol](https://microsoft.github.io/language-server-protocol/) configs for code intelligence (go to definition, find references, etc.) | `"./.lsp.json"`                        |
+| `userConfig`   | object                | User-configurable values prompted at enable time.                                                           | See below                              |
+| `channels`     | array                 | Channel declarations for message injection (Telegram, Slack, Discord style).                                                  | See below                              |
+
+- User configuration
+    - The `userConfig` field declares values that Claude Code prompts the user for when the plugin is enabled. Use this instead of requiring users to hand-edit `settings.json`:
+```json
+{
+    "userConfig": {
+      "api_endpoint": {
+        "description": "Your team's API endpoint",
+        "sensitive": false
+      },
+      "api_token": {
+        "description": "API authentication token",
+        "sensitive": true
+      }
+    }
+}
+```
+- Channels
+    - The `channels` field lets a plugin declare one or more message channels that inject content into the conversation. Each channel binds to an MCP server that the plugin provides.
+
+```json
+{
+  "channels": [
+    {
+      "server": "telegram",
+      "userConfig": {
+        "bot_token": { "description": "Telegram bot token", "sensitive": true },
+        "owner_id": { "description": "Your Telegram user ID", "sensitive": false }
+      }
+    }
+  ]
+}
+```
+
+   - The `server` field is required and must match a key in the plugin’s `mcpServers`. The optional per-channel `userConfig` uses the same schema as the top-level field, letting the plugin prompt for bot tokens or owner IDs when the plugin is enabled.
+
+
 
 **2. hooks.json Schema Compliance (25%)**
 
