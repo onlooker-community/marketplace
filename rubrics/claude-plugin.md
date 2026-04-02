@@ -18,20 +18,23 @@ Verify all required fields and formatting rules:
 **2. hooks.json Schema Compliance (25%)**
 
 Validate hook configuration structure and values:
-- Each hook config contains required fields: `type`, `timeout`, and either `prompt` or `command`
+- Each hook config contains required fields: `type` and `timeout`
 - `type` field uses only valid values: `command`, `agent`, or `prompt`
-- `event` field (if present) uses only valid event types: `PreToolUse`, `PostToolUse`, `SubagentStop`, `Notification`, `SessionStart`, `SessionStop`, `UserPromptSubmit`
+- `type: "command"` requires `command` field (path to executable)
+- `type: "agent"` requires `prompt` field (not an `agent` field)
+- `type: "prompt"` requires `prompt` field
+- Keys like `agent`, `background`, `url` are type-specific optional fields, not universally valid
 - `matcher` field (if present) contains valid regex pattern syntax
 - `timeout` field is a positive number
 - `command` paths use `./` prefix for relative paths
-- Hook configurations are internally consistent (e.g., type `command` should have `command` field, type `prompt` should have `prompt` field)
+- Valid hook event types are top-level keys under `hooks`: `PreToolUse`, `PostToolUse`, `SubagentStop`, `Notification`, `SessionStart`, `SessionStop`, `UserPromptSubmit`
 
 **3. Agent File Schema Compliance (20%)**
 
 Check agent markdown file frontmatter and structure:
 - Frontmatter is present and valid YAML format
 - Required fields `name` and `description` are present and non-empty
-- `name` follows pattern `namespace-agentname` or `namespace:agentname`
+- `name` should be a valid identifier (lowercase, hyphen-separated allowed, no spaces or special characters)
 - `model` field (if present) uses valid values: `sonnet`, `opus`, or `haiku`
 - `effort` field (if present) uses valid values: `low`, `medium`, or `high`
 - `maxTurns` field (if present) is a positive integer
