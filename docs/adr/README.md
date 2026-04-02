@@ -17,6 +17,7 @@ Format: [MADR](https://adr.github.io/madr/) (Markdown Architectural Decision Rec
 | [0005](0005-judge-persona-panel.md) | Multi-persona judge panel over a single generic judge | Accepted |
 | [0006](0006-meta-judge-override-thresholds.md) | Meta-Judge override thresholds and flag/override independence | Accepted |
 | [0007](0007-skeptical-actor.md) | Actor self-challenge before submission | Accepted |
+| [0008](0008-onlooker-integration.md) | Integrating with onlooker | Proposed |
 
 ## Status legend
 
