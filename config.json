@@ -5,7 +5,7 @@
         "count": 1
     },
     "panel": {
-        "size": 1,
+        "size": 4,
         "aggregation": "mean"
     },
     "defaultRubric": "rubrics/default.md",
