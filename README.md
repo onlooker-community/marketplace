@@ -6,16 +6,16 @@ Version 0.1.0 · [github.com/meaganewaller/tribunal](https://github.com/meaganew
 
 ## Table of Contents
 
-1. [Overview]()
-2. [Core Concepts]()
-3. [Architecture]()
-4. [Installation]()
-5. [Directory Structure]()
-6. [Configuration]()
-7. [Usage]()
-8. [Agent Reference]()
-9. [Hooks Reference]()
-10. [Research Foundation]()
+1. [Overview](#overview)
+2. [Core Concepts](#core-concepts)
+3. [Architecture](#architecture)
+4. [Installation](#install-the-plugin)
+5. [Directory Structure](#directory-structure)
+6. [Configuration](#configuration)
+7. [Usage](#usage)
+8. [Agent Reference](#agent-reference)
+9. [Hooks Reference](#hooks-reference)
+10. [Research Foundation](#research-foundation)
 
 ## Overview
 
@@ -29,7 +29,7 @@ It installs into your `.claude/` directory — either project-level or globally 
 - Parallel actor execution for candidate generation
 - Automated quality gates with structured pass/fail verdicts
 - A meta-evaluation layer that prevents judgment saturation over iterations
-- `/tribunal` slash command for manual override and configuration
+- `/tribunal:run` slash command for manual override and configuration
 
 Tribunal is grounded in two research frameworks: **LLM-as-a-Judge** (Zheng et al., NeurIPS 2023) and **LLM-as-a-Meta-Judge** (Wu et al., 2024). See [Research Foundation]().
 
@@ -145,7 +145,7 @@ git clone https://github.com/meaganewaller/tribunal ~/.claude/tribunal
 After installing, confirm Tribunal's agents and commands are available:
 
 ```
-/tribunal status
+/tribunal:run status
 ```
 
 You should see the Actor, Judge, and Meta-Judge agents listed as active, along with your current config.
@@ -232,10 +232,10 @@ Return a score from 0.0 to 1.0 and specific, actionable feedback the developer c
 
 ### Per-Task Rubric Override
 
-You can override the default rubric for a specific invocation using the `/tribunal` command:
+You can override the default rubric for a specific invocation using the `/tribunal:run` command:
 
 ```
-/tribunal run --rubric rubrics/sql.md Write a migrate to add soft-delete to users
+/tribunal:run --rubric rubrics/sql.md Write a migration to add soft-delete to users
 ```
 
 ## Usage
@@ -249,42 +249,42 @@ If the gate fails, Tribunal surfaces the Meta-Judge's refined feedback directly 
 To **disable auto-hook** for a session:
 
 ```
-/tribunal pause
+/tribunal:run pause
 ```
 
 To **re-enable**:
 
 ```
-/tribunal resume
+/tribunal:run resume
 ```
 
 ### Slash Command Mode
 
-Use `/tribunal` run to manually dispatch a task through the full pipeline:
+Use `/tribunal:run` to manually dispatch a task through the full pipeline:
 
 ```
-/tribunal run Write a Python function that validates email addresses
+/tribunal:run Write a Python function that validates email addresses
 ```
 
 With options:
 
 ```
-/tribunal run --rubric rubrics/writing.md --iterations 4 --score 0.9 Draft the onboarding email copy
+/tribunal:run --rubric rubrics/writing.md --iterations 4 --score 0.9 Draft the onboarding email copy
 ```
 
-**`/tribunal` subcommands:**
+**`/tribunal:run` subcommands:**
 
 | Command | Description |
 | --- | --- |
-| `/tribunal run [task]` | Dispatch a task through the full Actor → Judge → Meta-Judge pipeline |
-| `/tribunal run --rubric <path>` | Use a specific rubric file for this run |
-| `/tribunal run --iterations <n>` | Override `maxIterations` for this run |
-| `/tribunal run --score <n>` | Override `passingScore` for this run |
-| `/tribunal status` | Show current config, active agents, and last verdict |
-| `/tribunal pause` | Disable auto-hook for the current session |
-| `/tribunal resume` | Re-enable auto-hook |
-| `/tribunal verdict` | Show the full verdict from the most recent evaluation |
-| `/tribunal config` | Open `config.json` for editing |
+| `/tribunal:run [task]` | Dispatch a task through the full Actor → Judge → Meta-Judge pipeline |
+| `/tribunal:run --rubric <path>` | Use a specific rubric file for this run |
+| `/tribunal:run --iterations <n>` | Override `maxIterations` for this run |
+| `/tribunal:run --score <n>` | Override `passingScore` for this run |
+| `/tribunal:run status` | Show current config, active agents, and last verdict |
+| `/tribunal:run pause` | Disable auto-hook for the current session |
+| `/tribunal:run resume` | Re-enable auto-hook |
+| `/tribunal:run verdict` | Show the full verdict from the most recent evaluation |
+| `/tribunal:run config` | Open `config.json` for editing |
 
 ## Agent Reference
 

@@ -1,0 +1,31 @@
+{
+    "description": "Tribunal quality gates — auto-evaluates file writes and actor completions",
+    "hooks": {
+        "PostToolUse": [
+            {
+                "matcher": "Write|Edit",
+                "hooks": [
+                    {
+                        "type": "agent",
+                        "prompt": "You are the Tribunal Judge. Read the file that was just written or edited (available in the tool_input.file_path field of $ARGUMENTS). Load the default rubric from ${CLAUDE_PLUGIN_ROOT}/rubrics/default.md. Evaluate the file content against the rubric criteria. Return a JSON object with this exact schema and nothing else: { \"ok\": true } if the score meets or exceeds 0.80, or { \"ok\": false, \"reason\": \"<specific actionable feedback the author can act on immediately>\" } if it does not. Be specific — name exact lines, functions, or sections that need improvement.",
+                        "timeout": 60,
+                        "statusMessage": "Tribunal: evaluating output quality..."
+                    }
+                ]
+            }
+        ],
+        "SubagentStop": [
+            {
+                "matcher": "tribunal:tribunal-actor",
+                "hooks": [
+                    {
+                        "type": "prompt",
+                        "prompt": "You are the Tribunal Meta-Judge. A Judge has just evaluated an Actor's output. Review the following context: $ARGUMENTS. Your job is to assess whether the Judge's verdict is well-reasoned and free from bias. Check for: positional bias (favoring first candidate), verbosity bias (rewarding length over quality), self-enhancement bias (preferring outputs similar to its own style), and weak reasoning (vague justifications not grounded in the rubric). If the verdict is sound, return { \"ok\": true }. If the verdict has a material flaw that would change the pass/fail outcome, return { \"ok\": false, \"reason\": \"<specific bias or reasoning failure detected, with refined feedback for the next Actor iteration>\" }.",
+                        "timeout": 30,
+                        "statusMessage": "Tribunal: meta-judge reviewing verdict..."
+                    }
+                ]
+            }
+        ]
+    }
+}

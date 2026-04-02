@@ -1,0 +1,16 @@
+{
+  "name": "tribunal",
+  "version": "0.1.0",
+  "description": "Multi-agent execution framework with LLM-as-a-Judge and LLM-as-a-Meta-Judge quality gates",
+  "author": {
+    "name": "Meagan Waller",
+    "email": "meaganewaller@gmail.com",
+    "url": "https://github.com/meaganewaller/tribunal"
+  },
+  "homepage": "https://github.com/meaganewaller/tribunal",
+  "repository": "https://github.com/meaganewaller/tribunal",
+  "license": "MIT",
+  "keywords": ["quality-gates", "multi-agent", "llm-judge", "code-review", "evaluation"],
+  "agents": ["./agents/actor.md", "./agents/judge.md", "./agents/meta-judge.md"],
+  "commands": ["./commands/run.md"]
+}
