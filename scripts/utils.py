@@ -16,11 +16,6 @@ def get_config() -> dict:
         "extract_on_compact": True,
         "extract_on_end": True,
         "min_confidence_to_inject": "medium",
-        "onlooker": {
-            "enabled": False,
-            "endpoint": "http://localhost:3000/ingest",
-            "workspaceId": "archivist",
-        },
     }
     try:
         with open(config_path) as f:

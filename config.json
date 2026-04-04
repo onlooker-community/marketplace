@@ -4,10 +4,5 @@
   "inject_on_start": true,
   "extract_on_compact": true,
   "extract_on_end": true,
-  "min_confidence_to_inject": "medium",
-  "onlooker": {
-    "enabled": false,
-    "endpoint": "http://localhost:3000/ingest",
-    "workspaceId": "archivist"
-  }
+  "min_confidence_to_inject": "medium"
 }

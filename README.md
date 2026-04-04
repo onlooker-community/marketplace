@@ -95,7 +95,7 @@ Edit `config.json` in the plugin directory:
 
 ## Onlooker integration
 
-Archivist works standalone, or out-of-the-box with an existing onlooker setup.
+Archivist works standalone, or out-of-the-box with Onlooker. No configuration needed — if Onlooker is installed, it automatically picks up Archivist's session events.
 
 Archivist emits `archivist_session` events on SessionEnd containing session metadata and counts. The full session extract is not sent — only aggregate stats and high-priority question text.
 

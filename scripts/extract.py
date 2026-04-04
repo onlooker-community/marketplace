@@ -14,48 +14,6 @@ from datetime import datetime, timezone
 from utils import get_config, get_storage_path, write_session
 
 
-def emit_onlooker_event(session: dict, config: dict) -> None:
-    """Emit an archivist_session event to Onlooker if configured."""
-    onlooker = config.get("onlooker", {})
-    if not onlooker.get("enabled", False):
-        return
-
-    endpoint = onlooker.get("endpoint", "")
-    if not endpoint:
-        return
-
-    try:
-        import urllib.request
-
-        event = {
-            "type": "archivist_session",
-            "workspaceId": onlooker.get("workspaceId", "archivist"),
-            "session_id": session.get("session_id", ""),
-            "cwd": session.get("cwd", ""),
-            "timestamp": session.get("timestamp", ""),
-            "decision_count": len(session.get("decisions", [])),
-            "file_count": len(session.get("files", [])),
-            "dead_end_count": len(session.get("dead_ends", [])),
-            "open_question_count": len(session.get("open_questions", [])),
-            "high_priority_questions": [
-                q["question"]
-                for q in session.get("open_questions", [])
-                if q.get("priority") == "high"
-            ],
-        }
-
-        req = urllib.request.Request(
-            endpoint,
-            data=json.dumps(event).encode("utf-8"),
-            headers={"Content-Type": "application/json"},
-            method="POST",
-        )
-        urllib.request.urlopen(req, timeout=5)
-    except Exception:
-        # Never block on Onlooker failures
-        pass
-
-
 def finalize_session() -> None:
     """Mark the most recent incomplete session as complete."""
     storage = get_storage_path()
@@ -79,9 +37,6 @@ def finalize_session() -> None:
 
         with open(sessions[0], "w") as f:
             json.dump(data, f, indent=2)
-
-        config = get_config()
-        emit_onlooker_event(data, config)
     except (json.JSONDecodeError, PermissionError, OSError):
         pass
 
