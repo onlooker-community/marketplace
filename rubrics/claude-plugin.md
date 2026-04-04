@@ -1,61 +1,76 @@
 # Claude Code Plugin Rubric
 
-This rubric evaluates Claude Code plugin files for schema compliance, structural correctness, and adherence to plugin conventions. It covers three file types: `plugin.json`, `hooks.json`, and agent `.md` files.
+This rubric evaluates Claude Code plugin files for schema compliance, structural correctness, and adherence to plugin conventions. It covers `plugin.json`, `hooks.json`, agent `.md` files, and overall plugin structure.
+
+**Canonical references:**
+- Plugin manifest & components: https://code.claude.com/docs/en/plugins-reference
+- Hooks system: https://code.claude.com/docs/en/hooks
+- Subagents: https://code.claude.com/docs/en/sub-agents
 
 ## Criteria
 
 **1. plugin.json Schema Compliance (25%)**
 
-Verify all required fields and formatting rules:
-- `name` field is present and follows namespacing conventions (lowercase, hyphen-separated, e.g., `my-plugin` or `namespace-plugin`)
-- `version` field is present and uses valid semver format (e.g., `1.0.0`, `0.1.2`)
-- `description` field is present and non-empty
-- All paths reference files that should exist in the plugin directory structure
-- Other metadata fields are as follows:
+The manifest file lives at `.claude-plugin/plugin.json`. It is optional — if omitted, Claude Code auto-discovers components in default locations and derives the plugin name from the directory name. When present, validate:
 
-| Field |	Type |	Description |	Example |
-| --- | --- | --- | --- |
-| version |	string |	Semantic version. If also set in the marketplace entry, plugin.json takes priority. You only need to set it in one place. |	"2.1.0" |
-| description |	string |	Brief explanation of plugin purpose |	"Deployment automation tools" |
-| author	| object	| Author information	| `{"name": "Dev Team", "email": "dev@company.com"}` |
-| homepage	| string	 | Documentation URL	| "https://docs.example.com" |
-| repository |	string	| Source code URL |	"https://github.com/user/plugin" |
-| license	| string	| License identifier |	"MIT", "Apache-2.0" |
-| keywords	| array |	Discovery tags	| ["deployment", "ci-cd"] |
+### Required fields
 
-- Component fields are as follows:
+If a manifest is present, `name` is the **only required field**.
 
+| Field  | Type   | Rules | Example |
+| :----- | :----- | :---- | :------ |
+| `name` | string | Unique identifier. Must be kebab-case (lowercase, hyphen-separated, no spaces). Used for namespacing components (e.g., `plugin-name:agent-name`). | `"deployment-tools"` |
 
-| Field          | Type                  | Description                                                                                                                                               | Example                                |
-| :------------- | :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------- |
-| `commands`     | string\|array         | Custom command files/directories (replaces default `commands/`)                                                                                           | `"./custom/cmd.md"` or `["./cmd1.md"]` |
-| `agents`       | string\|array         | Custom agent files (replaces default `agents/`)                                                                                                           | `"./custom/agents/reviewer.md"`        |
-| `skills`       | string\|array         | Custom skill directories (replaces default `skills/`)                                                                                                     | `"./custom/skills/"`                   |
-| `hooks`        | string\|array\|object | Hook config paths or inline config                                                                                                                        | `"./my-extra-hooks.json"`              |
-| `mcpServers`   | string\|array\|object | MCP config paths or inline config                                                                                                                         | `"./my-extra-mcp-config.json"`         |
-| `outputStyles` | string\|array         | Custom output style files/directories (replaces default `output-styles/`)                                                                                 | `"./styles/"`                          |
-| `lspServers`   | string\|array\|object | [Language Server Protocol](https://microsoft.github.io/language-server-protocol/) configs for code intelligence (go to definition, find references, etc.) | `"./.lsp.json"`                        |
-| `userConfig`   | object                | User-configurable values prompted at enable time.                                                           | See below                              |
-| `channels`     | array                 | Channel declarations for message injection (Telegram, Slack, Discord style).                                                  | See below                              |
+### Metadata fields (all optional)
 
-- User configuration
-    - The `userConfig` field declares values that Claude Code prompts the user for when the plugin is enabled. Use this instead of requiring users to hand-edit `settings.json`:
+| Field | Type | Description | Example |
+| :---- | :--- | :---------- | :------ |
+| `version` | string | Semantic version (`MAJOR.MINOR.PATCH`). If also set in marketplace entry, `plugin.json` takes priority. | `"2.1.0"` |
+| `description` | string | Brief explanation of plugin purpose | `"Deployment automation tools"` |
+| `author` | object | Author information (`name`, `email`, `url` fields) | `{"name": "Dev Team", "email": "dev@company.com"}` |
+| `homepage` | string | Documentation URL | `"https://docs.example.com"` |
+| `repository` | string | Source code URL | `"https://github.com/user/plugin"` |
+| `license` | string | SPDX license identifier | `"MIT"`, `"Apache-2.0"` |
+| `keywords` | array | Discovery tags | `["deployment", "ci-cd"]` |
+
+### Component path fields
+
+All paths **must be relative to the plugin root and start with `./`**. Custom paths for `commands`, `agents`, `skills`, and `outputStyles` replace the default directory — include the default in an array to keep it.
+
+| Field | Type | Description | Example |
+| :---- | :--- | :---------- | :------ |
+| `commands` | string\|array | Command files/directories (replaces default `commands/`) | `"./custom/cmd.md"` or `["./cmd1.md"]` |
+| `agents` | string\|array | Agent files/directories (replaces default `agents/`) | `"./custom/agents/reviewer.md"` |
+| `skills` | string\|array | Skill directories (replaces default `skills/`) | `"./custom/skills/"` |
+| `hooks` | string\|array\|object | Hook config paths or inline config | `"./hooks/hooks.json"` |
+| `mcpServers` | string\|array\|object | MCP config paths or inline config | `"./mcp-config.json"` |
+| `outputStyles` | string\|array | Output style files/directories (replaces default `output-styles/`) | `"./styles/"` |
+| `lspServers` | string\|array\|object | LSP server configs for code intelligence | `"./.lsp.json"` |
+| `userConfig` | object | User-configurable values prompted at enable time | See spec |
+| `channels` | array | Channel declarations for message injection | See spec |
+
+### userConfig
+
+Declares values Claude Code prompts for when the plugin is enabled. Keys must be valid identifiers. Values available as `${user_config.KEY}` in configs and as `CLAUDE_PLUGIN_OPTION_<KEY>` env vars.
+
 ```json
 {
-    "userConfig": {
-      "api_endpoint": {
-        "description": "Your team's API endpoint",
-        "sensitive": false
-      },
-      "api_token": {
-        "description": "API authentication token",
-        "sensitive": true
-      }
+  "userConfig": {
+    "api_endpoint": {
+      "description": "Your team's API endpoint",
+      "sensitive": false
+    },
+    "api_token": {
+      "description": "API authentication token",
+      "sensitive": true
     }
+  }
 }
 ```
-- Channels
-    - The `channels` field lets a plugin declare one or more message channels that inject content into the conversation. Each channel binds to an MCP server that the plugin provides.
+
+### Channels
+
+Each channel binds to an MCP server. `server` is required and must match a key in the plugin's `mcpServers`.
 
 ```json
 {
@@ -71,63 +86,164 @@ Verify all required fields and formatting rules:
 }
 ```
 
-   - The `server` field is required and must match a key in the plugin’s `mcpServers`. The optional per-channel `userConfig` uses the same schema as the top-level field, letting the plugin prompt for bot tokens or owner IDs when the plugin is enabled.
-
-
+---
 
 **2. hooks.json Schema Compliance (25%)**
 
-Validate hook configuration structure and values:
-- Each hook config contains required fields: `type` and `timeout`
-- `type` field uses only valid values: `command`, `agent`, or `prompt`
-- `type: "command"` requires `command` field (path to executable)
-- `type: "agent"` requires `prompt` field (not an `agent` field)
-- `type: "prompt"` requires `prompt` field
-- Keys like `agent`, `background`, `url` are type-specific optional fields, not universally valid
-- `matcher` field (if present) contains valid regex pattern syntax
-- `timeout` field is a positive number
-- `command` paths use `./` prefix for relative paths
-- Valid hook event types are top-level keys under `hooks`: `PreToolUse`, `PostToolUse`, `SubagentStop`, `Notification`, `SessionStart`, `SessionStop`, `UserPromptSubmit`
+Hooks live at `hooks/hooks.json` (default) or are inlined in `plugin.json`. Validate configuration structure and values.
+
+### Hook file structure
+
+The top-level structure uses **event names as keys**, each mapping to an array of matcher groups. Each matcher group contains a `hooks` array of individual hook definitions:
+
+```json
+{
+  "hooks": {
+    "EventName": [
+      {
+        "matcher": "optional-regex-pattern",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/example.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Valid hook event types (26 total)
+
+| Event | When it fires |
+| :---- | :------------ |
+| `SessionStart` | Session begins or resumes |
+| `SessionEnd` | Session terminates |
+| `UserPromptSubmit` | User submits a prompt, before Claude processes it |
+| `InstructionsLoaded` | CLAUDE.md or `.claude/rules/*.md` files load |
+| `ConfigChange` | Configuration file changes during a session |
+| `PreToolUse` | Before a tool call executes (can block it) |
+| `PostToolUse` | After a tool call succeeds |
+| `PostToolUseFailure` | After a tool call fails |
+| `PermissionRequest` | Permission dialog appears |
+| `PermissionDenied` | Tool call denied by auto mode classifier |
+| `PreCompact` | Before context compaction |
+| `PostCompact` | After context compaction completes |
+| `Notification` | Claude Code sends a notification |
+| `SubagentStart` | Subagent is spawned |
+| `SubagentStop` | Subagent finishes |
+| `Stop` | Claude finishes responding |
+| `StopFailure` | Turn ends due to API error |
+| `TeammateIdle` | Agent team teammate goes idle |
+| `TaskCreated` | Task created via TaskCreate |
+| `TaskCompleted` | Task marked completed |
+| `CwdChanged` | Working directory changes |
+| `FileChanged` | Watched file changes on disk (`matcher` specifies filenames) |
+| `WorktreeCreate` | Worktree created via `--worktree` or `isolation: "worktree"` |
+| `WorktreeRemove` | Worktree removed |
+| `Elicitation` | MCP server requests user input |
+| `ElicitationResult` | User responds to MCP elicitation |
+
+### Hook types and required fields
+
+There are **4 valid hook types**: `command`, `http`, `prompt`, `agent`.
+
+| Type | Required field | Optional fields |
+| :--- | :------------- | :-------------- |
+| `command` | `command` (path to executable) | `async` (boolean), `shell` (`"bash"` or `"powershell"`) |
+| `http` | `url` (endpoint) | `headers` (object), `allowedEnvVars` (array) |
+| `prompt` | `prompt` (LLM evaluation prompt; can use `$ARGUMENTS`) | `model` |
+| `agent` | `prompt` (instructions for the subagent) | `model` |
+
+**Common optional fields (all types):**
+- `timeout` — optional, with defaults: 600s (command), 30s (prompt), 60s (agent)
+- `statusMessage` — custom spinner message
+- `if` — permission rule syntax filter (tool events only)
+- `once` — run only once per session (skills only)
+
+### Key validation rules
+
+- Event names are **case-sensitive** (e.g., `PostToolUse`, not `postToolUse`)
+- `type: "agent"` does **not** have an `agent` field — the subagent is defined by its `prompt` (and optional `model`)
+- `type: "http"` does **not** have a `command` field — it uses `url`
+- `matcher` field (if present) must contain valid regex syntax
+- Plugin hook commands should reference scripts via `${CLAUDE_PLUGIN_ROOT}` for portability
+- `timeout` is **not required** — sensible defaults are provided by the runtime
+
+### Environment variables in hooks
+
+Two substitution variables are available in hook commands, MCP/LSP configs, and content:
+
+| Variable | Purpose |
+| :------- | :------ |
+| `${CLAUDE_PLUGIN_ROOT}` | Absolute path to plugin installation directory. Use for bundled scripts and configs. |
+| `${CLAUDE_PLUGIN_DATA}` | Persistent directory for plugin state that survives updates. Use for caches, dependencies. |
+
+---
 
 **3. Agent File Schema Compliance (20%)**
 
-Check agent markdown file frontmatter and structure:
-- Frontmatter is present and valid YAML format
-- Required fields `name` and `description` are present and non-empty
-- `name` should be a valid identifier (lowercase, hyphen-separated allowed, no spaces or special characters)
-- `model` field (if present) uses valid values: `sonnet`, `opus`, or `haiku`
-- `effort` field (if present) uses valid values: `low`, `medium`, or `high`
-- `maxTurns` field (if present) is a positive integer
-- Frontmatter delimiter (`---`) is properly formatted
-- Agent content follows frontmatter (not just empty file)
+Agent files live in the `agents/` directory as Markdown files with YAML frontmatter.
+
+### Frontmatter fields
+
+| Field | Required | Type | Rules |
+| :---- | :------- | :--- | :---- |
+| `name` | Yes | string | Valid identifier (lowercase, hyphens allowed, no spaces or special characters) |
+| `description` | Yes | string | Non-empty. Describes what the agent specializes in and when Claude should invoke it |
+| `model` | No | string | Valid values: `sonnet`, `opus`, `haiku` |
+| `effort` | No | string | Valid values: `low`, `medium`, `high` |
+| `maxTurns` | No | integer | Positive integer |
+| `tools` | No | string\|array | Tools the agent can use |
+| `disallowedTools` | No | string\|array | Tools the agent cannot use |
+| `skills` | No | string\|array | Skills available to the agent |
+| `memory` | No | boolean | Whether agent has memory |
+| `background` | No | boolean | Whether agent runs in background |
+| `isolation` | No | string | Only valid value: `"worktree"` |
+
+**Not supported for plugin agents** (security restriction): `hooks`, `mcpServers`, `permissionMode`.
+
+### Structure requirements
+
+- Frontmatter is valid YAML between `---` delimiters
+- Agent body content follows frontmatter (not just empty file)
+- Body should contain a detailed system prompt describing role, expertise, and behavior
+
+---
 
 **4. Path and Reference Integrity (15%)**
 
 Ensure all cross-references are valid:
-- Agents listed in `plugin.json` match actual agent file names
-- Commands listed in `plugin.json` match actual command file names
-- Hooks referencing agents or commands use correct paths
-- All relative paths consistently use `./` prefix convention
+- Agents listed/referenced in `plugin.json` match actual agent file names in the agents directory
+- Commands listed/referenced in `plugin.json` match actual command files in the commands directory
+- Hooks referencing scripts use `${CLAUDE_PLUGIN_ROOT}` for portability
+- All relative paths in `plugin.json` start with `./`
 - No broken references or missing files
-- Path separators are appropriate for the file system
+- Components are at the **plugin root**, not inside `.claude-plugin/` (only `plugin.json` belongs there)
+- No path traversal outside the plugin root (`../` references won't work after installation due to plugin caching)
+
+---
 
 **5. Structural Clarity and Best Practices (15%)**
 
 Evaluate overall plugin structure quality:
 - JSON files are properly formatted with consistent indentation
-- Field ordering follows logical conventions (name, version, description at top)
-- Agent descriptions are clear and actionable
-- Hook event types match their intended use case (e.g., `PreToolUse` for tool interception)
+- Field ordering follows logical conventions (`name`, `version`, `description` at top of manifest)
+- Agent descriptions are clear and actionable — they should convey when Claude should invoke the agent
+- Hook event types match their intended use case (e.g., `PreToolUse` for intercepting tool calls, `PreCompact` for pre-compaction work, `SessionEnd` for cleanup)
 - No duplicate agent names or command names within the plugin
-- Timeout values are reasonable for the hook's purpose
+- If timeouts are specified, values are reasonable for the hook's purpose
 - Agent effort levels match the complexity described in their content
+- Plugin uses `${CLAUDE_PLUGIN_ROOT}` (not `$PLUGIN_DIR` or hardcoded paths) for referencing bundled files
+- Hook file structure uses the nested format (event names as keys with matcher groups)
 
 ## Scoring
 
 Use this scale for overall assessment:
 
-- **0.90-1.00 (Excellent)**: All schema requirements met, no validation errors, follows all conventions, paths are correct, best practices applied
-- **0.75-0.89 (Good)**: Minor issues such as suboptimal naming or missing optional fields, but all required fields present and valid
+- **0.90-1.00 (Excellent)**: All schema requirements met, no validation errors, follows all conventions, paths correct, best practices applied
+- **0.75-0.89 (Good)**: Minor issues such as suboptimal naming, missing optional metadata, or minor structural deviations, but all required fields present and valid
 - **0.60-0.74 (Acceptable)**: Some schema violations or missing required fields in one file type, but plugin is mostly functional
 - **0.40-0.59 (Needs Work)**: Multiple schema violations across file types, incorrect types or missing critical fields
 - **0.00-0.39 (Unacceptable)**: Major schema violations, missing required files, invalid JSON/YAML, or broken references that prevent plugin from loading
@@ -136,15 +252,17 @@ Use this scale for overall assessment:
 
 When providing feedback, be specific and actionable:
 
-- **For missing fields**: State which file and which required field is missing (e.g., "`plugin.json` missing required `version` field")
-- **For invalid values**: Specify the field, current value, and list of valid options (e.g., "`hooks.json` line 12: `type` is 'script' but must be one of: command, agent, prompt")
-- **For path issues**: Identify the incorrect path and provide the corrected version (e.g., "agents array uses `agents/my-agent.md` but should be `./agents/my-agent.md`")
+- **For missing fields**: State which file and which required field is missing (e.g., "`agents/my-agent.md` frontmatter missing required `description` field")
+- **For invalid values**: Specify the field, current value, and list of valid options (e.g., "`hooks.json`: `type` is `'script'` but must be one of: `command`, `http`, `prompt`, `agent`")
+- **For path issues**: Identify the incorrect path and provide the corrected version (e.g., "`plugin.json` uses `agents/` but should be `./agents/`")
+- **For hook structure**: Show the expected nested format if using a flat array
 - **For regex errors**: Quote the invalid pattern and describe the syntax error
-- **For naming conventions**: Show the current name and suggest a corrected version following conventions
-- **For semver issues**: Explain what makes the version invalid (e.g., "version '1.0' missing patch number, should be '1.0.0'")
+- **For naming conventions**: Show the current name and suggest a corrected version
+- **For semver issues**: Explain what makes the version invalid (e.g., "version `'1.0'` missing patch number, should be `'1.0.0'`")
+- **For environment variables**: Flag use of non-standard variables (e.g., `$PLUGIN_DIR` should be `${CLAUDE_PLUGIN_ROOT}`)
 
 Prioritize issues by severity:
-1. Critical: Missing required fields, invalid JSON/YAML syntax, broken references
-2. High: Invalid enum values, incorrect path conventions, malformed regex
-3. Medium: Naming convention violations, missing optional but recommended fields
-4. Low: Formatting inconsistencies, suboptimal but valid configurations
+1. **Critical**: Missing required fields (`name` in manifest, `name`/`description` in agents), invalid JSON/YAML syntax, broken references, wrong hook structure format
+2. **High**: Invalid enum values, incorrect path conventions (missing `./` prefix), wrong hook type fields (e.g., `agent` field on type `"agent"`), unsupported agent frontmatter fields (`hooks`, `mcpServers`, `permissionMode`)
+3. **Medium**: Naming convention violations, missing recommended metadata (`version`, `description`), non-standard environment variables in hooks
+4. **Low**: Formatting inconsistencies, suboptimal but valid configurations, missing optional metadata (`author`, `license`, `keywords`)
