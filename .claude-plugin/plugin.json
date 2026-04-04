@@ -1,0 +1,17 @@
+{
+  "name": "echo",
+  "version": "0.1.0",
+  "description": "Prompt regression testing system for Claude Code agent files. CI layer for the Onlooker plugin ecosystem.",
+  "author": {
+    "name": "Meagan Waller",
+    "email": "meaganewaller@gmail.com",
+    "url": "https://github.com/meaganewaller/echo"
+  },
+  "homepage": "https://github.com/meaganewaller/echo",
+  "repository": "https://github.com/meaganewaller/echo",
+  "license": "MIT",
+  "keywords": ["testing", "regression", "prompt-engineering", "tribunal", "ci"],
+  "agents": ["./agents/echo-reporter.md"],
+  "commands": ["./commands/echo.md"],
+  "hooks": "./hooks/hooks.json"
+}

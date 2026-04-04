@@ -1,0 +1,17 @@
+{
+  "regression_threshold": 0.05,
+  "improvement_threshold": 0.05,
+  "per_criterion_regression_threshold": 0.10,
+  "run_on_config_change": true,
+  "test_cases_dir": "${CLAUDE_PLUGIN_ROOT}/test-cases",
+  "baselines_dir": "${CLAUDE_PLUGIN_ROOT}/baselines",
+  "run_log_dir": "~/.claude/echo/runs",
+  "tribunal_actor": "tribunal:tribunal-actor",
+  "tribunal_judge": "tribunal:tribunal-judge",
+  "tribunal_meta_judge": "tribunal:tribunal-meta-judge",
+  "onlooker": {
+    "enabled": false,
+    "endpoint": "http://localhost:3000/ingest",
+    "workspaceId": "echo"
+  }
+}
