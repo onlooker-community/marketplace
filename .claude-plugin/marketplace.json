@@ -1,0 +1,25 @@
+{
+  "name": "onlooker-marketplace",
+  "owner": {
+    "name": "Onlooker Community",
+    "url": "https://github.com/onlooker-community"
+  },
+  "plugins": [
+    {
+      "name": "tribunal",
+      "description": "Post-run evaluation and quality scoring for LLM outputs.",
+      "source": {
+          "source": "github",
+          "repo": "onlooker-community/tribunal"
+      }
+    },
+    {
+      "name": "archivist",
+      "description": "Structured session memory across context truncation",
+      "source": {
+        "source": "github",
+        "repo": "onlooker-community/archivist"
+      }
+    }
+  ]
+}
