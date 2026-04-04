@@ -26,8 +26,8 @@
       {
         "hooks": [
           {
-            "type": "agent",
-            "prompt": "Load the most recent session extract for working directory $CWD and return a concise summary (max 400 words) as additionalContext. Prioritise open_questions, then decisions, then dead_ends. Reference files by path only.",
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/inject.py\"",
             "statusMessage": "Archivist: loading session context..."
           }
         ]
