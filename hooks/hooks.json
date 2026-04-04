@@ -3,7 +3,7 @@
   "hooks": {
     "ConfigChange": [
       {
-        "matcher": "skills",
+        "matcher": "agents/.*\\.md$",
         "hooks": [
           {
             "type": "command",

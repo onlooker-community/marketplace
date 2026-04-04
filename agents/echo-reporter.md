@@ -1,10 +1,10 @@
 ---
 name: echo-reporter
 description: >
-  Generates human-readable regression reports from Echo test results comparing
-  agent performance before and after prompt changes. Invoked by Echo after a
-  test suite run to summarize improved, degraded, and neutral outcomes and
-  provide a merge recommendation.
+  Use when you need a human-readable regression report summarizing improved,
+  degraded, and neutral outcomes after an Echo test suite run. Produces a
+  before/after score breakdown per test case and an unambiguous merge
+  recommendation (safe, review, or do-not-merge).
 model: sonnet
 effort: low
 maxTurns: 5
