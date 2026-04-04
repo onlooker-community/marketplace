@@ -1,24 +1,37 @@
 {
-  "hooks": [
-    {
-      "event": "PreCompact",
-      "type": "agent",
-      "agent": "archivist-extractor",
-      "prompt": "Extract structured session memory from the current session. The working directory is $CWD. Write the extraction to the Archivist storage path configured in config.json. Generate a UUID for the session_id and use the current ISO 8601 timestamp.",
-      "statusMessage": "Archivist: capturing session memory..."
-    },
-    {
-      "event": "SessionEnd",
-      "type": "command",
-      "command": "python3 \"$PLUGIN_DIR/scripts/extract.py\" --finalize",
-      "async": true
-    },
-    {
-      "event": "SessionStart",
-      "type": "agent",
-      "agent": "archivist-injector",
-      "prompt": "Load the most recent session extract for working directory $CWD and return a concise summary (max 400 words) as additionalContext. Prioritise open_questions, then decisions, then dead_ends. Reference files by path only.",
-      "statusMessage": "Archivist: loading session context..."
-    }
-  ]
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "Extract structured session memory from the current session. The working directory is $CWD. Write the extraction to the Archivist storage path configured in config.json. Generate a UUID for the session_id and use the current ISO 8601 timestamp.",
+            "statusMessage": "Archivist: capturing session memory..."
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/extract.py\" --finalize",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "Load the most recent session extract for working directory $CWD and return a concise summary (max 400 words) as additionalContext. Prioritise open_questions, then decisions, then dead_ends. Reference files by path only.",
+            "statusMessage": "Archivist: loading session context..."
+          }
+        ]
+      }
+    ]
+  }
 }

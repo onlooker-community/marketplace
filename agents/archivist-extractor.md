@@ -1,5 +1,6 @@
 ---
 name: archivist-extractor
+description: Reads a session transcript and extracts structured memory (decisions, dead ends, open questions, files) as JSON for persistence across context truncation.
 model: sonnet
 effort: medium
 maxTurns: 5

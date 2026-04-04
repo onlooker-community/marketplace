@@ -1,5 +1,6 @@
 ---
 name: archivist-injector
+description: Loads the most recent session extract for the current working directory and returns a concise prose summary for injection into the new session context.
 model: sonnet
 effort: low
 maxTurns: 3
