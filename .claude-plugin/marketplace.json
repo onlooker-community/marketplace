@@ -36,6 +36,14 @@
         "source": "github",
         "repo": "onlooker-community/scribe"
       }
+    },
+    {
+      "name": "echo",
+      "description": "Prompt regression testing — measurable before/after signals for agent file changes",
+      "source": {
+        "source": "github",
+        "repo": "onlooker-community/echo"
+      }
     }
   ]
 }
