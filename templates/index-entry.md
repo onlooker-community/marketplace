@@ -1,0 +1,1 @@
+- [{{date}} — {{summary}}](changes/{{filename}}.md)
