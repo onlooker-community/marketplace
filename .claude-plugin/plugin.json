@@ -1,0 +1,14 @@
+{
+  "name": "sentinel",
+  "version": "0.1.0",
+  "description": "Pre-flight safety gate for destructive Bash operations. Pattern-matched risk evaluation with block, review, and log behaviors.",
+  "author": {
+    "name": "Onlooker Community",
+    "url": "https://github.com/onlooker-community"
+  },
+  "homepage": "https://github.com/onlooker-community/sentinel",
+  "repository": "https://github.com/onlooker-community/sentinel",
+  "license": "MIT",
+  "keywords": ["safety", "bash", "destructive-ops", "pre-flight"],
+  "commands": ["./commands/sentinel.md"]
+}
