@@ -1,8 +1,5 @@
 {
   "name": "archivist",
   "version": "0.1.0",
-  "description": "Structured session memory across context truncation. Extracts decisions, dead ends, and open questions before compaction and reinjects them on session start.",
-  "agents": "./agents/",
-  "commands": "./commands/",
-  "hooks": "./hooks/hooks.json"
+  "description": "Structured session memory across context truncation. Extracts decisions, dead ends, and open questions before compaction and reinjects them on session start."
 }
