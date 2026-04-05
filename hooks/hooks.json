@@ -1,5 +1,25 @@
 {
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/skill-usage-tracker.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/read-tracker.sh"
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "hooks": [
