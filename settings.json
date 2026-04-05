@@ -1,4 +1,4 @@
 {
-	"agent": "metrics-analyzer",
+	"agent": "onlooker:metrics-analyzer",
 	"disableAllHooks": false
 }
