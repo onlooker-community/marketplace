@@ -29,6 +29,6 @@ echo "$START_TIME" > "$SESSION_TRACKER_DIR/$SESSION_ID"
 # Emit session_start event
 PAYLOAD=$(jq -n --arg start_time "$START_ISO" '{ start_time: $start_time }')
 
-echo "$INPUT" | "$ONLOOKER_EMIT" session_start "$PAYLOAD"
+echo "$INPUT" | $ONLOOKER_EMIT session_start "$PAYLOAD"
 
 exit 0
