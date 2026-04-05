@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "description": "Plugins that help you understand and optimize your agentic workflows. Brought to you by the Onlooker Community.",
+    "version": "0.1.0"
+  },
   "name": "onlooker-marketplace",
   "owner": {
     "name": "Onlooker Community",
@@ -8,50 +12,32 @@
     {
       "name": "onlooker",
       "description": "Local observability for agentic workflows — telemetry, friction analysis, cost tracking, and weekly insights",
-      "source": {
-        "source": "github",
-        "repo": "onlooker-community/onlooker"
-      }
+      "source": "./plugins/onlooker"
     },
     {
       "name": "tribunal",
       "description": "Post-run evaluation and quality scoring for LLM outputs.",
-      "source": {
-          "source": "github",
-          "repo": "onlooker-community/tribunal"
-      }
+      "source": "./plugins/tribunal"
     },
     {
       "name": "archivist",
       "description": "Structured session memory across context truncation",
-      "source": {
-        "source": "github",
-        "repo": "onlooker-community/archivist"
-      }
+      "source": "./plugins/archivist"
     },
     {
       "name": "sentinel",
       "description": "Pre-flight safety gate for destructive Bash operations",
-      "source": {
-        "source": "github",
-        "repo": "onlooker-community/sentinel"
-      }
+      "source": "./plugins/sentinel"
     },
     {
       "name": "scribe",
       "description": "Intent documentation from agent activity — captures why, not what",
-      "source": {
-        "source": "github",
-        "repo": "onlooker-community/scribe"
-      }
+      "source": "./plugins/scribe"
     },
     {
       "name": "echo",
       "description": "Prompt regression testing — measurable before/after signals for agent file changes",
-      "source": {
-        "source": "github",
-        "repo": "onlooker-community/echo"
-      }
+      "source": "./plugins/echo"
     }
   ]
 }

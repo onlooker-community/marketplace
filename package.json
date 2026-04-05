@@ -1,0 +1,63 @@
+{
+  "name": "@onlooker-community/marketplace",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Monorepo for Onlooker Community's collection of Claude plugins.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onlooker-community/marketplace.git"
+  },
+  "author": "Onlooker Community",
+  "license": "Apache-2.0",
+  "workspaces": [
+    "plugins/*"
+  ],
+  "keywords": [
+    "claude",
+    "claude-plugins",
+    "onlooker",
+    "agentic-workflows",
+    "observability",
+    "telemetry",
+    "cost-tracking",
+    "friction-analysis",
+    "post-run-evaluation",
+    "quality-scoring",
+    "session-memory",
+    "safety-gate",
+    "intent-documentation",
+    "prompt-regression-testing"
+  ],
+  "scripts": {
+    "commitlint": "commitlint",
+    "fix:lint": "biome lint --write .",
+    "fix:format": "biome format --write .",
+    "lint-staged": "lint-staged",
+    "lint:spelling": "cspell . \"./.*/**\""
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.10",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@types/node": "^25.5.2",
+    "cspell": "^9.8.0",
+    "globals": "^17.4.0",
+    "lint-staged": "^16.4.0",
+    "typescript": "^6.0.2"
+  },
+  "lint-staged": {
+    "*.{ts,js,yml,json5}": [
+      "biome lint --write",
+      "biome format --write",
+      "cspell lint --no-must-find-files"
+    ],
+    "**/!(bun).lock": [
+      "biome lint --write",
+      "biome format --write",
+      "cspell lint --no-must-find-files"
+    ],
+    "*.md": [
+      "cspell lint --no-must-find-files"
+    ]
+  }
+}
