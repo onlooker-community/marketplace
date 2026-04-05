@@ -10,8 +10,17 @@
   "homepage": "https://github.com/meaganewaller/echo",
   "repository": "https://github.com/meaganewaller/echo",
   "license": "MIT",
-  "keywords": ["testing", "regression", "prompt-engineering", "tribunal", "ci"],
-  "agents": ["./agents/echo-reporter.md"],
-  "commands": ["./commands/echo.md"],
-  "hooks": "./hooks/hooks.json"
+  "keywords": [
+    "testing",
+    "regression",
+    "prompt-engineering",
+    "tribunal",
+    "ci"
+  ],
+  "agents": [
+    "./agents/echo-reporter.md"
+  ],
+  "commands": [
+    "./commands/echo.md"
+  ]
 }
