@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/onlooker-community/marketplace/compare/sentinel-v0.2.0...sentinel-v0.3.0) (2026-04-09)
+
+
+### Features
+
+* convert Sentinel plugin scripts from Python to Bash ([b149018](https://github.com/onlooker-community/marketplace/commit/b14901896345ad6eb9e057ee0a15338ae63ce8cd))
+
 ## [0.2.0](https://github.com/onlooker-community/marketplace/compare/sentinel-v0.1.0...sentinel-v0.2.0) (2026-04-09)
 
 
