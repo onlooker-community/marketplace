@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/onlooker-community/marketplace/compare/oracle-v0.2.0...oracle-v0.3.0) (2026-04-09)
+
+
+### Features
+
+* **oracle:** rename command from oracle:oracle to oracle:calibrate ([b91143b](https://github.com/onlooker-community/marketplace/commit/b91143b1c07257626df7ea1b3eb282543882f694))
+
 ## [0.2.0](https://github.com/onlooker-community/marketplace/compare/oracle-v0.1.0...oracle-v0.2.0) (2026-04-09)
 
 
