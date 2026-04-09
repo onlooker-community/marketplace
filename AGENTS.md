@@ -9,8 +9,9 @@ This file provides guidance to Claude Code when working with this repository.
 - **License**: Blue Oak Model License 1.0.0
 - **Current plugins**:
   - archivist (structured session memory across context truncation)
-  - echo (prompt regression testing for agent files),
+  - echo (prompt regression testing for agent files)
   - onlooker (observability spine for your agents)
+  - oracle (confidence calibration before action)
   - scribe (intent documentation for agent activity)
   - sentinel (pre-flight safety gate for destructive operations)
   - tribunal (multi-agent orchestration with quality gates)

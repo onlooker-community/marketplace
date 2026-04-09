@@ -1,0 +1,20 @@
+{
+	"enabled": true,
+	"confidence_threshold": {
+		"proceed": 0.8,
+		"flag": 0.5
+	},
+	"high_consequence_tools": ["Write", "Bash"],
+	"skip_patterns": [
+		"git status",
+		"git log",
+		"git diff",
+		"ls ",
+		"cat ",
+		"bun test",
+		"bun run lint",
+		"bun run fix"
+	],
+	"audit_log": "~/.claude/oracle/audit.jsonl",
+	"convergence_sampling": true
+}

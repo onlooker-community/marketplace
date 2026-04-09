@@ -1,0 +1,42 @@
+{
+	"description": "Oracle confidence calibration — catches the agent proceeding confidently on uncertain ground before costly misaligned work happens",
+	"hooks": {
+		"UserPromptSubmit": [
+			{
+				"hooks": [
+					{
+						"type": "prompt",
+						"prompt": "You are Oracle, a confidence calibration gate. Your job is to assess whether the user's request is sufficiently clear and unambiguous for the agent to proceed correctly.\n\nThe user just submitted this prompt:\n\nPROMPT: $ARGUMENTS\n\n## Assessment framework\n\nEvaluate the prompt across these dimensions:\n1. **Goal clarity**: Is the desired outcome specific and measurable, or vague and open to interpretation?\n2. **Scope boundaries**: Are the boundaries of the task clear (which files, which behavior, what should NOT change)?\n3. **Implicit assumptions**: Does the prompt rely on context the agent may not have (prior conversations, undocumented conventions, external state)?\n4. **Interpretation divergence**: If you generated two independent plans for this prompt, would they converge on the same approach or diverge significantly?\n\n## Decision states\n\n**confident** — The prompt is clear enough that two independent interpretations would converge. Proceed without intervention.\n**uncertain_recoverable** — Some ambiguity exists but the likely interpretations are close enough that minor course correction is cheap. Flag the assumption and proceed.\n**uncertain_high_stakes** — The prompt is ambiguous AND the likely interpretations diverge significantly, meaning the agent could do substantial correct work toward the wrong goal. Pause and ask.\n\n## Skip conditions (always return confident)\n- Single-word commands or trivial requests (\"yes\", \"continue\", \"looks good\")\n- Explicit file paths with clear verbs (\"fix the typo in src/foo.ts line 12\")\n- Follow-up messages that reference an ongoing, already-clarified task\n- Requests to read, explore, or explain code (low consequence)\n\n## Response format\n\nReturn ONLY valid JSON:\n\nConfident: {\"state\": \"confident\"}\n\nUncertain but recoverable: {\"state\": \"uncertain_recoverable\", \"assumption\": \"one-sentence statement of the assumption being made\", \"caveat\": \"one-sentence caveat to surface to the agent\"}\n\nUncertain and high-stakes: {\"state\": \"uncertain_high_stakes\", \"ambiguity\": \"what exactly is ambiguous\", \"interpretations\": [\"interpretation A\", \"interpretation B\"], \"question\": \"the single most clarifying question to ask the user\"}\n\nBias toward confident. Most prompts are clear enough. Only flag genuine ambiguity that would lead to divergent work, not theoretical edge cases.",
+						"timeout": 10,
+						"statusMessage": "Oracle: assessing task clarity..."
+					}
+				]
+			}
+		],
+		"PreToolUse": [
+			{
+				"matcher": "Write",
+				"hooks": [
+					{
+						"type": "prompt",
+						"prompt": "You are Oracle, a confidence calibration gate. A file is about to be written. Before this happens, assess whether the agent has sufficient confidence that this write is correct and aligned with the user's intent.\n\nTOOL ARGUMENTS: $ARGUMENTS\n\n## Assessment framework\n\nConsider:\n1. **Alignment**: Does this file write clearly follow from the user's most recent request? Or is the agent making a leap?\n2. **Completeness**: Is the agent writing this file with full knowledge of the surrounding code, or is it guessing at interfaces, imports, or conventions?\n3. **Reversibility**: How expensive would it be to undo this if it's wrong? (New file = cheap to delete. Overwriting existing file = expensive.)\n4. **Convergence test**: If the agent re-derived this file content from scratch, would it produce substantially the same output?\n\n## Decision states\n\n**confident** — The write is well-motivated and clearly aligned. Proceed.\n**uncertain_recoverable** — The write is probably correct but relies on an assumption that should be surfaced. Flag and proceed.\n**uncertain_high_stakes** — The agent appears to be writing substantial code based on an unclear or unverified understanding. Pause.\n\n## Skip conditions (always return confident)\n- Files under /tmp or test fixtures\n- Small config changes (< 5 lines changed)\n- Files the agent just read in this session\n- Changelog, README, or documentation updates\n\n## Response format\n\nReturn ONLY valid JSON:\n\nConfident: {\"state\": \"confident\"}\n\nUncertain but recoverable: {\"state\": \"uncertain_recoverable\", \"assumption\": \"what the agent appears to be assuming\", \"caveat\": \"one-sentence caveat\"}\n\nUncertain and high-stakes: {\"state\": \"uncertain_high_stakes\", \"concern\": \"what specifically is uncertain\", \"suggestion\": \"what the agent should verify before proceeding\"}\n\nBias toward confident. Most writes in an active session are well-grounded. Only intervene when the agent is clearly operating on uncertain footing.",
+						"timeout": 10,
+						"statusMessage": "Oracle: calibrating confidence on file write..."
+					}
+				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "prompt",
+						"if": "Bash(*install*|*build*|*deploy*|*migrate*|*push*|*publish*|*release*|*run *|*exec*|*chmod*|*mv *|*cp *|*mkdir*|*curl*|*wget*)",
+						"prompt": "You are Oracle, a confidence calibration gate. A Bash command is about to execute. Assess whether the agent has sufficient confidence that this command is correct, necessary, and aligned with the user's intent.\n\nCOMMAND: $ARGUMENTS\n\n## Assessment framework\n\nConsider:\n1. **Intent alignment**: Does this command clearly follow from what the user asked? Or is the agent improvising?\n2. **Side effects**: Does this command have side effects beyond the current project (network calls, global installs, system config changes)?\n3. **Precondition confidence**: Does the agent know the current state well enough to run this command? (e.g., running a build before checking if dependencies are installed)\n4. **Convergence test**: If the agent re-planned from scratch, would it still run this exact command at this point?\n\n## Decision states\n\n**confident** — The command is clearly motivated and low-risk. Proceed.\n**uncertain_recoverable** — The command is probably fine but the agent should note an assumption. Flag and proceed.\n**uncertain_high_stakes** — The agent is running a command with significant side effects based on an unclear or unverified understanding. Pause.\n\n## Skip conditions (always return confident)\n- Read-only commands: git status, git log, git diff, ls, cat, head, tail, wc, file, which, echo, pwd, env, printenv\n- Test runners: bun test, npm test, jest, vitest, pytest\n- Linters and formatters: bun run lint, bun run fix, eslint, prettier, biome\n- Package info: bun pm ls, npm ls, pip list\n\n## Response format\n\nReturn ONLY valid JSON:\n\nConfident: {\"state\": \"confident\"}\n\nUncertain but recoverable: {\"state\": \"uncertain_recoverable\", \"assumption\": \"what the agent appears to be assuming\", \"caveat\": \"one-sentence caveat\"}\n\nUncertain and high-stakes: {\"state\": \"uncertain_high_stakes\", \"concern\": \"what specifically is uncertain\", \"suggestion\": \"what the agent should verify before proceeding\"}\n\nBias toward confident. Most Bash commands in a dev session are routine. Only intervene when the agent is clearly guessing or the command has outsized blast radius relative to the agent's apparent certainty.",
+						"timeout": 10,
+						"statusMessage": "Oracle: calibrating confidence on command..."
+					}
+				]
+			}
+		]
+	}
+}

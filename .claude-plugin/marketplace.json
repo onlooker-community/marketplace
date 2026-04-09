@@ -38,6 +38,11 @@
 			"name": "echo",
 			"description": "Prompt regression testing — measurable before/after signals for agent file changes",
 			"source": "./plugins/echo"
+		},
+		{
+			"name": "oracle",
+			"description": "Confidence calibration before action — catches misaligned work before it becomes expensive to reverse",
+			"source": "./plugins/oracle"
 		}
 	]
 }
