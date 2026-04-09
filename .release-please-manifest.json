@@ -1,0 +1,8 @@
+{
+  "plugins/archivist": "0.1.0",
+  "plugins/echo": "0.1.0",
+  "plugins/onlooker": "0.1.0",
+  "plugins/scribe": "0.1.0",
+  "plugins/sentinel": "0.1.0",
+  "plugins/tribunal": "0.1.0"
+}
