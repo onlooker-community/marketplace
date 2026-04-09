@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/onlooker-community/marketplace/compare/oracle-v0.1.0...oracle-v0.2.0) (2026-04-09)
+
+
+### Features
+
+* add Oracle confidence calibration plugin with hooks for user prompts and tool usage ([4d39b9f](https://github.com/onlooker-community/marketplace/commit/4d39b9fb1a2e840f3814509d4b109c18f5ed70d7))
+
 ## [0.1.0](https://github.com/onlooker-community/oracle/compare/v0.0.0...v0.1.0) (2026-04-09)
 
 ### Features
