@@ -73,6 +73,18 @@
 			],
 			"initial-version": "0.1.0",
 			"release-type": "simple"
+		},
+		"plugins/oracle": {
+			"component": "oracle",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": ".claude-plugin/plugin.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "simple"
 		}
 	}
 }
