@@ -24,7 +24,7 @@ We will use a two-layer architecture:
 
 2. **Layer 2: Prompt-based evaluation** — For commands that match the `if` field, a `type: prompt` hook (single-turn, no tool access) evaluates the command in context. The prompt classifies risk level (critical/high/medium/low), looks up the configured behavior (block/review/log), and returns the appropriate hook output.
 
-A deterministic fallback (`scripts/evaluate.py`) provides the same pattern matching and classification without LLM evaluation, for CI/CD contexts or when faster-than-prompt evaluation is needed.
+A deterministic fallback (`scripts/evaluate.sh`) provides the same pattern matching and classification without LLM evaluation, for CI/CD contexts or when faster-than-prompt evaluation is needed.
 
 ## Consequences
 
