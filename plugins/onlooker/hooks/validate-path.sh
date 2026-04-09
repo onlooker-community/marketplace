@@ -89,21 +89,6 @@ hook_register() {
   trap '_hook_on_exit $?' EXIT
 }
 
-# Register hook execution start
-# Usage: hook_register "hook-name"
-hook_register() {
-  _HOOK_NAME="${1:-unknown}"
-  # Get time in milliseconds (macOS compatible)
-  if [[ "$(uname)" == "Darwin" ]]; then
-    _HOOK_START_TIME=$(python3 -c 'import time; print(int(time.time() * 1000))' 2>/dev/null || date +%s)
-  else
-    _HOOK_START_TIME=$(date +%s%3N 2>/dev/null || date +%s)
-  fi
-
-  # Set up trap to catch failures
-  trap '_hook_on_exit $?' EXIT
-}
-
 # Log hook success (call explicitly or let trap determine)
 hook_success() {
   _hook_log "success" ""
