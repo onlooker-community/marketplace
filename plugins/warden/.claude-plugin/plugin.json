@@ -1,6 +1,6 @@
 {
 	"name": "warden",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Indirect prompt injection detection on content retrieved by WebFetch, Read, and MCP tools. Scans for injection patterns and gates subsequent actions when threats are detected.",
 	"author": {
 		"name": "Onlooker Community",
