@@ -8,6 +8,8 @@ source "$SCRIPT_DIR/validate-path.sh"
 
 # Register for health monitoring
 hook_register "cost-tracker"
+
+INPUT=$(cat)
 hook_set_context "$INPUT"
 
 # Extract usage data from Stop event
