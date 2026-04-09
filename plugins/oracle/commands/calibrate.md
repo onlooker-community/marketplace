@@ -1,9 +1,9 @@
 ---
-name: oracle
+name: calibrate
 description: Manage Oracle confidence calibration — view config, audit log, and calibration state
 ---
 
-# /oracle:oracle
+# /oracle:calibrate
 
 Manage the Oracle confidence calibration gate.
 

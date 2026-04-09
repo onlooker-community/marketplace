@@ -17,6 +17,6 @@
 		"ambiguity"
 	],
 	"commands": [
-		"./commands/oracle.md"
+		"./commands/calibrate.md"
 	]
 }

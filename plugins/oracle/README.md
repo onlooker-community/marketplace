@@ -42,11 +42,11 @@ See `config.json` for defaults:
 
 ## Commands
 
-- `/oracle:oracle show` — Display current configuration
-- `/oracle:oracle audit` — View recent calibration decisions
-- `/oracle:oracle stats` — Calibration statistics and health
-- `/oracle:oracle threshold` — Adjust thresholds for this session
-- `/oracle:oracle disable` / `enable` — Toggle for this session
+- `/oracle:calibrate show` — Display current configuration
+- `/oracle:calibrate audit` — View recent calibration decisions
+- `/oracle:calibrate stats` — Calibration statistics and health
+- `/oracle:calibrate threshold` — Adjust thresholds for this session
+- `/oracle:calibrate disable` / `enable` — Toggle for this session
 
 ## Install
 

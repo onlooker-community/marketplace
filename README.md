@@ -132,7 +132,7 @@ Confidence calibration before action — catches misaligned work before it becom
 **Contains:**
 
 - **Commands:**
-  - `/oracle:oracle` - Manage Oracle confidence calibration — view config, audit log, and calibration state.
+  - `/oracle:calibrate` - Manage Oracle confidence calibration — view config, audit log, and calibration state.
 - **Hooks:**
   - UserPromptSubmit hooks configured (Assess task clarity and interpretation divergence)
   - PreToolUse hooks configured (Calibrate confidence on Write and Bash operations)
