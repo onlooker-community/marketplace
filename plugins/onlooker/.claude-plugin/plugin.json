@@ -1,7 +1,7 @@
 {
   "name": "onlooker",
   "description": "Local observability for Claude agents. Hooks that emit JSONL events. See what your agents actually do.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Onlooker Community",
     "url": "https://github.com/onlooker-community/onlooker"
