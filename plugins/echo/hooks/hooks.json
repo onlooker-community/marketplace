@@ -7,7 +7,7 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/run_suite.py\" --trigger config_change --changed-file \"$CLAUDE_CHANGED_FILE\"",
+						"command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/run_suite.sh\" --trigger config_change --changed-file \"$CLAUDE_CHANGED_FILE\"",
 						"async": true,
 						"timeout": 300,
 						"statusMessage": "Echo: running regression tests for changed agent..."

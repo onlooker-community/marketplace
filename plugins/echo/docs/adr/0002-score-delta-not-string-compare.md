@@ -13,7 +13,7 @@ LLM outputs are non-deterministic. The same agent, given the same task twice, wi
 
 Echo compares rubric criterion scores (floats) between the current run and the baseline, using a configurable tolerance threshold. A test is classified as degraded only if the score delta exceeds the regression threshold or a per-criterion regression exceeds its own threshold.
 
-The comparison is implemented in `scripts/compare.py`.
+The comparison is implemented in `scripts/compare.sh`.
 
 ## Options considered
 
