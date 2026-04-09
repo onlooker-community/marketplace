@@ -11,6 +11,15 @@
 						"statusMessage": "Oracle: assessing task clarity..."
 					}
 				]
+			},
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/oracle-audit.sh",
+						"timeout": 5
+					}
+				]
 			}
 		],
 		"PreToolUse": [
@@ -26,6 +35,16 @@
 				]
 			},
 			{
+				"matcher": "Write",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/oracle-audit.sh",
+						"timeout": 5
+					}
+				]
+			},
+			{
 				"matcher": "Bash",
 				"hooks": [
 					{
@@ -34,6 +53,17 @@
 						"prompt": "You are Oracle, a confidence calibration gate. A Bash command is about to execute. Assess whether the agent has sufficient confidence that this command is correct, necessary, and aligned with the user's intent.\n\nCOMMAND: $ARGUMENTS\n\n## Assessment framework\n\nConsider:\n1. **Intent alignment**: Does this command clearly follow from what the user asked? Or is the agent improvising?\n2. **Side effects**: Does this command have side effects beyond the current project (network calls, global installs, system config changes)?\n3. **Precondition confidence**: Does the agent know the current state well enough to run this command? (e.g., running a build before checking if dependencies are installed)\n4. **Convergence test**: If the agent re-planned from scratch, would it still run this exact command at this point?\n\n## Decision states\n\n**confident** — The command is clearly motivated and low-risk. Proceed.\n**uncertain_recoverable** — The command is probably fine but the agent should note an assumption. Flag and proceed.\n**uncertain_high_stakes** — The agent is running a command with significant side effects based on an unclear or unverified understanding. Pause.\n\n## Skip conditions (always return confident)\n- Read-only commands: git status, git log, git diff, ls, cat, head, tail, wc, file, which, echo, pwd, env, printenv\n- Test runners: bun test, npm test, jest, vitest, pytest\n- Linters and formatters: bun run lint, bun run fix, eslint, prettier, biome\n- Package info: bun pm ls, npm ls, pip list\n\n## Response format\n\nReturn ONLY valid JSON:\n\nConfident: {\"state\": \"confident\"}\n\nUncertain but recoverable: {\"state\": \"uncertain_recoverable\", \"assumption\": \"what the agent appears to be assuming\", \"caveat\": \"one-sentence caveat\"}\n\nUncertain and high-stakes: {\"state\": \"uncertain_high_stakes\", \"concern\": \"what specifically is uncertain\", \"suggestion\": \"what the agent should verify before proceeding\"}\n\nBias toward confident. Most Bash commands in a dev session are routine. Only intervene when the agent is clearly guessing or the command has outsized blast radius relative to the agent's apparent certainty.",
 						"timeout": 10,
 						"statusMessage": "Oracle: calibrating confidence on command..."
+					}
+				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"if": "Bash(*install*|*build*|*deploy*|*migrate*|*push*|*publish*|*release*|*run *|*exec*|*chmod*|*mv *|*cp *|*mkdir*|*curl*|*wget*)",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/oracle-audit.sh",
+						"timeout": 5
 					}
 				]
 			}
