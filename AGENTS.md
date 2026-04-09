@@ -119,7 +119,7 @@ cd .worktrees/<branch>
 **Solution:** Paths in `hooks.json` are relative to plugin root. Test manually:
 
 ```bash
-bash plugins/<plugin>/hooks/scripts/<script>.sh
+bash plugins/<plugin>/scripts/<script>.sh
 ```
 
 ### 3. Design Documents Are Reference Material
@@ -131,8 +131,8 @@ Check `docs/plans/` for historical context. All features start with design docs.
 **Hook not executing:**
 
 ```bash
-ls -la plugins/<plugin>/hooks/scripts/<script>.sh  # Check path
-chmod +x plugins/<plugin>/hooks/scripts/<script>.sh  # Add permission
+ls -la plugins/<plugin>/scripts/<script>.sh  # Check path
+chmod +x plugins/<plugin>/scripts/<script>.sh  # Add permission
 ```
 
 **Skill not activating:**

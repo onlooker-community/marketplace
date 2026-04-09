@@ -16,51 +16,161 @@ Add this marketplace to Claude Code:
 
 ### archivist
 
-[archivist Plugin README](/plugins/archivist/README.md)
+[Plugin README](plugins/archivist/README.md)
 
 **Category:** Context Preservation
 
-Extracts decisions, dead ends, and open questions before context is compacted. Reinjects the most important items when a new session starts.
+Structured session memory across context truncation. Extracts decisions, dead ends, and open questions before context is compacted, then reinjects the most important items when a new session starts.
+
+**Contains:**
+
+- **Agents:**
+  - `archivist-extractor` - Reads a session transcript and extracts structured memory (decisions, dead ends, open questions, files) as JSON for persistence across context truncation.
+  - `archivist-injector` - Loads the most recent session extract for the current working directory and returns a concise prose summary for injection into the new session context.
+- **Commands:**
+  - `/archivist:memory` - View, manage, and inspect Archivist session memory extracts.
+- **Hooks:**
+  - PreCompact hooks configured (Extract structured session memory from current session)
+  - SessionEnd hooks configured (Finalize extraction)
+  - SessionStart hooks configured (Load session context on startup)
+
+**Installation:**
+
+```bash
+/plugin install archivist@onlooker-marketplace
+```
 
 ### echo
 
-[echo Plugin README](/plugins/echo/README.md)
+[Plugin README](plugins/echo/README.md)
 
 **Category:** Regression Testing
 
-Measurable before/after signals for every prompt change. Runs test cases through [Tribunal](/plugins/tribunal), compares scores against committed baselines, and reports improved, degraded, or neutral.
+Prompt regression testing — measurable before/after signals for agent file changes. Runs test cases through Tribunal, compares scores against committed baselines, and reports improved, degraded, or neutral.
+
+**Contains:**
+
+- **Agents:**
+  - `echo-reporter` - Produces a human-readable regression report summarizing improved, degraded, and neutral outcomes with a before/after score breakdown and merge recommendation.
+- **Commands:**
+  - `/echo:echo` - Run test suites, record baselines, and detect regressions before merging prompt changes.
+- **Hooks:**
+  - ConfigChange hooks configured (Triggers regression test suite when agent files change)
+
+**Installation:**
+
+```bash
+/plugin install echo@onlooker-marketplace
+```
 
 ### onlooker
 
-[onlooker Plugin README](/plugins/onlooker/README.md)
+[Plugin README](plugins/onlooker/README.md)
 
 **Category:** Foundational
 
-The observability spine for your agents. Hooks -> JSONL Telemetry -> Grafana dashboards. Local, observable agent telemetry on your machine.
+Local observability for agentic workflows — telemetry, friction analysis, cost tracking, and weekly insights. The observability spine for your agents.
+
+**Contains:**
+
+- **Skills:**
+  - `analyze-metrics` - Analyze Onlooker metrics to identify patterns, improvements, and anomalies in agent behavior (~47 lines)
+  - `auto-observe` - Automatically configure Onlooker hooks for an agent (~32 lines)
+  - `optimize-telemetry` - Optimize what metrics Onlooker tracks based on usage patterns (~35 lines)
+  - `setup-hooks` - Help set up custom Onlooker hooks for specific use cases (~35 lines)
+- **Agents:**
+  - `metrics-analyzer` - Specialized agent for analyzing Onlooker metrics and identifying patterns
+  - `hook-setup-agent` - Specialized agent for configuring Onlooker hooks
+- **Commands:**
+  - `/onlooker:observe` - Set up Onlooker observation for an agent.
+  - `/onlooker:analyze` - Analyze your agent metrics.
+- **Hooks:**
+  - PostToolUse hooks configured (Track skill usage and file reads)
+  - SessionStart hooks configured (Session start tracking)
+  - Stop hooks configured (Cost tracking)
+
+**Installation:**
+
+```bash
+/plugin install onlooker@onlooker-marketplace
+```
 
 ### scribe
 
-[scribe Plugin README](/plugins/scribe/README.md)
+[Plugin README](plugins/scribe/README.md)
 
 **Category:** Intent Capture
 
-Captures _why_ changes were made, not what the code does. Two-phase architecture: lightweight capture during execution, then distill into readable docs when the session ends.
+Intent documentation from agent activity — captures _why_ changes were made, not what the code does. Two-phase architecture: lightweight capture during execution, then distill into readable docs when the session ends.
+
+**Contains:**
+
+- **Agents:**
+  - `scribe-capture` - Extracts intent from a single file operation while the agent still has context. Lightweight capture after every Write/Edit.
+  - `scribe-distiller` - Synthesises a session's capture entries (plus optional Archivist context) into readable documentation artifacts.
+- **Commands:**
+  - `/scribe:scribe` - Manage Scribe intent documentation — view captures, distill sessions, browse artifacts.
+- **Hooks:**
+  - PostToolUse hooks configured (Capture intent on Write/Edit operations)
+  - Stop hooks configured (Distill session on stop)
+  - SessionEnd hooks configured (Distill session on end)
+
+**Installation:**
+
+```bash
+/plugin install scribe@onlooker-marketplace
+```
 
 ### sentinel
 
-[sentinel Plugin README](/plugins/sentinel/README.md)
+[Plugin README](plugins/sentinel/README.md)
 
 **Category:** Pre-Flight Gate
 
-Pattern-matched risk evaluation before execution. Blocks dangerous commands, prompts for review on risky ones, and logs everything for audit. Zero latency on safe commands.
+Pre-flight safety gate for destructive Bash operations. Pattern-matched risk evaluation before execution — blocks dangerous commands, prompts for review on risky ones, and logs everything for audit. Zero latency on safe commands.
+
+**Contains:**
+
+- **Commands:**
+  - `/sentinel:sentinel` - Manage Sentinel pre-flight safety gate — view config, audit log, and pattern overrides.
+- **Hooks:**
+  - PreToolUse hooks configured (Evaluate destructive Bash operations with pattern matching)
+
+**Installation:**
+
+```bash
+/plugin install sentinel@onlooker-marketplace
+```
 
 ### tribunal
 
-[tribunal Plugin README](/plugins/tribunal/README.md)
+[Plugin README](plugins/tribunal/README.md)
 
 **Category:** LLM Judges
 
-Orchestrate agents. Verify outputs with LLM judges. Automatic quality gates. All observable through Onlooker.
+Post-run evaluation and quality scoring for LLM outputs. Orchestrate agents, verify outputs with LLM judges, and enforce automatic quality gates.
+
+**Contains:**
+
+- **Agents:**
+  - `tribunal-actor` - Executes a development task with structured self-challenge (skepticism phase) before submission.
+  - `tribunal-judge` - Evaluates Actor output against a provided rubric. Returns structured JSON verdict with score, pass/fail, and feedback.
+  - `tribunal-meta-judge` - Reviews a Judge verdict for evaluation quality and bias before the quality gate decision is finalized.
+  - `tribunal-judge-security` - Evaluates output through a security lens, hunting for vulnerabilities and defensive gaps.
+  - `tribunal-judge-maintainability` - Evaluates output for long-term code health, readability, and changeability.
+  - `tribunal-judge-adversarial` - Plays devil's advocate, stress-testing assumptions and exploring edge cases.
+  - `tribunal-judge-domain` - Evaluates output for domain correctness, business logic accuracy, and semantic alignment.
+- **Commands:**
+  - `/tribunal:run` - Tribunal quality pipeline. Dispatches a task through Actor → Judge Panel → Meta-Judge with configurable quality gates.
+- **Hooks:**
+  - PostToolUse hooks configured (Evaluate file quality on Write/Edit operations)
+  - SubagentStop hooks configured (Review judge verdicts on actor completion)
+
+**Installation:**
+
+```bash
+/plugin install tribunal@onlooker-marketplace
+```
 
 ## Development
 
