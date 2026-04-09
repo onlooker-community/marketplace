@@ -1,45 +1,45 @@
 {
-  "category": "process",
-  "patterns": [
-    {
-      "id": "proc-kill-9",
-      "description": "Sending SIGKILL to processes",
-      "regex": "kill\\s+-9",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "Use kill (SIGTERM) first to allow graceful shutdown. Only use kill -9 if SIGTERM fails"
-    },
-    {
-      "id": "proc-pkill-killall",
-      "description": "Killing processes by name pattern",
-      "regex": "\\b(pkill|killall)\\b",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "Use pgrep to find matching processes first, then kill specific PIDs"
-    },
-    {
-      "id": "proc-systemctl-stop",
-      "description": "Stopping or disabling system services",
-      "regex": "systemctl\\s+(stop|disable)",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "Check the service status first (systemctl status). Verify it's not a critical system service"
-    },
-    {
-      "id": "proc-sudo",
-      "description": "Any command run with sudo",
-      "regex": "\\bsudo\\b",
-      "risk_level": "medium",
-      "default_behavior": "log",
-      "safer_alternative": "Verify the command is correct before running with elevated privileges"
-    },
-    {
-      "id": "proc-su",
-      "description": "Switching user context",
-      "regex": "\\bsu\\s+-",
-      "risk_level": "medium",
-      "default_behavior": "log",
-      "safer_alternative": "Use sudo for specific commands instead of switching to a different user entirely"
-    }
-  ]
+	"category": "process",
+	"patterns": [
+		{
+			"id": "proc-kill-9",
+			"description": "Sending SIGKILL to processes",
+			"regex": "kill\\s+-9",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "Use kill (SIGTERM) first to allow graceful shutdown. Only use kill -9 if SIGTERM fails"
+		},
+		{
+			"id": "proc-pkill-killall",
+			"description": "Killing processes by name pattern",
+			"regex": "\\b(pkill|killall)\\b",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "Use pgrep to find matching processes first, then kill specific PIDs"
+		},
+		{
+			"id": "proc-systemctl-stop",
+			"description": "Stopping or disabling system services",
+			"regex": "systemctl\\s+(stop|disable)",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "Check the service status first (systemctl status). Verify it's not a critical system service"
+		},
+		{
+			"id": "proc-sudo",
+			"description": "Any command run with sudo",
+			"regex": "\\bsudo\\b",
+			"risk_level": "medium",
+			"default_behavior": "log",
+			"safer_alternative": "Verify the command is correct before running with elevated privileges"
+		},
+		{
+			"id": "proc-su",
+			"description": "Switching user context",
+			"regex": "\\bsu\\s+-",
+			"risk_level": "medium",
+			"default_behavior": "log",
+			"safer_alternative": "Use sudo for specific commands instead of switching to a different user entirely"
+		}
+	]
 }

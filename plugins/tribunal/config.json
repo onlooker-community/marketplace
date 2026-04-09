@@ -1,13 +1,13 @@
 {
-    "passingScore": 0.80,
-    "maxIterations": 3,
-    "actor": {
-        "count": 1
-    },
-    "panel": {
-        "size": 4,
-        "aggregation": "mean"
-    },
-    "defaultRubric": "rubrics/default.md",
-    "autoHook": true
+	"passingScore": 0.8,
+	"maxIterations": 3,
+	"actor": {
+		"count": 1
+	},
+	"panel": {
+		"size": 4,
+		"aggregation": "mean"
+	},
+	"defaultRubric": "rubrics/default.md",
+	"autoHook": true
 }

@@ -1,25 +1,15 @@
 {
-  "name": "scribe",
-  "version": "0.2.0",
-  "description": "Intent documentation from agent activity. Captures why changes were made during execution and distills them into readable documentation artifacts.",
-  "author": {
-    "name": "Onlooker Community",
-    "url": "https://github.com/onlooker-community"
-  },
-  "homepage": "https://github.com/onlooker-community/scribe",
-  "repository": "https://github.com/onlooker-community/scribe",
-  "license": "MIT",
-  "keywords": [
-    "documentation",
-    "intent",
-    "history",
-    "post-tool-use"
-  ],
-  "agents": [
-    "./agents/scribe-capture.md",
-    "./agents/scribe-distiller.md"
-  ],
-  "commands": [
-    "./commands/scribe.md"
-  ]
+	"name": "scribe",
+	"version": "0.2.0",
+	"description": "Intent documentation from agent activity. Captures why changes were made during execution and distills them into readable documentation artifacts.",
+	"author": {
+		"name": "Onlooker Community",
+		"url": "https://github.com/onlooker-community"
+	},
+	"homepage": "https://github.com/onlooker-community/scribe",
+	"repository": "https://github.com/onlooker-community/scribe",
+	"license": "MIT",
+	"keywords": ["documentation", "intent", "history", "post-tool-use"],
+	"agents": ["./agents/scribe-capture.md", "./agents/scribe-distiller.md"],
+	"commands": ["./commands/scribe.md"]
 }

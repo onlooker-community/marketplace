@@ -1,45 +1,45 @@
 {
-  "category": "environment",
-  "patterns": [
-    {
-      "id": "env-write-dotenv",
-      "description": "Writing to .env files (potential secret exposure)",
-      "regex": "(>|>>|tee)\\s+.*\\.env(\\.|\\s|$)|cat\\s+.*>\\s*.*\\.env|echo\\s+.*>\\s*.*\\.env|printf\\s+.*>\\s*.*\\.env",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Edit .env files manually or use a secrets manager. Never write secrets via shell redirection"
-    },
-    {
-      "id": "env-write-credentials",
-      "description": "Writing to known credential file paths",
-      "regex": "(>|>>|tee)\\s+.*(credentials|secrets|tokens|keyfile|\\.pem|\\.key)",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Use your secrets manager or credential store. Never write credentials via shell commands"
-    },
-    {
-      "id": "env-export-secrets",
-      "description": "Exporting sensitive environment variables to shell",
-      "regex": "export\\s+(AWS_SECRET|API_KEY|DATABASE_URL|SECRET_KEY|PRIVATE_KEY|ACCESS_TOKEN|AUTH_TOKEN)",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Set secrets in .env files (not committed to git) and load via direnv or dotenv, not export"
-    },
-    {
-      "id": "env-read-dotenv",
-      "description": "Reading .env files (potential secret exfiltration)",
-      "regex": "(cat|less|more|head|tail|bat)\\s+.*\\.env(\\.|\\s|$)",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "Use grep for specific variable names instead of displaying the entire file"
-    },
-    {
-      "id": "env-modify-shell-profile",
-      "description": "Modifying shell profile files",
-      "regex": "(>|>>|tee|sed\\s+-i|vim|nano|code)\\s+.*(\\.(bashrc|zshrc|profile|bash_profile|zprofile)|/etc/profile)",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "Back up the profile file first (cp ~/.bashrc ~/.bashrc.bak), then edit"
-    }
-  ]
+	"category": "environment",
+	"patterns": [
+		{
+			"id": "env-write-dotenv",
+			"description": "Writing to .env files (potential secret exposure)",
+			"regex": "(>|>>|tee)\\s+.*\\.env(\\.|\\s|$)|cat\\s+.*>\\s*.*\\.env|echo\\s+.*>\\s*.*\\.env|printf\\s+.*>\\s*.*\\.env",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Edit .env files manually or use a secrets manager. Never write secrets via shell redirection"
+		},
+		{
+			"id": "env-write-credentials",
+			"description": "Writing to known credential file paths",
+			"regex": "(>|>>|tee)\\s+.*(credentials|secrets|tokens|keyfile|\\.pem|\\.key)",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Use your secrets manager or credential store. Never write credentials via shell commands"
+		},
+		{
+			"id": "env-export-secrets",
+			"description": "Exporting sensitive environment variables to shell",
+			"regex": "export\\s+(AWS_SECRET|API_KEY|DATABASE_URL|SECRET_KEY|PRIVATE_KEY|ACCESS_TOKEN|AUTH_TOKEN)",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Set secrets in .env files (not committed to git) and load via direnv or dotenv, not export"
+		},
+		{
+			"id": "env-read-dotenv",
+			"description": "Reading .env files (potential secret exfiltration)",
+			"regex": "(cat|less|more|head|tail|bat)\\s+.*\\.env(\\.|\\s|$)",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "Use grep for specific variable names instead of displaying the entire file"
+		},
+		{
+			"id": "env-modify-shell-profile",
+			"description": "Modifying shell profile files",
+			"regex": "(>|>>|tee|sed\\s+-i|vim|nano|code)\\s+.*(\\.(bashrc|zshrc|profile|bash_profile|zprofile)|/etc/profile)",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "Back up the profile file first (cp ~/.bashrc ~/.bashrc.bak), then edit"
+		}
+	]
 }

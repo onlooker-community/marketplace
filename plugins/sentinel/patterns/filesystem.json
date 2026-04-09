@@ -1,77 +1,77 @@
 {
-  "category": "filesystem",
-  "patterns": [
-    {
-      "id": "fs-rm-rf-outside-safe",
-      "description": "rm -rf on paths outside /tmp or project directory",
-      "regex": "rm\\s+-[^\\s]*r[^\\s]*f|rm\\s+-[^\\s]*f[^\\s]*r",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Use trash-cli (trash-put) or move to a backup directory instead of permanent deletion"
-    },
-    {
-      "id": "fs-shred",
-      "description": "Secure file deletion with shred",
-      "regex": "\\bshred\\b",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Use rm (reversible from backups) or move to a staging directory for review before deletion"
-    },
-    {
-      "id": "fs-dd-zero",
-      "description": "dd writing zeros or random data to a device or file",
-      "regex": "\\bdd\\s+if=/dev/(zero|urandom|random)",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Verify the target path carefully. Use truncate for file zeroing or fallocate for space allocation"
-    },
-    {
-      "id": "fs-chmod-777",
-      "description": "Setting world-writable permissions on directories",
-      "regex": "chmod\\s+777",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Use chmod 755 for directories or chmod 644 for files. Only grant the minimum permissions needed"
-    },
-    {
-      "id": "fs-rm-rf-general",
-      "description": "rm -rf anywhere (less specific)",
-      "regex": "rm\\s+-[^\\s]*r",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "List contents first with ls, then delete specific files. Or use trash-cli for recoverable deletion"
-    },
-    {
-      "id": "fs-find-delete",
-      "description": "find with -delete flag",
-      "regex": "find\\s+.*-delete",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "Run find without -delete first to preview matches, then add -delete after confirming"
-    },
-    {
-      "id": "fs-truncate",
-      "description": "truncate on non-log files",
-      "regex": "\\btruncate\\b",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "Back up the file first (cp file file.bak), then truncate"
-    },
-    {
-      "id": "fs-mv-config",
-      "description": "Moving configuration files",
-      "regex": "mv\\s+.*\\.(conf|cfg|ini|yaml|yml|toml|json)",
-      "risk_level": "medium",
-      "default_behavior": "log",
-      "safer_alternative": "Copy first (cp), verify the copy, then remove the original"
-    },
-    {
-      "id": "fs-cp-overwrite",
-      "description": "Copying files that may overwrite existing files without backup",
-      "regex": "cp\\s+(?!.*--backup).*\\s+\\S+",
-      "risk_level": "medium",
-      "default_behavior": "log",
-      "safer_alternative": "Use cp --backup=numbered to preserve existing files"
-    }
-  ]
+	"category": "filesystem",
+	"patterns": [
+		{
+			"id": "fs-rm-rf-outside-safe",
+			"description": "rm -rf on paths outside /tmp or project directory",
+			"regex": "rm\\s+-[^\\s]*r[^\\s]*f|rm\\s+-[^\\s]*f[^\\s]*r",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Use trash-cli (trash-put) or move to a backup directory instead of permanent deletion"
+		},
+		{
+			"id": "fs-shred",
+			"description": "Secure file deletion with shred",
+			"regex": "\\bshred\\b",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Use rm (reversible from backups) or move to a staging directory for review before deletion"
+		},
+		{
+			"id": "fs-dd-zero",
+			"description": "dd writing zeros or random data to a device or file",
+			"regex": "\\bdd\\s+if=/dev/(zero|urandom|random)",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Verify the target path carefully. Use truncate for file zeroing or fallocate for space allocation"
+		},
+		{
+			"id": "fs-chmod-777",
+			"description": "Setting world-writable permissions on directories",
+			"regex": "chmod\\s+777",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Use chmod 755 for directories or chmod 644 for files. Only grant the minimum permissions needed"
+		},
+		{
+			"id": "fs-rm-rf-general",
+			"description": "rm -rf anywhere (less specific)",
+			"regex": "rm\\s+-[^\\s]*r",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "List contents first with ls, then delete specific files. Or use trash-cli for recoverable deletion"
+		},
+		{
+			"id": "fs-find-delete",
+			"description": "find with -delete flag",
+			"regex": "find\\s+.*-delete",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "Run find without -delete first to preview matches, then add -delete after confirming"
+		},
+		{
+			"id": "fs-truncate",
+			"description": "truncate on non-log files",
+			"regex": "\\btruncate\\b",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "Back up the file first (cp file file.bak), then truncate"
+		},
+		{
+			"id": "fs-mv-config",
+			"description": "Moving configuration files",
+			"regex": "mv\\s+.*\\.(conf|cfg|ini|yaml|yml|toml|json)",
+			"risk_level": "medium",
+			"default_behavior": "log",
+			"safer_alternative": "Copy first (cp), verify the copy, then remove the original"
+		},
+		{
+			"id": "fs-cp-overwrite",
+			"description": "Copying files that may overwrite existing files without backup",
+			"regex": "cp\\s+(?!.*--backup).*\\s+\\S+",
+			"risk_level": "medium",
+			"default_behavior": "log",
+			"safer_alternative": "Use cp --backup=numbered to preserve existing files"
+		}
+	]
 }

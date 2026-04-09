@@ -1,19 +1,19 @@
 {
-  "description": "Echo — automatic prompt regression testing on agent file changes",
-  "hooks": {
-    "ConfigChange": [
-      {
-        "matcher": "agents/.*\\.md$",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/run_suite.py\" --trigger config_change --changed-file \"$CLAUDE_CHANGED_FILE\"",
-            "async": true,
-            "timeout": 300,
-            "statusMessage": "Echo: running regression tests for changed agent..."
-          }
-        ]
-      }
-    ]
-  }
+	"description": "Echo — automatic prompt regression testing on agent file changes",
+	"hooks": {
+		"ConfigChange": [
+			{
+				"matcher": "agents/.*\\.md$",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/run_suite.py\" --trigger config_change --changed-file \"$CLAUDE_CHANGED_FILE\"",
+						"async": true,
+						"timeout": 300,
+						"statusMessage": "Echo: running regression tests for changed agent..."
+					}
+				]
+			}
+		]
+	}
 }

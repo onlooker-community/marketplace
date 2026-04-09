@@ -1,19 +1,13 @@
 {
-  "name": "onlooker",
-  "description": "Local observability for Claude agents. Hooks that emit JSONL events. See what your agents actually do.",
-  "version": "0.2.0",
-  "author": {
-    "name": "Onlooker Community",
-    "url": "https://github.com/onlooker-community/onlooker"
-  },
-  "homepage": "https://onlooker.dev",
-  "repository": "https://github.com/onlooker-community/onlooker.git",
-  "license": "Apache-2.0",
-  "keywords": [
-    "observability",
-    "agents",
-    "hooks",
-    "telemetry",
-    "local"
-  ]
+	"name": "onlooker",
+	"description": "Local observability for Claude agents. Hooks that emit JSONL events. See what your agents actually do.",
+	"version": "0.2.0",
+	"author": {
+		"name": "Onlooker Community",
+		"url": "https://github.com/onlooker-community/onlooker"
+	},
+	"homepage": "https://onlooker.dev",
+	"repository": "https://github.com/onlooker-community/onlooker.git",
+	"license": "Apache-2.0",
+	"keywords": ["observability", "agents", "hooks", "telemetry", "local"]
 }

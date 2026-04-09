@@ -1,78 +1,78 @@
 {
-  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
-  "include-component-in-tag": true,
-  "packages": {
-    "plugins/archivist": {
-      "component": "archivist",
-      "extra-files": [
-        {
-          "jsonpath": "$.version",
-          "path": ".claude-plugin/plugin.json",
-          "type": "json"
-        }
-      ],
-      "initial-version": "0.1.0",
-      "release-type": "simple"
-    },
-    "plugins/echo": {
-      "component": "echo",
-      "extra-files": [
-        {
-          "jsonpath": "$.version",
-          "path": ".claude-plugin/plugin.json",
-          "type": "json"
-        }
-      ],
-      "initial-version": "0.1.0",
-      "release-type": "simple"
-    },
-    "plugins/onlooker": {
-      "component": "onlooker",
-      "extra-files": [
-        {
-          "jsonpath": "$.version",
-          "path": ".claude-plugin/plugin.json",
-          "type": "json"
-        }
-      ],
-      "initial-version": "0.1.0",
-      "release-type": "simple"
-    },
-    "plugins/scribe": {
-      "component": "scribe",
-      "extra-files": [
-        {
-          "jsonpath": "$.version",
-          "path": ".claude-plugin/plugin.json",
-          "type": "json"
-        }
-      ],
-      "initial-version": "0.1.0",
-      "release-type": "simple"
-    },
-    "plugins/sentinel": {
-      "component": "sentinel",
-      "extra-files": [
-        {
-          "jsonpath": "$.version",
-          "path": ".claude-plugin/plugin.json",
-          "type": "json"
-        }
-      ],
-      "initial-version": "0.1.0",
-      "release-type": "simple"
-    },
-    "plugins/tribunal": {
-      "component": "tribunal",
-      "extra-files": [
-        {
-          "jsonpath": "$.version",
-          "path": ".claude-plugin/plugin.json",
-          "type": "json"
-        }
-      ],
-      "initial-version": "0.1.0",
-      "release-type": "simple"
-    }
-  }
+	"$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+	"include-component-in-tag": true,
+	"packages": {
+		"plugins/archivist": {
+			"component": "archivist",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": ".claude-plugin/plugin.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "simple"
+		},
+		"plugins/echo": {
+			"component": "echo",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": ".claude-plugin/plugin.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "simple"
+		},
+		"plugins/onlooker": {
+			"component": "onlooker",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": ".claude-plugin/plugin.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "simple"
+		},
+		"plugins/scribe": {
+			"component": "scribe",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": ".claude-plugin/plugin.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "simple"
+		},
+		"plugins/sentinel": {
+			"component": "sentinel",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": ".claude-plugin/plugin.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "simple"
+		},
+		"plugins/tribunal": {
+			"component": "tribunal",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": ".claude-plugin/plugin.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "simple"
+		}
+	}
 }

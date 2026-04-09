@@ -1,53 +1,53 @@
 {
-  "category": "database",
-  "patterns": [
-    {
-      "id": "db-drop-table",
-      "description": "DROP TABLE or DROP DATABASE commands",
-      "regex": "DROP\\s+(TABLE|DATABASE)\\b",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Rename the table first (ALTER TABLE ... RENAME TO ..._backup) and verify before dropping"
-    },
-    {
-      "id": "db-truncate",
-      "description": "TRUNCATE TABLE commands",
-      "regex": "\\bTRUNCATE\\b",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Use DELETE with a WHERE clause for selective deletion, or back up the table first"
-    },
-    {
-      "id": "db-delete-no-where",
-      "description": "DELETE FROM without WHERE clause",
-      "regex": "DELETE\\s+FROM\\s+\\w+\\s*;|DELETE\\s+FROM\\s+\\w+\\s*$",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Always include a WHERE clause. Run SELECT with the same WHERE first to preview affected rows"
-    },
-    {
-      "id": "db-alter-drop-column",
-      "description": "ALTER TABLE ... DROP COLUMN",
-      "regex": "ALTER\\s+TABLE\\s+.*DROP\\s+COLUMN",
-      "risk_level": "critical",
-      "default_behavior": "block",
-      "safer_alternative": "Create a migration that is reversible. Back up the column data before dropping"
-    },
-    {
-      "id": "db-migration-run",
-      "description": "Running database migrations",
-      "regex": "rails\\s+db:migrate|alembic\\s+upgrade|flyway\\s+migrate|knex\\s+migrate|prisma\\s+migrate\\s+deploy",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "Review the pending migration files first, ensure they are reversible, and back up the database"
-    },
-    {
-      "id": "db-restore-overwrite",
-      "description": "Database restore commands that overwrite existing data",
-      "regex": "(pg_restore|mysql.*<|mongorestore|sqlite3.*\\.restore)",
-      "risk_level": "high",
-      "default_behavior": "review",
-      "safer_alternative": "Restore to a separate database/schema first, verify the data, then swap"
-    }
-  ]
+	"category": "database",
+	"patterns": [
+		{
+			"id": "db-drop-table",
+			"description": "DROP TABLE or DROP DATABASE commands",
+			"regex": "DROP\\s+(TABLE|DATABASE)\\b",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Rename the table first (ALTER TABLE ... RENAME TO ..._backup) and verify before dropping"
+		},
+		{
+			"id": "db-truncate",
+			"description": "TRUNCATE TABLE commands",
+			"regex": "\\bTRUNCATE\\b",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Use DELETE with a WHERE clause for selective deletion, or back up the table first"
+		},
+		{
+			"id": "db-delete-no-where",
+			"description": "DELETE FROM without WHERE clause",
+			"regex": "DELETE\\s+FROM\\s+\\w+\\s*;|DELETE\\s+FROM\\s+\\w+\\s*$",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Always include a WHERE clause. Run SELECT with the same WHERE first to preview affected rows"
+		},
+		{
+			"id": "db-alter-drop-column",
+			"description": "ALTER TABLE ... DROP COLUMN",
+			"regex": "ALTER\\s+TABLE\\s+.*DROP\\s+COLUMN",
+			"risk_level": "critical",
+			"default_behavior": "block",
+			"safer_alternative": "Create a migration that is reversible. Back up the column data before dropping"
+		},
+		{
+			"id": "db-migration-run",
+			"description": "Running database migrations",
+			"regex": "rails\\s+db:migrate|alembic\\s+upgrade|flyway\\s+migrate|knex\\s+migrate|prisma\\s+migrate\\s+deploy",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "Review the pending migration files first, ensure they are reversible, and back up the database"
+		},
+		{
+			"id": "db-restore-overwrite",
+			"description": "Database restore commands that overwrite existing data",
+			"regex": "(pg_restore|mysql.*<|mongorestore|sqlite3.*\\.restore)",
+			"risk_level": "high",
+			"default_behavior": "review",
+			"safer_alternative": "Restore to a separate database/schema first, verify the data, then swap"
+		}
+	]
 }
