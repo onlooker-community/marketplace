@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/onlooker-community/marketplace/compare/scribe-v0.2.0...scribe-v0.3.0) (2026-04-09)
+
+
+### Features
+
+* convert Scribe plugin scripts from Python to Bash ([5fe4295](https://github.com/onlooker-community/marketplace/commit/5fe4295f015b758799b4d56010090bed4650e18f))
+
 ## [0.2.0](https://github.com/onlooker-community/marketplace/compare/scribe-v0.1.0...scribe-v0.2.0) (2026-04-09)
 
 
