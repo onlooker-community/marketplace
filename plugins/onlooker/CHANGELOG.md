@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0](https://github.com/onlooker-community/marketplace/compare/onlooker-v0.3.0...onlooker-v0.4.0) (2026-04-09)
+
+
+### Features
+
+* read input data from standard input in cost-tracker hook ([dae9378](https://github.com/onlooker-community/marketplace/commit/dae93785ffb660116ebe12719d5b4b8e679b994b))
+
 ## [0.3.0](https://github.com/onlooker-community/marketplace/compare/onlooker-v0.2.0...onlooker-v0.3.0) (2026-04-09)
 
 
