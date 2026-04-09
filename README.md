@@ -194,6 +194,28 @@ Post-run evaluation and quality scoring for LLM outputs. Orchestrate agents, ver
 /plugin install tribunal@onlooker-marketplace
 ```
 
+### warden
+
+[Plugin README](plugins/warden/README.md)
+
+**Category:** Security
+
+Indirect prompt injection detection — scans content retrieved by WebFetch and Read for injection patterns and gates agent actions (Write, Edit, Bash) when threats are detected. Grounded in Meta's Agents Rule of Two.
+
+**Contains:**
+
+- **Commands:**
+  - `/warden:gate` - Manage Warden content gate — view status, audit log, injection patterns, and clear blocked state.
+- **Hooks:**
+  - PostToolUse hooks configured (Scan WebFetch and Read content for injection patterns)
+  - PreToolUse hooks configured (Gate Write, Edit, and Bash operations when injection detected)
+
+**Installation:**
+
+```bash
+/plugin install warden@onlooker-marketplace
+```
+
 ## Development
 
 This is a monorepo containing multiple plugins. Each plugin is a separate directory in the `plugins/` directory.

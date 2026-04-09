@@ -43,6 +43,11 @@
 			"name": "oracle",
 			"description": "Confidence calibration before action — catches misaligned work before it becomes expensive to reverse",
 			"source": "./plugins/oracle"
+		},
+		{
+			"name": "warden",
+			"description": "Indirect prompt injection detection — scans retrieved content and gates agent actions when threats are detected",
+			"source": "./plugins/warden"
 		}
 	]
 }

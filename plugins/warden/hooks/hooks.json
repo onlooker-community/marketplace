@@ -1,0 +1,59 @@
+{
+	"description": "Warden indirect prompt injection detection — scans content from WebFetch and Read, gates Write/Edit/Bash when injection detected",
+	"hooks": {
+		"PostToolUse": [
+			{
+				"matcher": "WebFetch",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/warden-scan.sh",
+						"timeout": 10
+					}
+				]
+			},
+			{
+				"matcher": "Read",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/warden-scan.sh",
+						"timeout": 10
+					}
+				]
+			}
+		],
+		"PreToolUse": [
+			{
+				"matcher": "Write",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/warden-gate.sh",
+						"timeout": 5
+					}
+				]
+			},
+			{
+				"matcher": "Edit",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/warden-gate.sh",
+						"timeout": 5
+					}
+				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/warden-gate.sh",
+						"timeout": 5
+					}
+				]
+			}
+		]
+	}
+}

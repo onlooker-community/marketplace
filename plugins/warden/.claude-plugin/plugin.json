@@ -1,0 +1,21 @@
+{
+	"name": "warden",
+	"version": "0.1.0",
+	"description": "Indirect prompt injection detection on content retrieved by WebFetch, Read, and MCP tools. Scans for injection patterns and gates subsequent actions when threats are detected.",
+	"author": {
+		"name": "Onlooker Community",
+		"url": "https://github.com/onlooker-community"
+	},
+	"homepage": "https://github.com/onlooker-community/warden",
+	"repository": "https://github.com/onlooker-community/warden",
+	"license": "MIT",
+	"keywords": [
+		"security",
+		"prompt-injection",
+		"content-gate",
+		"injection-detection"
+	],
+	"commands": [
+		"./commands/gate.md"
+	]
+}

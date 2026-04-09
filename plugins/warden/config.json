@@ -1,0 +1,15 @@
+{
+	"enabled": true,
+	"audit_log": "~/.claude/warden/audit.jsonl",
+	"state_file": "~/.claude/warden/gate-state.json",
+	"scan_tools": ["WebFetch", "Read"],
+	"gate_tools": ["Write", "Edit", "Bash"],
+	"auto_clear": false,
+	"cooldown_turns": 0,
+	"safe_paths": [
+		"/tmp",
+		"~/.claude/archivist",
+		"~/.claude/logs"
+	],
+	"max_content_scan_bytes": 102400
+}

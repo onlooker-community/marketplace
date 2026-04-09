@@ -15,6 +15,7 @@ This file provides guidance to Claude Code when working with this repository.
   - scribe (intent documentation for agent activity)
   - sentinel (pre-flight safety gate for destructive operations)
   - tribunal (multi-agent orchestration with quality gates)
+  - warden (indirect prompt injection detection on retrieved content)
 
 ## Quick Start
 
