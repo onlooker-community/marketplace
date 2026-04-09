@@ -121,6 +121,28 @@ Intent documentation from agent activity — captures _why_ changes were made, n
 /plugin install scribe@onlooker-marketplace
 ```
 
+### oracle
+
+[Plugin README](plugins/oracle/README.md)
+
+**Category:** Confidence Calibration
+
+Confidence calibration before action — catches misaligned work before it becomes expensive to reverse. Detects when the agent is about to proceed on uncertain ground and intervenes before costly work toward the wrong goal.
+
+**Contains:**
+
+- **Commands:**
+  - `/oracle:oracle` - Manage Oracle confidence calibration — view config, audit log, and calibration state.
+- **Hooks:**
+  - UserPromptSubmit hooks configured (Assess task clarity and interpretation divergence)
+  - PreToolUse hooks configured (Calibrate confidence on Write and Bash operations)
+
+**Installation:**
+
+```bash
+/plugin install oracle@onlooker-marketplace
+```
+
 ### sentinel
 
 [Plugin README](plugins/sentinel/README.md)
