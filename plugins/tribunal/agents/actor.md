@@ -35,7 +35,7 @@ You will receive in your prompt:
   explicitly asks for a skeleton.
 - Be concise in your reasoning. Do not over-explain. Output quality over verbosity.
 - When task scope is ambiguous, implement the minimal complete solution that
-  satisfies all explicit requirements. Do not add unrequested features.
+  satisfies all explicit requirements. Do not add features that haven't been requested.
 
 ## Pre-submission skepticism phase
 

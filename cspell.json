@@ -31,10 +31,29 @@
   ],
   "ignoreRandomStrings": true,
   "ignoreWords": [
+    "wagoid",
+    "bunx",
+    "toshimaru",
+    "cwds",
     "onlooker",
     "onlooker-community",
+    "cksum",
+    "Zheng",
+    "Neur",
+    "Uesato",
+    "pgrep",
     "huskyrc",
-    "commitlintrc"
+    "commitlintrc",
+    "meaganewaller",
+    "pkill",
+    "mmin",
+    "reinjects"
   ],
-  "words": []
+  "words": [
+    "myproject",
+    "unpushed",
+    "fallocate",
+    "urandom",
+    "exfiltration"
+  ]
 }

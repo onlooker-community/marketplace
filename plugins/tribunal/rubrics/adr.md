@@ -9,7 +9,7 @@ Evaluate the submitted Architectural Decision Record on the following criteria.
 All citations must be factually correct and verifiable. This criterion is critical for maintaining research integrity.
 
 Evaluate:
-- **Author names**: Match the actual paper authors (no misattributions)
+- **Author names**: Match the actual paper authors (attributions are correct)
 - **Publication year**: Accurate to the paper's publication date
 - **Paper titles**: Exact or accurate paraphrasing
 - **Identifiers**: arXiv IDs, DOIs, URLs resolve to the cited work

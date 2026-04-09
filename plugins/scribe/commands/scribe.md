@@ -48,7 +48,7 @@ Show raw capture entries for the current session. Useful for debugging — displ
 ### `config`
 Show current Scribe configuration from `${CLAUDE_PLUGIN_ROOT}/config.json`.
 
-## Behaviour
+## Behavior
 
 - `distill` commands write files to the configured `output_dir`. All other commands are read-only.
 - If no captures exist for the current session, say so clearly rather than showing empty output.

@@ -41,7 +41,7 @@ Tribunal is grounded in two research frameworks: **LLM-as-a-Judge** (Zheng et al
 
 **Judge** Evaluates Actor output against a rubric. Returns a structured verdict: a score, pass/fail signal, and specific actionable feedback. Multiple Judge agents can form a panel, with verdicts aggregated before the gate decision.
 
-**Meta-Judge** Evaluates the Judge's verdict. Checks whether the evaluation is well-reasoned and free from known LLM judge biases (positional bias, verbosity bias, self-enhacement bias). The Meta-Judge can override or refine the Judge's feedback before it is returned to a new Actor iteration.
+**Meta-Judge** Evaluates the Judge's verdict. Checks whether the evaluation is well-reasoned and free from known LLM judge biases (positional bias, verbosity bias, self-enhancement bias). The Meta-Judge can override or refine the Judge's feedback before it is returned to a new Actor iteration.
 
 ### Quality Gates
 
@@ -225,7 +225,7 @@ _Evaluate the submitted code on the following criteria:_
 
 1. **Correctness** - Does it handle all cases described in the task?
 2. **Error handling** - Are errors caught and surfaced descriptively?
-3. **Code quality** - Is it readaable, typed, and free of unnecessary complexity?
+3. **Code quality** - Is it readable, typed, and free of unnecessary complexity?
 4. **Edge cases** - Are empty inputs, boundary values, and failure modes handled?
 
 Return a score from 0.0 to 1.0 and specific, actionable feedback the developer can act on immediately.
@@ -422,5 +422,4 @@ Establishes that strong LLMs used as judges can approximate human preferences at
 
 **LLM-as-a-Meta-Judge** — Wu et al., 2024 [arxiv.org/abs/2407.19594](https://arxiv.org/abs/2407.19594)
 
-Introduces Meta-Rewarding: a model that judges its own judgements to prevent evaluation saturation during iterative training. The Meta-Judge in Tribunal implements this pattern at inference time — improving evaluation quality across Actor iterations rather than allowing it to degrade as scores converge.
-
+Introduces Meta-Rewarding: a model that judges its own judgments to prevent evaluation saturation during iterative training. The Meta-Judge in Tribunal implements this pattern at inference time — improving evaluation quality across Actor iterations rather than allowing it to degrade as scores converge.

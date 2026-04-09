@@ -51,7 +51,7 @@ List all loaded patterns from `${CLAUDE_PLUGIN_ROOT}/patterns/*.json`. Group by 
 - Default behavior
 - Whether overridden for this session
 
-## Behaviour
+## Behavior
 
 - All commands are read-only except `allow` and `block`, which modify session state.
 - Pattern files are loaded from `${CLAUDE_PLUGIN_ROOT}/patterns/` directory.

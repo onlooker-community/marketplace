@@ -8,9 +8,9 @@ Archivist extracts decisions, dead ends, and open questions before context is co
 
 1. **PreCompact** — Before context is truncated, an extractor agent reads the session transcript and produces a structured extract with four categories: decisions (reusable rules), files (paths + rationale), dead_ends (failed approaches), and open_questions (unresolved items).
 
-2. **SessionEnd** — The session extract is finalised with a completion timestamp.
+2. **SessionEnd** — The session extract is finalized with a completion timestamp.
 
-3. **SessionStart** — The most recent extract for the current working directory is loaded and a concise summary (max 400 words) is injected into context. Prioritises open questions, then decisions, then dead ends.
+3. **SessionStart** — The most recent extract for the current working directory is loaded and a concise summary (max 400 words) is injected into context. Prioritizes open questions, then decisions, then dead ends.
 
 ## Install
 
@@ -51,7 +51,7 @@ Edit `config.json` in the plugin directory:
 | `max_injection_words` | `400` | Maximum words in the SessionStart injection |
 | `inject_on_start` | `true` | Whether to inject context on session start |
 | `extract_on_compact` | `true` | Whether to extract on PreCompact |
-| `extract_on_end` | `true` | Whether to finalise on SessionEnd |
+| `extract_on_end` | `true` | Whether to finalize on SessionEnd |
 | `min_confidence_to_inject` | `"medium"` | Minimum confidence level for injecting decisions |
 
 ## Example session extract

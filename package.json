@@ -32,6 +32,7 @@
     "commitlint": "commitlint",
     "fix:lint": "biome lint --write .",
     "fix:format": "biome format --write .",
+    "lint": "run-p -sl --aggregate-output \"lint:*\"",
     "lint-staged": "lint-staged",
     "lint:spelling": "cspell . \"./.*/**\""
   },
@@ -59,5 +60,8 @@
     "*.md": [
       "cspell lint --no-must-find-files"
     ]
+  },
+  "dependencies": {
+    "npm-run-all2": "^8.0.4"
   }
 }

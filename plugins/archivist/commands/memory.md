@@ -33,7 +33,7 @@ Show Archivist configuration and status:
 - Whether extract_on_compact is enabled
 - Onlooker connection status (enabled/disabled, endpoint if enabled)
 
-## Behaviour
+## Behavior
 
 - All commands that reference "current working directory" should match sessions from the cwd or any parent directory, consistent with how injection works.
 - The `show` commands are read-only and safe to run at any time.

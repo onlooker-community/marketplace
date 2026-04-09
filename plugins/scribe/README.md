@@ -8,7 +8,7 @@ Git logs record what changed. Code comments describe what code does. Scribe reco
 
 1. **Capture** (PostToolUse on Write|Edit) — After each file operation, a lightweight prompt extracts the intent behind the change while the agent still has its reasoning in context. Captures are fast (≤3 seconds target) and append to a JSONL file.
 
-2. **Distill** (Stop, SessionEnd, or manual) — Captures are grouped into logical change sets and synthesised into readable Markdown documentation. If Archivist is installed, its decisions and dead ends enrich the output.
+2. **Distill** (Stop, SessionEnd, or manual) — Captures are grouped into logical change sets and synthesized into readable Markdown documentation. If Archivist is installed, its decisions and dead ends enrich the output.
 
 ## Install
 
