@@ -122,10 +122,6 @@ cd .worktrees/<branch>
 bash plugins/<plugin>/scripts/<script>.sh
 ```
 
-### 3. Design Documents Are Reference Material
-
-Check `docs/plans/` for historical context. All features start with design docs.
-
 ## Common Issues
 
 **Hook not executing:**
