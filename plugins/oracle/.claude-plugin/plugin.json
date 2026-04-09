@@ -1,6 +1,6 @@
 {
 	"name": "oracle",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Confidence calibration before action. Detects when the agent is about to proceed on uncertain ground and intervenes before costly misaligned work.",
 	"author": {
 		"name": "Onlooker Community",
@@ -16,5 +16,7 @@
 		"pre-flight",
 		"ambiguity"
 	],
-	"commands": ["./commands/oracle.md"]
+	"commands": [
+		"./commands/oracle.md"
+	]
 }

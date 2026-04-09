@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0](https://github.com/onlooker-community/marketplace/compare/onlooker-v0.4.0...onlooker-v0.5.0) (2026-04-09)
+
+
+### Features
+
+* Add Onlooker observability plugin with initial hooks and metrics analysis ([27ab7f4](https://github.com/onlooker-community/marketplace/commit/27ab7f4ab5a8e4d9b3c7f119b6bac078c7b9b48e))
+* read input data from standard input in cost-tracker hook ([dae9378](https://github.com/onlooker-community/marketplace/commit/dae93785ffb660116ebe12719d5b4b8e679b994b))
+* replace Python scripts with Bash scripts for archivist extraction and injection, and add shared utilities ([e1c2491](https://github.com/onlooker-community/marketplace/commit/e1c24917a9be6339e1d29c26d7ccf79ebff132de))
+
 ## [0.4.0](https://github.com/onlooker-community/marketplace/compare/onlooker-v0.3.0...onlooker-v0.4.0) (2026-04-09)
 
 
