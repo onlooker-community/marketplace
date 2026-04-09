@@ -48,6 +48,11 @@
 			"name": "warden",
 			"description": "Indirect prompt injection detection — scans retrieved content and gates agent actions when threats are detected",
 			"source": "./plugins/warden"
+		},
+		{
+			"name": "counsel",
+			"description": "Weekly synthesis and recommendations — layer-attributed improvement briefs from your observability stack",
+			"source": "./plugins/counsel"
 		}
 	]
 }

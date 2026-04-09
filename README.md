@@ -216,6 +216,29 @@ Indirect prompt injection detection — scans content retrieved by WebFetch and 
 /plugin install warden@onlooker-marketplace
 ```
 
+### counsel
+
+[Plugin README](plugins/counsel/README.md)
+
+**Category:** Synthesis
+
+Weekly synthesis and recommendations — reads from Onlooker events, Tribunal verdicts, Echo regressions, Sentinel/Warden audit logs, and Oracle calibration to produce layer-attributed improvement briefs with concrete actions.
+
+**Contains:**
+
+- **Agents:**
+  - `counsel-synthesizer` - Analyzes gathered plugin data and produces a layer-attributed improvement brief.
+- **Commands:**
+  - `/counsel:brief` - Generate or view a Counsel improvement brief — weekly synthesis of friction, regressions, and recommendations.
+- **Hooks:**
+  - SessionStart hooks configured (Check if a weekly brief is due)
+
+**Installation:**
+
+```bash
+/plugin install counsel@onlooker-marketplace
+```
+
 ## Development
 
 This is a monorepo containing multiple plugins. Each plugin is a separate directory in the `plugins/` directory.
