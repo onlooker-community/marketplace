@@ -1,6 +1,6 @@
 {
 	"name": "@onlooker-community/dashboard",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "CLI tool to spin up a pre-configured Grafana dashboard for Onlooker telemetry data",
 	"type": "module",
 	"bin": {
