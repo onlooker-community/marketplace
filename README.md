@@ -239,9 +239,21 @@ Weekly synthesis and recommendations — reads from Onlooker events, Tribunal ve
 /plugin install counsel@onlooker-marketplace
 ```
 
+## Tools
+
+### @onlooker-community/dashboard
+
+[Tool README](tools/dashboard/README.md)
+
+CLI tool to spin up a pre-configured Grafana dashboard for Onlooker telemetry data. Starts a Bun API server and a Grafana container with pre-provisioned dashboards for cost tracking, session activity, hook health, and tool usage.
+
+```bash
+bunx @onlooker-community/dashboard up
+```
+
 ## Development
 
-This is a monorepo containing multiple plugins. Each plugin is a separate directory in the `plugins/` directory.
+This is a monorepo containing multiple plugins and tools. Plugins are in `plugins/`, standalone tools are in `tools/`.
 
 ### Quick Start
 

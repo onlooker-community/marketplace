@@ -17,6 +17,8 @@ This file provides guidance to Claude Code when working with this repository.
   - tribunal (multi-agent orchestration with quality gates)
   - warden (indirect prompt injection detection on retrieved content)
   - counsel (weekly synthesis and improvement recommendations)
+- **Tools**:
+  - @onlooker-community/dashboard (Grafana dashboard CLI for Onlooker telemetry)
 
 ## Quick Start
 

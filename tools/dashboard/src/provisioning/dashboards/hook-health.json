@@ -1,0 +1,27 @@
+{
+	"annotations": { "list": [] },
+	"editable": true,
+	"fiscalYearStartMonth": 0,
+	"graphTooltip": 1,
+	"id": null,
+	"links": [],
+	"panels": [
+		{
+			"title": "Hook Health — Coming Soon",
+			"type": "text",
+			"gridPos": { "h": 8, "w": 24, "x": 0, "y": 0 },
+			"options": {
+				"mode": "markdown",
+				"content": "## Hook Health Dashboard\n\nThis dashboard will display hook execution metrics once the API server supports the `hook_health` query target.\n\n**Planned panels:**\n- Hook success/failure rates (bar chart)\n- Average execution duration by hook (table)\n- Error log (table with timestamp, hook, error message)\n- Duration trend over time (time-series)\n\n**Data source:** Hook health JSONL is currently written to the plugin's local `logs/hook-health.jsonl`. A future update will expose this through the API server."
+			}
+		}
+	],
+	"schemaVersion": 39,
+	"tags": ["onlooker", "hooks"],
+	"templating": { "list": [] },
+	"time": { "from": "now-7d", "to": "now" },
+	"timepicker": {},
+	"timezone": "",
+	"title": "Hook Health",
+	"uid": "onlooker-hook-health"
+}

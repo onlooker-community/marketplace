@@ -19,6 +19,13 @@
         "typescript": "^6.0.2",
       },
     },
+    "tools/dashboard": {
+      "name": "@onlooker-community/dashboard",
+      "version": "0.1.0",
+      "bin": {
+        "onlooker-dashboard": "./bin/cli.ts",
+      },
+    },
   },
   "packages": {
     "@babel/code-frame": ["@babel/code-frame@7.29.0", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.28.5", "js-tokens": "^4.0.0", "picocolors": "^1.1.1" } }, "sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw=="],
@@ -222,6 +229,8 @@
     "@cspell/strong-weak-map": ["@cspell/strong-weak-map@9.8.0", "", {}, "sha512-HocksAqZ0JcWA5oWO7TIlOCftXVGkPGzbeFlCRRrjJpZmYQH+4NdeEXyQC6T89NGocp45td/CgyBcAaFMy1N9w=="],
 
     "@cspell/url": ["@cspell/url@9.8.0", "", {}, "sha512-LY1lFiZLTQF/ma1ilfKmRmFmEOw0RfYhyl0UMhY7/d93b+kiDMhxP/9Qir4+5LyiRncaE3++ZcWno9Hya+ssRg=="],
+
+    "@onlooker-community/dashboard": ["@onlooker-community/dashboard@workspace:tools/dashboard"],
 
     "@simple-libs/child-process-utils": ["@simple-libs/child-process-utils@1.0.2", "", { "dependencies": { "@simple-libs/stream-utils": "^1.2.0" } }, "sha512-/4R8QKnd/8agJynkNdJmNw2MBxuFTRcNFnE5Sg/G+jkSsV8/UBgULMzhizWWW42p8L5H7flImV2ATi79Ove2Tw=="],
 

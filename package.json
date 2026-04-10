@@ -10,7 +10,8 @@
 	"author": "Onlooker Community",
 	"license": "Apache-2.0",
 	"workspaces": [
-		"plugins/*"
+		"plugins/*",
+		"tools/*"
 	],
 	"keywords": [
 		"claude",

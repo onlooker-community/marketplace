@@ -1,0 +1,30 @@
+{
+	"name": "@onlooker-community/dashboard",
+	"version": "0.1.0",
+	"description": "CLI tool to spin up a pre-configured Grafana dashboard for Onlooker telemetry data",
+	"type": "module",
+	"bin": {
+		"onlooker-dashboard": "./bin/cli.ts"
+	},
+	"files": [
+		"bin",
+		"src"
+	],
+	"keywords": [
+		"onlooker",
+		"grafana",
+		"dashboard",
+		"telemetry",
+		"observability"
+	],
+	"author": {
+		"name": "Onlooker Community",
+		"url": "https://github.com/onlooker-community"
+	},
+	"license": "BlueOak-1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/onlooker-community/marketplace.git",
+		"directory": "tools/dashboard"
+	}
+}
