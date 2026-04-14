@@ -42,7 +42,7 @@ Structured session memory across context truncation. Extracts decisions, dead en
 
 ### cues
 
-[🧭 Plugin README](plugins/cues/README.md)
+[Plugin README](plugins/cues/README.md)
 
 **Category:** Utility
 
