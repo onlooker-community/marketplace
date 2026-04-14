@@ -37,7 +37,7 @@ case "$budget_status" in
     block_on_exceeded="$(ledger_config_value '.block_on_budget_exceeded' 'true')"
 
     if [[ "$block_on_exceeded" == "true" ]]; then
-      echo "Ledger: Session budget exceeded (${pct}% of \$${budget_limit}). Total cost: \$${total_cost}. Blocking subagent spawn. Use /ledger:ledger status to review." >&2
+      echo "Ledger: Session budget exceeded (${pct}% of \$${budget_limit}). Total cost: \$${total_cost}. Blocking subagent spawn. Use /ledger:budget status to review." >&2
       exit 2
     else
       echo "Ledger: Session budget exceeded (${pct}% of \$${budget_limit}). Total cost: \$${total_cost}. block_on_budget_exceeded is false — allowing spawn." >&2

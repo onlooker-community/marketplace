@@ -35,12 +35,12 @@ Install from the Onlooker Marketplace:
 Ledger is automatic once installed. Use the slash command to inspect budget state:
 
 ```
-/ledger:ledger status          # Current session cost and budget consumption
-/ledger:ledger report          # Last 10 sessions summary table
-/ledger:ledger report --sessions 30  # Last 30 sessions
-/ledger:ledger config          # Show current configuration
-/ledger:ledger set-budget --cost 5.00  # Set session budget to $5.00
-/ledger:ledger reset           # Clear current session ledger (fresh start)
+/ledger:budget status          # Current session cost and budget consumption
+/ledger:budget report          # Last 10 sessions summary table
+/ledger:budget report --sessions 30  # Last 30 sessions
+/ledger:budget config          # Show current configuration
+/ledger:budget set-budget --cost 5.00  # Set session budget to $5.00
+/ledger:budget reset           # Clear current session ledger (fresh start)
 ```
 
 ## Configuration
@@ -83,7 +83,7 @@ When the effective limit is reached and a subagent attempts to spawn:
 
 ```
 Ledger: Session budget exceeded (92% of $2.00). Total cost: $1.84. Blocking subagent spawn.
-Use /ledger:ledger status to review.
+Use /ledger:budget status to review.
 ```
 
 The spawn is blocked (exit code 2). Claude receives this message as actionable feedback, not just a generic failure.

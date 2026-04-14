@@ -1,9 +1,9 @@
 ---
-name: ledger
+name: budget
 description: View session budget status, cost breakdown, and historical spend across sessions
 ---
 
-# /ledger:ledger
+# /ledger:budget
 
 Manage and inspect the Ledger resource budget for the current and past sessions.
 

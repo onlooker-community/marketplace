@@ -17,6 +17,6 @@
 		"resource-management"
 	],
 	"commands": [
-		"./commands/ledger.md"
+		"./commands/budget.md"
 	]
 }

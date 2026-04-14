@@ -38,7 +38,7 @@ We will implement a session-scoped ledger that:
 
 - Matches the Agent Contracts conservation law without requiring formal contract machinery — the plugin-level hook is sufficient
 - The circuit breaker is at SubagentStart, the cheapest point to enforce the constraint (before the subagent's context is loaded)
-- Per-session JSON files allow inspection and manual reset (`/ledger:ledger reset`) without affecting other sessions
+- Per-session JSON files allow inspection and manual reset (`/ledger:budget reset`) without affecting other sessions
 - The reserve buffer means the budget warning can itself be delivered without triggering the constraint
 
 ### Negative

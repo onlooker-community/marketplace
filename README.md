@@ -80,7 +80,7 @@ Budget enforcement and cost tracking for Claude Code sessions. Tracks token cons
 **Contains:**
 
 - **Commands:**
-  - `/ledger:ledger` - View session budget status, cost breakdown, and historical spend. Subcommands: `status`, `report`, `set-budget`, `reset`, `config`.
+  - `/ledger:budget` - View session budget status, cost breakdown, and historical spend. Subcommands: `status`, `report`, `set-budget`, `reset`, `config`.
 - **Hooks:**
   - SubagentStart hooks configured (Budget enforcement — blocks spawn if session limit exceeded)
   - SubagentStop hooks configured (Accumulate subagent token usage)
