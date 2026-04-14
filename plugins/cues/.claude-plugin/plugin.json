@@ -4,7 +4,13 @@
         "url": "https://github.com/onlooker-community"
     },
     "description": "Cues are contextual guidance injected automatically based on triggers",
-    "keywords": ["cues", "contextual", "guidance", "triggers", "automation"],
+    "keywords": [
+        "cues",
+        "contextual",
+        "guidance",
+        "triggers",
+        "automation"
+    ],
     "name": "cues",
-    "version": "0.1.0"
+    "version": "0.2.0"
 }
