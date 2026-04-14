@@ -1,6 +1,6 @@
 {
 	"name": "ledger",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Resource governance and budget enforcement for Claude Code. Tracks token consumption and cost across all plugin activity. Blocks agent spawning when session budgets are exceeded.",
 	"author": {
 		"name": "Onlooker Community",
