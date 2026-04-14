@@ -15,6 +15,11 @@
 			"source": "./plugins/onlooker"
 		},
 		{
+			"name": "cues",
+			"description": "Cues are contextual guidance injected automatically based on triggers",
+			"source": "./plugins/cues"
+		},
+		{
 			"name": "tribunal",
 			"description": "Post-run evaluation and quality scoring for LLM outputs.",
 			"source": "./plugins/tribunal"

@@ -1,0 +1,78 @@
+{
+	"hooks": {
+		"SessionStart": [
+			{
+				"matcher": "startup|resume",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/scripts/clear-cue-markers.sh"
+					},
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/scripts/inject-cue-context.sh"
+					},
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/scripts/escalate-friction.sh"
+					}
+				]
+			}
+		],
+		"UserPromptSubmit": [
+			{
+				"matcher": "*",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/scripts/cue-injector.sh"
+					},
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/scripts/idea-classifier.sh"
+					}
+				]
+			}
+		],
+		"PreToolUse": [
+			{
+				"matcher": "Task",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/scripts/cue-task-stash.sh"
+					}
+				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/scripts/cue-injector-bash.sh"
+					}
+				]
+			},
+			{
+				"matcher": "Write|Edit",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/scripts/cue-injector-file.sh"
+					}
+				]
+			}
+		],
+		"PostToolUse": [
+			{
+				"matcher": "*",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/scripts/cue-followup-tracker.sh"
+					}
+				]
+			}
+		]
+	}
+}

@@ -40,6 +40,35 @@ Structured session memory across context truncation. Extracts decisions, dead en
 /plugin install archivist@onlooker-marketplace
 ```
 
+### cues
+
+[🧭 Plugin README](plugins/cues/README.md)
+
+**Category:** Utility
+
+Contextual guidance injected automatically based on triggers. Cues match prompts, commands, and file paths using regex, vocabulary, or semantic similarity.
+
+**Contains:**
+
+- **Commands:**
+  - `/create-cue` - Create a new cue with triggers and guidance content
+  - `/list-cues` - List all available cues with their triggers and activity
+  - `/edit-cue` - Edit an existing cue's triggers or content
+- **Hooks:**
+  - SessionStart: Clears markers, injects cue context, escalates friction
+  - UserPromptSubmit: Matches prompts to cues, classifies ideas
+  - PreToolUse (Task): Stashes task context
+  - PreToolUse (Bash): Matches commands to cues
+  - PreToolUse (Write|Edit): Matches file paths to cues
+  - PostToolUse: Tracks followups, detects failure patterns
+
+**Installation:**
+
+```bash
+/plugin install cues@onlooker-marketplace
+```
+
+
 ### echo
 
 [Plugin README](plugins/echo/README.md)
