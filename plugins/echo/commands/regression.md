@@ -1,11 +1,11 @@
-# /echo:echo
+# /echo:regression
 
 Prompt regression testing for Claude Code agent files. Run test suites, record baselines, and detect regressions before merging prompt changes.
 
 ## Usage
 
 ```
-/echo:echo <subcommand> [flags]
+/echo:regression <subcommand> [flags]
 ```
 
 ## Subcommands
@@ -15,7 +15,7 @@ Prompt regression testing for Claude Code agent files. Run test suites, record b
 Run the test suite for one or more test cases.
 
 ```
-/echo:echo run [--agent <agent-file>] [--tag <tag>] [--test <test-id>] [--all]
+/echo:regression run [--agent <agent-file>] [--tag <tag>] [--test <test-id>] [--all]
 ```
 
 Flags:
@@ -25,7 +25,7 @@ Flags:
 - `--all` — Run all test cases in `test-cases/`
 
 Behavior:
-- Test cases without a recorded baseline are skipped with a warning: "No baseline for <id> — run `echo:echo record --test <id>` first"
+- Test cases without a recorded baseline are skipped with a warning: "No baseline for <id> — run `echo:regression record --test <id>` first"
 - Each result is classified as `improved`, `degraded`, or `neutral`
 - Any `degraded` result causes the suite to exit with a non-zero status code
 - Generates a report via the `echo-reporter` agent on completion
@@ -35,7 +35,7 @@ Behavior:
 Record a baseline for one or more test cases.
 
 ```
-/echo:echo record [--test <test-id>] [--agent <agent-file>] [--all] [--force]
+/echo:regression record [--test <test-id>] [--agent <agent-file>] [--all] [--force]
 ```
 
 Flags:
@@ -55,7 +55,7 @@ Behavior:
 Show the current status of all test cases and their baselines.
 
 ```
-/echo:echo status [--agent <agent-file>]
+/echo:regression status [--agent <agent-file>]
 ```
 
 Flags:
@@ -75,7 +75,7 @@ Output columns:
 Scaffold a new test case file.
 
 ```
-/echo:echo add --id <test-id> --agent <agent-file> --rubric <rubric-path> [--description <text>] [--tag <tag>...]
+/echo:regression add --id <test-id> --agent <agent-file> --rubric <rubric-path> [--description <text>] [--tag <tag>...]
 ```
 
 Flags:
@@ -92,7 +92,7 @@ Creates `test-cases/<test-id>.json` with a template populated from the flags. Th
 List all test cases, optionally filtered.
 
 ```
-/echo:echo list [--agent <agent-file>] [--tag <tag>] [--no-baseline]
+/echo:regression list [--agent <agent-file>] [--tag <tag>] [--no-baseline]
 ```
 
 Flags:
@@ -107,7 +107,7 @@ Output: table of test case IDs, descriptions, agent files, and tags.
 Generate a regression report from the most recent run log, or a specific run.
 
 ```
-/echo:echo report [--run <timestamp>] [--format markdown|json]
+/echo:regression report [--run <timestamp>] [--format markdown|json]
 ```
 
 Flags:
@@ -121,7 +121,7 @@ Invokes the `echo-reporter` agent to produce the report.
 Show a diff of rubric scores between two baselines, or between a baseline and the last run result.
 
 ```
-/echo:echo diff --test <test-id> [--run <timestamp>]
+/echo:regression diff --test <test-id> [--run <timestamp>]
 ```
 
 Flags:

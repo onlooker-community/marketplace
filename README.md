@@ -106,7 +106,7 @@ Prompt regression testing — measurable before/after signals for agent file cha
 - **Agents:**
   - `echo-reporter` - Produces a human-readable regression report summarizing improved, degraded, and neutral outcomes with a before/after score breakdown and merge recommendation.
 - **Commands:**
-  - `/echo:echo` - Run test suites, record baselines, and detect regressions before merging prompt changes.
+  - `/echo:regression` - Run test suites, record baselines, and detect regressions before merging prompt changes.
 - **Hooks:**
   - ConfigChange hooks configured (Triggers regression test suite when agent files change)
 

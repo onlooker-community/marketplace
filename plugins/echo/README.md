@@ -61,7 +61,7 @@ Create `test-cases/my-test.json`:
 ### 2. Record a baseline
 
 ```
-/echo:echo record --test judge-handles-empty-output-001
+/echo:regression record --test judge-handles-empty-output-001
 ```
 
 This runs the Tribunal pipeline and saves the result to `baselines/judge-handles-empty-output-001.json`. Commit the baseline file.
@@ -95,24 +95,24 @@ Review degraded tests before merging
 ### 5. Run manually
 
 ```
-/echo:echo run --agent tribunal/agents/judge.md
-/echo:echo run --all
-/echo:echo run --test judge-handles-empty-output-001
+/echo:regression run --agent tribunal/agents/judge.md
+/echo:regression run --all
+/echo:regression run --test judge-handles-empty-output-001
 ```
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/echo:echo run` | Run the test suite |
-| `/echo:echo record` | Record baselines |
-| `/echo:echo status` | Show test case and baseline status |
-| `/echo:echo add` | Scaffold a new test case |
-| `/echo:echo list` | List test cases |
-| `/echo:echo report` | Generate a report from a run log |
-| `/echo:echo diff` | Show score diff for a test case |
+| `/echo:regression run` | Run the test suite |
+| `/echo:regression record` | Record baselines |
+| `/echo:regression status` | Show test case and baseline status |
+| `/echo:regression add` | Scaffold a new test case |
+| `/echo:regression list` | List test cases |
+| `/echo:regression report` | Generate a report from a run log |
+| `/echo:regression diff` | Show score diff for a test case |
 
-See `/echo:echo --help` or `commands/echo.md` for full flag documentation.
+See `/echo:regression --help` or `commands/regression.md` for full flag documentation.
 
 ## Configuration
 

@@ -90,13 +90,13 @@ Resist the urge to test everything in one case. If a test fails, you want to kno
 
 ```bash
 # Run all tests
-/echo:echo run --all
+/echo:regression run --all
 
 # Run tests for a specific agent
-/echo:echo run --agent tribunal/agents/judge.md
+/echo:regression run --agent tribunal/agents/judge.md
 
 # Run a single test
-/echo:echo run --test judge-bias-detection-001
+/echo:regression run --test judge-bias-detection-001
 ```
 
 ## Recording baselines
@@ -104,7 +104,7 @@ Resist the urge to test everything in one case. If a test fails, you want to kno
 Before a test case can be used in a regression run, you must record its baseline:
 
 ```bash
-/echo:echo record --test judge-bias-detection-001
+/echo:regression record --test judge-bias-detection-001
 ```
 
 Baselines are committed to version control. See `baselines/README.md`.

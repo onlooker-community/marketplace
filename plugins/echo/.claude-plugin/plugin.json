@@ -21,6 +21,6 @@
 		"./agents/echo-reporter.md"
 	],
 	"commands": [
-		"./commands/echo.md"
+		"./commands/regression.md"
 	]
 }

@@ -111,7 +111,7 @@ run_test_case() {
 
     if [[ "$baseline" == "null" ]]; then
         jq -n --arg id "$test_id" \
-            --arg reason "No baseline recorded. Run: /echo:echo record --test $test_id" \
+            --arg reason "No baseline recorded. Run: /echo:regression record --test $test_id" \
             '{test_id: $id, skipped: true, reason: $reason}'
         return
     fi
@@ -125,7 +125,7 @@ run_test_case() {
 
     if [[ -n "$current_hash" && -n "$recorded_hash" && "$current_hash" != "$recorded_hash" ]]; then
         warnings="$(echo "$warnings" | jq --arg w \
-            "Agent file hash mismatch for $agent_file. Baseline was recorded against a different version of the agent. Consider re-recording: /echo:echo record --test $test_id --force" \
+            "Agent file hash mismatch for $agent_file. Baseline was recorded against a different version of the agent. Consider re-recording: /echo:regression record --test $test_id --force" \
             '. + [$w]')"
     fi
 

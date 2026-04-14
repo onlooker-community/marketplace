@@ -63,13 +63,13 @@ Run logs (`~/.claude/echo/runs/`) are local only. They are the ephemeral executi
 ## Recording a baseline
 
 ```bash
-/echo:echo record --test <test-id>
+/echo:regression record --test <test-id>
 ```
 
 To overwrite an existing baseline:
 
 ```bash
-/echo:echo record --test <test-id> --force
+/echo:regression record --test <test-id> --force
 ```
 
 ## Hash drift detection
@@ -79,7 +79,7 @@ If the agent file changes after a baseline is recorded, Echo will warn:
 ```
 Warning: Agent file hash mismatch for tribunal/agents/judge.md.
 Baseline was recorded against a different version of the agent.
-Consider re-recording: /echo:echo record --test judge-bias-detection-001 --force
+Consider re-recording: /echo:regression record --test judge-bias-detection-001 --force
 ```
 
 This is a warning, not an error. Echo will still run the test and compare against the old baseline. Whether to re-record is a judgment call: if you intentionally changed the agent file to improve it, re-record after verifying the new scores. If the baseline is stale from an unrelated change, re-record to reset the reference point.
