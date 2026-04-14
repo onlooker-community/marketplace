@@ -1,6 +1,6 @@
 {
 	"name": "sentinel",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "Pre-flight safety gate for destructive Bash operations. Pattern-matched risk evaluation with block, review, and log behaviors.",
 	"author": {
 		"name": "Onlooker Community",

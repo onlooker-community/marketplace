@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/onlooker-community/marketplace/compare/sentinel-v0.3.0...sentinel-v0.4.0) (2026-04-14)
+
+
+### Features
+
+* **sentinel:** update command name to guard ([7e830cd](https://github.com/onlooker-community/marketplace/commit/7e830cde999fcb3b2fa52ac47cc556aa2e52b9af))
+
 ## [0.3.0](https://github.com/onlooker-community/marketplace/compare/sentinel-v0.2.0...sentinel-v0.3.0) (2026-04-09)
 
 

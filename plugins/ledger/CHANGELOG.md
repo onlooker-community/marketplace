@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/onlooker-community/marketplace/compare/ledger-v0.2.0...ledger-v0.3.0) (2026-04-14)
+
+
+### Features
+
+* **ledger:** update command name to budget ([7da15c3](https://github.com/onlooker-community/marketplace/commit/7da15c3c6ff29f18ba951acd60150e60b472ccee))
+
 ## [0.2.0](https://github.com/onlooker-community/marketplace/compare/ledger-v0.1.0...ledger-v0.2.0) (2026-04-14)
 
 

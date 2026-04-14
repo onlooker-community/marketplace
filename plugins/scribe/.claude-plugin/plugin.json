@@ -1,6 +1,6 @@
 {
 	"name": "scribe",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "Intent documentation from agent activity. Captures why changes were made during execution and distills them into readable documentation artifacts.",
 	"author": {
 		"name": "Onlooker Community",
