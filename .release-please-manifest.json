@@ -3,6 +3,7 @@
 	"plugins/cues": "0.2.0",
 	"plugins/echo": "0.3.0",
 	"plugins/ledger": "0.2.0",
+	"plugins/relay": "0.1.0",
 	"plugins/onlooker": "0.5.0",
 	"plugins/scribe": "0.3.0",
 	"plugins/sentinel": "0.3.0",

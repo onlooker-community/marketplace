@@ -134,6 +134,18 @@
 			"initial-version": "0.1.0",
 			"release-type": "simple"
 		},
+		"plugins/relay": {
+			"component": "relay",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": ".claude-plugin/plugin.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "simple"
+		},
 		"tools/dashboard": {
 			"component": "dashboard",
 			"extra-files": [
