@@ -151,7 +151,16 @@ relay_format_briefing() {
     + (if ((.blocking_questions // []) | length) > 0 then
         [ "" ]
         + [ "Blocking:" ]
-        + [ .blocking_questions[] | "  • " + . ]
+        + [
+            # Sort by sessions_unresolved desc; handle both string and object format
+            (.blocking_questions
+             | map(if type == "string" then { question: ., sessions_unresolved: 0 } else . end)
+             | sort_by(-.sessions_unresolved)
+             | .[]
+             | "  • "
+               + (if .sessions_unresolved >= 2 then "[urgent x\(.sessions_unresolved)] " else "" end)
+               + .question)
+          ]
       else [] end)
 
     + (if ((.critical_context // []) | length) > 0 then

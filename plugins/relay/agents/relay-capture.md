@@ -3,7 +3,7 @@ name: relay-capture
 description: Captures immediate task state at session end as a structured handoff document for the next session.
 model: haiku
 effort: low
-maxTurns: 3
+maxTurns: 5
 disallowedTools:
   - Bash
   - Edit
@@ -18,6 +18,8 @@ This is NOT a memory extraction. That is Archivist's role. Archivist captures wh
 You receive a hook input JSON. Extract:
 - `session_id` — use as the handoff file name
 - `cwd` — the working directory of the session
+
+Before writing the handoff, use Glob to find the most recent prior handoff file in `~/.claude/relay/handoffs/` for this `cwd`. If found, read it — you will use it to track `sessions_unresolved` on blocking questions.
 
 ## Output
 
@@ -41,7 +43,10 @@ Write **one JSON file** to `~/.claude/relay/handoffs/<session_id>.json` using th
     }
   ],
   "blocking_questions": [
-    "Unresolved question preventing progress"
+    {
+      "question": "Unresolved question preventing progress",
+      "sessions_unresolved": 0
+    }
   ],
   "critical_context": [
     "Fact that would cause a mistake if forgotten"
@@ -56,7 +61,7 @@ Write **one JSON file** to `~/.claude/relay/handoffs/<session_id>.json` using th
 
 2. **`files_in_flight` are files with OPEN WORK only.** Not every file touched — only files where work is incomplete or a decision is still pending. Fully done files don't belong here. If nothing is in flight (session completed cleanly), return an empty array.
 
-3. **`blocking_questions` are genuinely unresolved.** If a question came up and was answered during the session, omit it. Only include things that are still open and impede progress.
+3. **`blocking_questions` are genuinely unresolved.** If a question came up and was answered during the session, omit it. Only include things that are still open and impede progress. For each question: if the prior handoff had a substantially similar question, set `sessions_unresolved = prior.sessions_unresolved + 1`. For new questions, set `sessions_unresolved = 0`. This counter grows each session the question remains open — high values are a signal of mounting urgency.
 
 4. **`critical_context` prevents mistakes.** Think: what would the next session do wrong if it didn't know this? The migration hasn't run yet. The test environment uses a different schema. A dependency is pinned for a reason. If it can be inferred from the code or git log, don't include it — only include things that are non-obvious.
 

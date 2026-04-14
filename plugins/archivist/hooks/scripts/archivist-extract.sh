@@ -79,10 +79,22 @@ extract_from_stdin() {
       {
         session_id: $input.session_id,
         timestamp:  ($input.timestamp // $timestamp),
-        decisions:      ($input.decisions      // []),
-        files:          ($input.files          // []),
-        dead_ends:      ($input.dead_ends      // []),
-        open_questions: ($input.open_questions // []),
+        decisions: [
+          ($input.decisions // [])[] |
+          . + { epistemic_class: (.epistemic_class // "DECISION") }
+        ],
+        files:     ($input.files // []),
+        dead_ends: [
+          ($input.dead_ends // [])[] |
+          . + { epistemic_class: (.epistemic_class // "DEAD_END") }
+        ],
+        open_questions: [
+          ($input.open_questions // [])[] |
+          . + {
+            epistemic_class:    (.epistemic_class    // "QUESTION"),
+            sessions_unresolved: (.sessions_unresolved // 0)
+          }
+        ],
         complete: false
       }
       + (del($input.session_id, $input.timestamp,
