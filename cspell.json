@@ -47,7 +47,10 @@
 		"meaganewaller",
 		"pkill",
 		"mmin",
-		"reinjects"
+		"reinjects",
+		"gdate",
+		"exfil",
+		"ufeff"
 	],
 	"words": ["myproject", "unpushed", "fallocate", "urandom", "exfiltration", "pytest", "marcusolsson", "nerdctl", "datasource", "datasources"]
 }
