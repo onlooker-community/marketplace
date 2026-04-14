@@ -2,7 +2,7 @@
 # Sentinel audit log writer and reader.
 #
 # Writes structured audit entries to JSONL. Provides read path for
-# /sentinel:sentinel audit command. Write failures are always silent —
+# /sentinel:guard audit command. Write failures are always silent —
 # never block execution or propagate exceptions.
 
 set -euo pipefail

@@ -28,7 +28,7 @@ We will implement three distinct behaviors, configurable per risk level:
 
 Low-risk operations (or commands not matching any pattern) use an implicit fourth behavior: **allow** — pass through silently with no overhead.
 
-Each risk level has a default behavior, but users can override the behavior for any risk level in `config.json`, and temporarily override individual pattern behaviors per session via `/sentinel:sentinel allow` and `/sentinel:sentinel block`.
+Each risk level has a default behavior, but users can override the behavior for any risk level in `config.json`, and temporarily override individual pattern behaviors per session via `/sentinel:guard allow` and `/sentinel:guard block`.
 
 ## Consequences
 
@@ -36,7 +36,7 @@ Each risk level has a default behavior, but users can override the behavior for 
 
 - Users can tune Sentinel to their comfort level without disabling it entirely
 - The review behavior leverages Claude Code's existing permission dialog — no custom UI needed
-- The log behavior creates an audit trail that users can review at their own pace via `/sentinel:sentinel audit`
+- The log behavior creates an audit trail that users can review at their own pace via `/sentinel:guard audit`
 - Session-level overrides allow temporary exceptions without permanent config changes
 - The headless fallback (review → block) prevents CI/CD jobs from hanging indefinitely
 
@@ -44,7 +44,7 @@ Each risk level has a default behavior, but users can override the behavior for 
 
 - Three behaviors are more complex to implement and test than a binary model
 - The review → block fallback in headless mode means CI environments are strictly more restrictive than interactive ones. A command that would be reviewable interactively will be blocked in CI (mitigation: this is intentional and documented — in unattended contexts, the safe default is to block rather than allow)
-- Users may find the three levels confusing initially (mitigation: defaults are sensible, and `/sentinel:sentinel show` displays the current configuration clearly)
+- Users may find the three levels confusing initially (mitigation: defaults are sensible, and `/sentinel:guard show` displays the current configuration clearly)
 
 ### Neutral
 

@@ -32,12 +32,12 @@ Sentinel is automatic once installed. Dangerous commands are intercepted before 
 Use the slash command to manage it:
 
 ```
-/sentinel:sentinel show                  # Current config and overrides
-/sentinel:sentinel audit                 # Recent audit log entries
-/sentinel:sentinel patterns              # All loaded patterns with risk levels
-/sentinel:sentinel review <command>      # Dry-run evaluation without executing
-/sentinel:sentinel allow --pattern <id>  # Temporarily allow a pattern this session
-/sentinel:sentinel block --pattern <id>  # Temporarily block a pattern this session
+/sentinel:guard show                  # Current config and overrides
+/sentinel:guard audit                 # Recent audit log entries
+/sentinel:guard patterns              # All loaded patterns with risk levels
+/sentinel:guard review <command>      # Dry-run evaluation without executing
+/sentinel:guard allow --pattern <id>  # Temporarily allow a pattern this session
+/sentinel:guard block --pattern <id>  # Temporarily block a pattern this session
 ```
 
 ## Configuration

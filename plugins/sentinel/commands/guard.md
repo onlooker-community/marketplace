@@ -1,9 +1,9 @@
 ---
-name: sentinel
+name: guard
 description: Manage Sentinel pre-flight safety gate — view config, audit log, and pattern overrides
 ---
 
-# /sentinel:sentinel
+# /sentinel:guard
 
 Manage the Sentinel pre-flight safety gate for destructive Bash operations.
 

@@ -207,7 +207,7 @@ Pre-flight safety gate for destructive Bash operations. Pattern-matched risk eva
 **Contains:**
 
 - **Commands:**
-  - `/sentinel:sentinel` - Manage Sentinel pre-flight safety gate — view config, audit log, and pattern overrides.
+  - `/sentinel:guard` - Manage Sentinel pre-flight safety gate — view config, audit log, and pattern overrides.
 - **Hooks:**
   - PreToolUse hooks configured (Evaluate destructive Bash operations with pattern matching)
 

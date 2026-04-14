@@ -16,6 +16,6 @@
 		"pre-flight"
 	],
 	"commands": [
-		"./commands/sentinel.md"
+		"./commands/guard.md"
 	]
 }
