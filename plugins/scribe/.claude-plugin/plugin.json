@@ -20,6 +20,6 @@
 		"./agents/scribe-distiller.md"
 	],
 	"commands": [
-		"./commands/scribe.md"
+		"./commands/intent.md"
 	]
 }

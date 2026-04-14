@@ -33,7 +33,7 @@ Scribe does not depend on Archivist. If Archivist is not installed or has no ses
 ### Negative
 
 - Archivist's session file schema (`decisions`, `dead_ends` arrays with their field names) becomes a soft contract between the two plugins. Breaking changes to Archivist's schema should consider Scribe's read path (mitigation: Scribe reads defensively with `.get()` and missing-key fallbacks)
-- Users may see different documentation quality depending on whether Archivist is installed, which could be confusing (mitigation: `/scribe:scribe status` shows whether Archivist context was found)
+- Users may see different documentation quality depending on whether Archivist is installed, which could be confusing (mitigation: `/scribe:intent status` shows whether Archivist context was found)
 
 ### Neutral
 

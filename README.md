@@ -162,7 +162,7 @@ Intent documentation from agent activity — captures _why_ changes were made, n
   - `scribe-capture` - Extracts intent from a single file operation while the agent still has context. Lightweight capture after every Write/Edit.
   - `scribe-distiller` - Synthesises a session's capture entries (plus optional Archivist context) into readable documentation artifacts.
 - **Commands:**
-  - `/scribe:scribe` - Manage Scribe intent documentation — view captures, distill sessions, browse artifacts.
+  - `/scribe:intent` - Manage Scribe intent documentation — view captures, distill sessions, browse artifacts.
 - **Hooks:**
   - PostToolUse hooks configured (Capture intent on Write/Edit operations)
   - Stop hooks configured (Distill session on stop)

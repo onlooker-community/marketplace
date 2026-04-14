@@ -25,15 +25,15 @@ Install from the Onlooker Marketplace:
 Scribe is automatic once installed. Intent is captured on every file write, and documentation is distilled when the agent finishes.
 
 ```
-/scribe:scribe status              # Pending captures, config, integrations
-/scribe:scribe distill             # Distill current session now
-/scribe:scribe distill --all       # Distill all undistilled sessions
-/scribe:scribe show                # Recent documentation artifacts
-/scribe:scribe show --decisions    # All decision docs
-/scribe:scribe show --changes      # All change logs
-/scribe:scribe open <filename>     # Display a specific artifact
-/scribe:scribe captures            # Raw capture entries (debug)
-/scribe:scribe config              # Current configuration
+/scribe:intent status              # Pending captures, config, integrations
+/scribe:intent distill             # Distill current session now
+/scribe:intent distill --all       # Distill all undistilled sessions
+/scribe:intent show                # Recent documentation artifacts
+/scribe:intent show --decisions    # All decision docs
+/scribe:intent show --changes      # All change logs
+/scribe:intent open <filename>     # Display a specific artifact
+/scribe:intent captures            # Raw capture entries (debug)
+/scribe:intent config              # Current configuration
 ```
 
 ## Configuration

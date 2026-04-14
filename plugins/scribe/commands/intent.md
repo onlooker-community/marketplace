@@ -1,9 +1,9 @@
 ---
-name: scribe
+name: intent
 description: Manage Scribe intent documentation — view captures, distill sessions, browse artifacts
 ---
 
-# /scribe:scribe
+# /scribe:intent
 
 Manage Scribe intent documentation for the current project.
 
