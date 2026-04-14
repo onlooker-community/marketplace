@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/onlooker-community/marketplace/compare/scribe-v0.3.0...scribe-v0.4.0) (2026-04-14)
+
+
+### Features
+
+* **scribe:** update command name to intent ([e812008](https://github.com/onlooker-community/marketplace/commit/e812008b3accbddc6a1760dfa9b7bc4bf6c65351))
+
 ## [0.3.0](https://github.com/onlooker-community/marketplace/compare/scribe-v0.2.0...scribe-v0.3.0) (2026-04-09)
 
 

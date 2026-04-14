@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/onlooker-community/marketplace/compare/echo-v0.3.0...echo-v0.4.0) (2026-04-14)
+
+
+### Features
+
+* **echo:** update command name to regression ([33af31e](https://github.com/onlooker-community/marketplace/commit/33af31eac3c5b95e33dae50afebe7770647c269a))
+
 ## [0.3.0](https://github.com/onlooker-community/marketplace/compare/echo-v0.2.0...echo-v0.3.0) (2026-04-09)
 
 
