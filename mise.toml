@@ -1,0 +1,33 @@
+min_version = "2024.9.5"
+
+# Python: mise manages the interpreter (see .python-version) and a repo-root
+# virtualenv. `uv pip install` targets that venv when mise has activated it.
+# See https://mise.jdx.dev/lang/python.html
+
+[env]
+PROJECT_NAME = "{{ config_root | basename }}"
+_.python.venv = { path = ".venv", create = true }
+
+[tools]
+python = "{{ get_env(name='PYTHON_VERSION', default='3.11') }}"
+uv = "latest"
+
+[tasks.install]
+description = "Install Python deps (MkDocs, etc.) into project .venv"
+alias = "i"
+run = "uv pip install -r docs/requirements.txt"
+
+[tasks.docs-serve]
+description = "Sync Python deps then run MkDocs dev server"
+run = "uv pip install -r docs/requirements.txt && mkdocs serve -f docs/mkdocs.yml"
+
+[tasks.docs-build]
+description = "Sync Python deps then build MkDocs to docs/site/"
+run = "uv pip install -r docs/requirements.txt && mkdocs build --strict -f docs/mkdocs.yml"
+
+[tasks.info]
+description = "Print project information"
+run = '''
+echo "Project: $PROJECT_NAME"
+echo "Virtual Environment: $VIRTUAL_ENV"
+'''
