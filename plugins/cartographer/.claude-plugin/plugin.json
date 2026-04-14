@@ -1,0 +1,22 @@
+{
+	"name": "cartographer",
+	"version": "0.1.0",
+	"description": "Periodic audit of CLAUDE.md and .claude/rules/ files for contradictions, stale references, and dead rules. The only proactive audit layer in the ecosystem — surfaces instruction health issues before they cause agent misbehavior.",
+	"author": {
+		"name": "Onlooker Community",
+		"url": "https://github.com/onlooker-community"
+	},
+	"homepage": "https://github.com/onlooker-community/marketplace",
+	"repository": "https://github.com/onlooker-community/marketplace.git",
+	"license": "MIT",
+	"keywords": [
+		"instructions",
+		"audit",
+		"health",
+		"claude-md",
+		"rules"
+	],
+	"commands": [
+		"./commands/audit.md"
+	]
+}

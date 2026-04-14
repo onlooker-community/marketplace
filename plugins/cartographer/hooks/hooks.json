@@ -1,0 +1,37 @@
+{
+	"hooks": {
+		"InstructionsLoaded": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/instructions-loaded.sh",
+						"statusMessage": "Cartographer: checking instruction health..."
+					}
+				]
+			},
+			{
+				"hooks": [
+					{
+						"type": "agent",
+						"agentPath": "./agents/cartographer-auditor.md",
+						"prompt": "Run the Cartographer audit for the current session. The session_id and cwd are in the hook input. Check the hash throttle first — exit immediately if instruction files haven't changed since the last audit within the TTL window. If they have changed, run the full audit and write results to ~/.claude/cartographer/.",
+						"statusMessage": "Cartographer: auditing instruction files...",
+						"async": true
+					}
+				]
+			}
+		],
+		"ConfigChange": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/config-change.sh",
+						"async": true
+					}
+				]
+			}
+		]
+	}
+}

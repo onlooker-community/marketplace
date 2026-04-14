@@ -14,6 +14,30 @@ Add this marketplace to Claude Code:
 
 ## Available Plugins
 
+### cartographer
+
+[Plugin README](plugins/cartographer/README.md)
+
+**Category:** Instruction Health
+
+Proactive audit of CLAUDE.md and `.claude/rules/` files for contradictions, stale references, orphaned plugin mentions, and dead rules. The only plugin in the ecosystem that audits the instruction layer itself — every other plugin is reactive. Surfaces instruction health issues as `additionalContext` before they cause agent misbehavior.
+
+**Contains:**
+
+- **Agents:**
+  - `cartographer-auditor` - Reads all instruction files in the hierarchy, checks for six issue categories (contradictions, stale references, orphaned plugins, dead tools, duplicates, hierarchy conflicts), and writes a structured audit report.
+- **Commands:**
+  - `/cartographer:audit` - View audit results, trigger a fresh audit, browse history. Subcommands: `view`, `run`, `history`, `issues`, `config`.
+- **Hooks:**
+  - InstructionsLoaded hooks configured (Inject prior findings as additionalContext; run async audit when instruction files change)
+  - ConfigChange hooks configured (Invalidate hash cache when plugins are installed/removed)
+
+**Installation:**
+
+```bash
+/plugin install cartographer@onlooker-marketplace
+```
+
 ### archivist
 
 [Plugin README](plugins/archivist/README.md)
