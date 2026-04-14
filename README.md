@@ -69,6 +69,30 @@ Contextual guidance injected automatically based on triggers. Cues match prompts
 ```
 
 
+### ledger
+
+[Plugin README](plugins/ledger/README.md)
+
+**Category:** Resource Governance
+
+Budget enforcement and cost tracking for Claude Code sessions. Tracks token consumption and estimated cost across all plugin activity — Tribunal judge runs, Echo regression suites, Archivist extraction calls, everything. Blocks subagent spawning when a session budget is exceeded, with configurable warning thresholds and a reserve buffer for coordination overhead.
+
+**Contains:**
+
+- **Commands:**
+  - `/ledger:ledger` - View session budget status, cost breakdown, and historical spend. Subcommands: `status`, `report`, `set-budget`, `reset`, `config`.
+- **Hooks:**
+  - SubagentStart hooks configured (Budget enforcement — blocks spawn if session limit exceeded)
+  - SubagentStop hooks configured (Accumulate subagent token usage)
+  - Stop hooks configured (Accumulate per-turn cost, emit budget warnings)
+  - SessionEnd hooks configured (Finalize session file, write all-sessions log)
+
+**Installation:**
+
+```bash
+/plugin install ledger@onlooker-marketplace
+```
+
 ### echo
 
 [Plugin README](plugins/echo/README.md)

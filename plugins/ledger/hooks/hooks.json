@@ -1,0 +1,47 @@
+{
+	"hooks": {
+		"SubagentStart": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/subagent-start.sh",
+						"statusMessage": "Ledger: checking session budget..."
+					}
+				]
+			}
+		],
+		"SubagentStop": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/subagent-stop.sh",
+						"async": true
+					}
+				]
+			}
+		],
+		"Stop": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/stop.sh"
+					}
+				]
+			}
+		],
+		"SessionEnd": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/session-end.sh",
+						"async": true
+					}
+				]
+			}
+		]
+	}
+}

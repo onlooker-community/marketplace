@@ -38,6 +38,18 @@
 			"initial-version": "0.1.0",
 			"release-type": "simple"
 		},
+		"plugins/ledger": {
+			"component": "ledger",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": ".claude-plugin/plugin.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "simple"
+		},
 		"plugins/onlooker": {
 			"component": "onlooker",
 			"extra-files": [
