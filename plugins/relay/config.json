@@ -1,0 +1,7 @@
+{
+	"enabled": true,
+	"storage_path": "~/.claude/relay/handoffs",
+	"inject_on_start": true,
+	"max_handoffs_to_keep": 10,
+	"max_injection_words": 500
+}

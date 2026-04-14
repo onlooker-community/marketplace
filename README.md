@@ -196,6 +196,30 @@ Confidence calibration before action — catches misaligned work before it becom
 /plugin install oracle@onlooker-marketplace
 ```
 
+### relay
+
+[Plugin README](plugins/relay/README.md)
+
+**Category:** Session Continuity
+
+Session continuity bridge — captures immediate task state at session end (what was in progress, what's next, what's blocking) and injects it as the first thing Claude sees when the session reopens. Eliminates the 5-10 turn re-establishment tax at the start of every new session.
+
+**Contains:**
+
+- **Agents:**
+  - `relay-capture` - Reads the session at close and generates a structured handoff document capturing task state, files in flight, blocking questions, and critical context.
+- **Commands:**
+  - `/relay:handoff` - View and manage session handoffs. Subcommands: `status`, `show`, `clear`, `config`.
+- **Hooks:**
+  - SessionEnd hooks configured (Generate handoff document via agent)
+  - SessionStart hooks configured (Inject handoff as operational briefing)
+
+**Installation:**
+
+```bash
+/plugin install relay@onlooker-marketplace
+```
+
 ### sentinel
 
 [Plugin README](plugins/sentinel/README.md)

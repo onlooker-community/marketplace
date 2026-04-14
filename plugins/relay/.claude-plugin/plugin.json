@@ -1,0 +1,22 @@
+{
+	"name": "relay",
+	"version": "0.1.0",
+	"description": "Session continuity bridge. Captures immediate task state at session end — what you were doing, what's next, what's blocking — and injects it as the first thing Claude sees when you reopen.",
+	"author": {
+		"name": "Onlooker Community",
+		"url": "https://github.com/onlooker-community"
+	},
+	"homepage": "https://github.com/onlooker-community/marketplace",
+	"repository": "https://github.com/onlooker-community/marketplace.git",
+	"license": "MIT",
+	"keywords": [
+		"continuity",
+		"session",
+		"handoff",
+		"context",
+		"resumption"
+	],
+	"commands": [
+		"./commands/handoff.md"
+	]
+}
