@@ -2,7 +2,7 @@
 
 **A Claude Code plugin for multi-agent execution with LLM-as-a-Judge quality gates**
 
-Version 0.1.0 · [github.com/meaganewaller/tribunal](https://github.com/meaganewaller/tribunal)
+Version 0.1.0 · [github.com/onlooker-community/marketplace](https://github.com/onlooker-community/marketplace)
 
 ## Table of Contents
 
@@ -122,22 +122,10 @@ Task Input
 **Project-level** (recommended for team projects):
 `/plugin install tribunal`
 
-Or manually:
-
-```
-git clone https://github.com/meaganewaller/tribunal .claude/tribunal
-```
-
 **Global** (available across all your projects):
 
 ```
 /plugin install --global tribunal
-```
-
-Or manually:
-
-```
-git clone https://github.com/meaganewaller/tribunal ~/.claude/tribunal
 ```
 
 ### Verify Installation

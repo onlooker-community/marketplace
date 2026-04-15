@@ -3,12 +3,11 @@
 	"version": "0.2.0",
 	"description": "Multi-agent execution framework with LLM-as-a-Judge and LLM-as-a-Meta-Judge quality gates",
 	"author": {
-		"name": "Meagan Waller",
-		"email": "meaganewaller@gmail.com",
-		"url": "https://github.com/meaganewaller/tribunal"
+		"name": "Onlooker Community",
+		"url": "https://github.com/onlooker-community/marketplace"
 	},
-	"homepage": "https://github.com/meaganewaller/tribunal",
-	"repository": "https://github.com/meaganewaller/tribunal",
+	"homepage": "https://github.com/onlooker-community/marketplace",
+	"repository": "https://github.com/onlooker-community/marketplace",
 	"license": "MIT",
 	"keywords": [
 		"quality-gates",
