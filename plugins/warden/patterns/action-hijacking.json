@@ -12,7 +12,7 @@
 			"id": "hijack-file-operation",
 			"description": "Instructions to create, modify, or delete specific files",
 			"severity": "high",
-			"regex": "(?i)((?:create|write|add|insert|append|modify|overwrite|replace).*(?:file|script|config|\.env|\.ssh|authorized_keys|crontab|\.bashrc|\.zshrc)|(?:add|insert|append).*(?:to|in|into).*(?:\\.(env|ssh|bash|zsh|profile|gitconfig)))"
+			"regex": "(?i)((?:create|write|add|insert|append|modify|overwrite|replace).*(?:file|script|config|\\.env|\\.ssh|authorized_keys|crontab|\\.bashrc|\\.zshrc)|(?:add|insert|append).*(?:to|in|into).*(?:\\.(env|ssh|bash|zsh|profile|gitconfig)))"
 		},
 		{
 			"id": "hijack-suppress-output",

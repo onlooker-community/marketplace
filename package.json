@@ -8,7 +8,7 @@
 		"url": "git+https://github.com/onlooker-community/marketplace.git"
 	},
 	"author": "Onlooker Community",
-	"license": "Apache-2.0",
+	"license": "BlueOak-1.0.0",
 	"workspaces": [
 		"plugins/*",
 		"tools/*"
@@ -31,11 +31,19 @@
 	],
 	"scripts": {
 		"commitlint": "commitlint",
+		"fix": "run-s -sl \"fix:*\"",
 		"fix:lint": "biome lint --write .",
+		"fix:markdown": "markdownlint-cli2 --fix \"**/*.md\"",
+		"fix:pkg": "bun pkg fix",
 		"fix:format": "biome format --write .",
 		"lint": "run-p -sl --aggregate-output \"lint:*\"",
 		"lint-staged": "lint-staged",
 		"lint:spelling": "cspell . \"./.*/**\"",
+		"lint:knip": "knip",
+		"lint:markdown": "markdownlint-cli2 \"**/*.md\"",
+		"lint:format": "biome format",
+		"lint:biome": "biome lint",
+		"lint:types": "tsc --noEmit",
 		"prepare": "husky"
 	},
 	"devDependencies": {
@@ -46,25 +54,39 @@
 		"cspell": "^9.8.0",
 		"globals": "^17.4.0",
 		"husky": "^9.1.7",
+		"knip": "^6.4.1",
 		"lint-staged": "^16.4.0",
+		"markdownlint-cli2": "^0.22.0",
+		"npm-run-all2": "^8.0.4",
 		"typescript": "^6.0.2"
+	},
+	"knip": {
+		"ignore": [
+			"**/*.d.ts",
+			".worktrees/**/*"
+		],
+		"tags": [
+			"-knipignore"
+		],
+		"ignoreFiles": [
+			"plugins/**/scripts/*"
+		]
 	},
 	"lint-staged": {
 		"*.{ts,js,yml,json5}": [
-			"biome lint --write",
-			"biome format --write",
+			"bun run fix:lint",
+			"bun run fix:format",
 			"cspell lint --no-must-find-files"
 		],
 		"**/!(bun).lock": [
-			"biome lint --write",
-			"biome format --write",
+			"bun run fix:lint",
+			"bun run fix:format",
 			"cspell lint --no-must-find-files"
 		],
 		"*.md": [
+			"markdownlint-cli2 --fix",
 			"cspell lint --no-must-find-files"
 		]
 	},
-	"dependencies": {
-		"npm-run-all2": "^8.0.4"
-	}
+	"dependencies": {}
 }

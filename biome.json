@@ -6,11 +6,13 @@
 		"useIgnoreFile": true
 	},
 	"files": {
+		"includes": ["**", "!**/plugin.json", "!**/CHANGELOG.md", "!bun.lock"],
 		"ignoreUnknown": false
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"formatWithErrors": true
 	},
 	"linter": {
 		"enabled": true,

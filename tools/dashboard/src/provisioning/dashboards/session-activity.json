@@ -12,7 +12,10 @@
 			"gridPos": { "h": 4, "w": 8, "x": 0, "y": 0 },
 			"targets": [
 				{
-					"datasource": { "type": "marcusolsson-json-datasource", "uid": "onlooker" },
+					"datasource": {
+						"type": "marcusolsson-json-datasource",
+						"uid": "onlooker"
+					},
 					"target": "sessions"
 				}
 			],
@@ -28,7 +31,10 @@
 			"gridPos": { "h": 4, "w": 8, "x": 8, "y": 0 },
 			"targets": [
 				{
-					"datasource": { "type": "marcusolsson-json-datasource", "uid": "onlooker" },
+					"datasource": {
+						"type": "marcusolsson-json-datasource",
+						"uid": "onlooker"
+					},
 					"target": "events"
 				}
 			],
@@ -44,7 +50,10 @@
 			"gridPos": { "h": 4, "w": 8, "x": 16, "y": 0 },
 			"targets": [
 				{
-					"datasource": { "type": "marcusolsson-json-datasource", "uid": "onlooker" },
+					"datasource": {
+						"type": "marcusolsson-json-datasource",
+						"uid": "onlooker"
+					},
 					"target": "events_by_type"
 				}
 			],
@@ -60,7 +69,10 @@
 			"gridPos": { "h": 10, "w": 12, "x": 0, "y": 4 },
 			"targets": [
 				{
-					"datasource": { "type": "marcusolsson-json-datasource", "uid": "onlooker" },
+					"datasource": {
+						"type": "marcusolsson-json-datasource",
+						"uid": "onlooker"
+					},
 					"target": "sessions"
 				}
 			],
@@ -74,7 +86,10 @@
 			"gridPos": { "h": 10, "w": 12, "x": 12, "y": 4 },
 			"targets": [
 				{
-					"datasource": { "type": "marcusolsson-json-datasource", "uid": "onlooker" },
+					"datasource": {
+						"type": "marcusolsson-json-datasource",
+						"uid": "onlooker"
+					},
 					"target": "events_by_type"
 				}
 			],

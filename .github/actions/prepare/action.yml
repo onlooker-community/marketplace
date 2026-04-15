@@ -7,5 +7,5 @@ runs:
         bun-version: latest
     - name: Install dependencies
       shell: bash
-      run: bun install --frozen-lockfile
+      run: bun install
   using: composite

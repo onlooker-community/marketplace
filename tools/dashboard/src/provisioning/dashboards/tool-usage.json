@@ -12,7 +12,10 @@
 			"gridPos": { "h": 4, "w": 12, "x": 0, "y": 0 },
 			"targets": [
 				{
-					"datasource": { "type": "marcusolsson-json-datasource", "uid": "onlooker" },
+					"datasource": {
+						"type": "marcusolsson-json-datasource",
+						"uid": "onlooker"
+					},
 					"target": "tool_usage"
 				}
 			],
@@ -28,7 +31,10 @@
 			"gridPos": { "h": 4, "w": 12, "x": 12, "y": 0 },
 			"targets": [
 				{
-					"datasource": { "type": "marcusolsson-json-datasource", "uid": "onlooker" },
+					"datasource": {
+						"type": "marcusolsson-json-datasource",
+						"uid": "onlooker"
+					},
 					"target": "events_by_type"
 				}
 			],
@@ -43,7 +49,10 @@
 			"gridPos": { "h": 14, "w": 24, "x": 0, "y": 4 },
 			"targets": [
 				{
-					"datasource": { "type": "marcusolsson-json-datasource", "uid": "onlooker" },
+					"datasource": {
+						"type": "marcusolsson-json-datasource",
+						"uid": "onlooker"
+					},
 					"target": "tool_usage"
 				}
 			],

@@ -54,5 +54,16 @@
 		"OIDA",
 		"ckey"
 	],
-	"words": ["myproject", "unpushed", "fallocate", "urandom", "exfiltration", "pytest", "marcusolsson", "nerdctl", "datasource", "datasources"]
+	"words": [
+		"myproject",
+		"unpushed",
+		"fallocate",
+		"urandom",
+		"exfiltration",
+		"pytest",
+		"marcusolsson",
+		"nerdctl",
+		"datasource",
+		"datasources"
+	]
 }

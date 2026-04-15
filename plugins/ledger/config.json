@@ -2,7 +2,7 @@
 	"enabled": true,
 	"storage_path": "~/.claude/ledger",
 	"budgets": {
-		"session_cost_usd": 2.00,
+		"session_cost_usd": 2.0,
 		"session_input_tokens": 0,
 		"session_output_tokens": 0,
 		"warning_threshold_pct": 80
