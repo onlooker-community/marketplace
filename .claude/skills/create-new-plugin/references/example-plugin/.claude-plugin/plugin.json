@@ -1,0 +1,9 @@
+{
+	"author": {
+		"name": "onlooker-community"
+	},
+	"description": "Complete example plugin demonstrating all plugin features",
+	"keywords": ["example", "plugin", "mcp", "skills", "tutorial", "reference"],
+	"name": "example-plugin",
+	"version": "0.1.0"
+}
