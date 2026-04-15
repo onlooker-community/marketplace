@@ -1,85 +1,76 @@
 {
-	"name": "@onlooker-community/marketplace",
-	"version": "0.1.0",
-	"type": "module",
-	"description": "Monorepo for Onlooker Community's collection of Claude plugins.",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/onlooker-community/marketplace.git"
-	},
-	"author": "Onlooker Community",
-	"license": "BlueOak-1.0.0",
-	"workspaces": [
-		"plugins/*",
-		"tools/*"
-	],
-	"keywords": [
-		"claude",
-		"claude-plugins",
-		"onlooker",
-		"agentic-workflows",
-		"observability",
-		"telemetry",
-		"cost-tracking",
-		"friction-analysis",
-		"post-run-evaluation",
-		"quality-scoring",
-		"session-memory",
-		"safety-gate",
-		"intent-documentation",
-		"prompt-regression-testing"
-	],
-	"scripts": {
-		"commitlint": "commitlint",
-		"fix": "run-s -sl \"fix:*\"",
-		"fix:lint": "biome lint --write .",
-		"fix:markdown": "markdownlint-cli2 --fix \"**/*.md\"",
-		"fix:pkg": "bun pkg fix",
-		"fix:format": "biome format --write .",
-		"lint": "run-p -sl --aggregate-output \"lint:*\"",
-		"lint-staged": "lint-staged",
-		"lint:spelling": "cspell . \"./.*/**\"",
-		"lint:knip": "knip",
-		"lint:markdown": "markdownlint-cli2 \"**/*.md\"",
-		"lint:format": "biome format",
-		"lint:biome": "biome lint",
-		"prepare": "husky"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.4.10",
-		"@commitlint/cli": "^20.5.0",
-		"@commitlint/config-conventional": "^20.5.0",
-		"@types/node": "^25.5.2",
-		"cspell": "^9.8.0",
-		"globals": "^17.5.0",
-		"husky": "^9.1.7",
-		"knip": "^6.4.1",
-		"lint-staged": "^16.4.0",
-		"markdownlint-cli2": "^0.22.0",
-		"markdownlint-cli2-formatter-pretty": "^0.0.10",
-		"npm-run-all2": "^8.0.4",
-		"typescript": "^6.0.2"
-	},
-	"knip": {
-		"tags": [
-			"-knipignore"
-		]
-	},
-	"lint-staged": {
-		"*.{ts,js,yml,json5}": [
-			"bun run fix:lint",
-			"bun run fix:format",
-			"cspell lint --no-must-find-files"
-		],
-		"**/!(bun).lock": [
-			"bun run fix:lint",
-			"bun run fix:format",
-			"cspell lint --no-must-find-files"
-		],
-		"*.md": [
-			"markdownlint-cli2 --fix",
-			"cspell lint --no-must-find-files"
-		]
-	},
-	"dependencies": {}
+  "name": "@onlooker-community/marketplace",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Monorepo for Onlooker Community's collection of Claude plugins.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onlooker-community/marketplace.git"
+  },
+  "author": "Onlooker Community",
+  "license": "BlueOak-1.0.0",
+  "workspaces": ["plugins/*", "tools/*"],
+  "keywords": [
+    "claude",
+    "claude-plugins",
+    "onlooker",
+    "agentic-workflows",
+    "observability",
+    "telemetry",
+    "cost-tracking",
+    "friction-analysis",
+    "post-run-evaluation",
+    "quality-scoring",
+    "session-memory",
+    "safety-gate",
+    "intent-documentation",
+    "prompt-regression-testing"
+  ],
+  "scripts": {
+    "commitlint": "commitlint",
+    "fix": "run-s -sl \"fix:*\"",
+    "fix:lint": "biome lint --write .",
+    "fix:markdown": "markdownlint-cli2 --fix \"**/*.md\"",
+    "fix:format": "biome format --write .",
+    "lint": "run-p -sl --aggregate-output \"lint:*\"",
+    "lint-staged": "lint-staged",
+    "lint:spelling": "cspell . \"./.*/**\"",
+    "lint:knip": "knip",
+    "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
+    "lint:format": "biome format",
+    "lint:biome": "biome lint",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.10",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@types/node": "^25.5.2",
+    "cspell": "^9.8.0",
+    "globals": "^17.5.0",
+    "husky": "^9.1.7",
+    "knip": "^6.4.1",
+    "lint-staged": "^16.4.0",
+    "markdownlint-cli2": "^0.22.0",
+    "markdownlint-cli2-formatter-pretty": "^0.0.10",
+    "npm-run-all2": "^8.0.4",
+    "typescript": "^6.0.2"
+  },
+  "knip": {
+    "tags": ["-knipignore"]
+  },
+  "lint-staged": {
+    "*.{ts,js,yml,json5}": [
+      "bun run fix:lint",
+      "bun run fix:format",
+      "cspell lint --no-must-find-files"
+    ],
+    "**/!(bun).lock": [
+      "bun run fix:lint",
+      "bun run fix:format",
+      "cspell lint --no-must-find-files"
+    ],
+    "*.md": ["markdownlint-cli2 --fix", "cspell lint --no-must-find-files"]
+  },
+  "dependencies": {}
 }

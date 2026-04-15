@@ -1,16 +1,16 @@
 {
-	"description": "Counsel weekly synthesis — checks if an improvement brief is due on session start",
-	"hooks": {
-		"SessionStart": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/counsel-check.sh",
-						"timeout": 5
-					}
-				]
-			}
-		]
-	}
+  "description": "Counsel weekly synthesis — checks if an improvement brief is due on session start",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/counsel-check.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -1,44 +1,44 @@
 {
-	"hooks": {
-		"PostToolUse": [
-			{
-				"matcher": "Skill",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/skill-usage-tracker.sh"
-					}
-				]
-			},
-			{
-				"matcher": "Read",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/read-tracker.sh"
-					}
-				]
-			}
-		],
-		"SessionStart": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/session-start-tracker.sh"
-					}
-				]
-			}
-		],
-		"Stop": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/cost-tracker.sh"
-					}
-				]
-			}
-		]
-	}
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/skill-usage-tracker.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/read-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/session-start-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/cost-tracker.sh"
+          }
+        ]
+      }
+    ]
+  }
 }

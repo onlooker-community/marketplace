@@ -1,10 +1,10 @@
 {
-	"output_dir": "docs/scribe",
-	"capture_dir": "~/.claude/scribe/captures",
-	"min_captures_for_stop_distill": 3,
-	"skip_trivial": true,
-	"skip_paths": ["node_modules/", ".git/", "*.lock", "*.min.js"],
-	"archivist_integration": true,
-	"archivist_session_dir": "~/.claude/archivist/sessions",
-	"lore_enabled": true
+  "output_dir": "docs/scribe",
+  "capture_dir": "~/.claude/scribe/captures",
+  "min_captures_for_stop_distill": 3,
+  "skip_trivial": true,
+  "skip_paths": ["node_modules/", ".git/", "*.lock", "*.min.js"],
+  "archivist_integration": true,
+  "archivist_session_dir": "~/.claude/archivist/sessions",
+  "lore_enabled": true
 }

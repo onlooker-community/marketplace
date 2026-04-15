@@ -1,30 +1,30 @@
 {
-	"category": "instruction-injection",
-	"description": "Patterns that attempt to override agent instructions or inject new directives",
-	"patterns": [
-		{
-			"id": "inject-system-prompt",
-			"description": "Attempts to inject or override system prompt instructions",
-			"severity": "critical",
-			"regex": "(?i)(you are now|ignore (?:all )?(?:previous|prior|above) (?:instructions|prompts|directives)|new instructions:|system prompt:|<\\/?system>|\\[SYSTEM\\]|OVERRIDE:|from now on you (?:are|will|must|should))"
-		},
-		{
-			"id": "inject-role-override",
-			"description": "Attempts to change the agent's role or persona",
-			"severity": "critical",
-			"regex": "(?i)(you are (?:a |an )?(?:helpful|harmless|honest)|act as (?:a |an )?|pretend (?:to be|you are)|your (?:new )?role is|switch to .* mode|enter .* mode|you must (?:now |always )?(?:obey|follow|comply))"
-		},
-		{
-			"id": "inject-hidden-instruction",
-			"description": "Hidden instructions in HTML comments, zero-width characters, or encoded content",
-			"severity": "high",
-			"regex": "(<!--[^>]*(?:instruction|execute|ignore|override|system)[^>]*-->|\\\\u200[bcd]|\\\\u00ad|\\\\ufeff)"
-		},
-		{
-			"id": "inject-delimiter-escape",
-			"description": "Attempts to break out of content context using common delimiters",
-			"severity": "high",
-			"regex": "(?i)(---\\s*(?:end|begin)\\s*(?:of\\s*)?(?:context|content|document|instructions)|={3,}\\s*(?:SYSTEM|INSTRUCTIONS|PROMPT)|\\*{3,}\\s*(?:IMPORTANT|NOTE|INSTRUCTION))"
-		}
-	]
+  "category": "instruction-injection",
+  "description": "Patterns that attempt to override agent instructions or inject new directives",
+  "patterns": [
+    {
+      "id": "inject-system-prompt",
+      "description": "Attempts to inject or override system prompt instructions",
+      "severity": "critical",
+      "regex": "(?i)(you are now|ignore (?:all )?(?:previous|prior|above) (?:instructions|prompts|directives)|new instructions:|system prompt:|<\\/?system>|\\[SYSTEM\\]|OVERRIDE:|from now on you (?:are|will|must|should))"
+    },
+    {
+      "id": "inject-role-override",
+      "description": "Attempts to change the agent's role or persona",
+      "severity": "critical",
+      "regex": "(?i)(you are (?:a |an )?(?:helpful|harmless|honest)|act as (?:a |an )?|pretend (?:to be|you are)|your (?:new )?role is|switch to .* mode|enter .* mode|you must (?:now |always )?(?:obey|follow|comply))"
+    },
+    {
+      "id": "inject-hidden-instruction",
+      "description": "Hidden instructions in HTML comments, zero-width characters, or encoded content",
+      "severity": "high",
+      "regex": "(<!--[^>]*(?:instruction|execute|ignore|override|system)[^>]*-->|\\\\u200[bcd]|\\\\u00ad|\\\\ufeff)"
+    },
+    {
+      "id": "inject-delimiter-escape",
+      "description": "Attempts to break out of content context using common delimiters",
+      "severity": "high",
+      "regex": "(?i)(---\\s*(?:end|begin)\\s*(?:of\\s*)?(?:context|content|document|instructions)|={3,}\\s*(?:SYSTEM|INSTRUCTIONS|PROMPT)|\\*{3,}\\s*(?:IMPORTANT|NOTE|INSTRUCTION))"
+    }
+  ]
 }

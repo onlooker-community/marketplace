@@ -1,72 +1,72 @@
 {
-	"annotations": { "list": [] },
-	"editable": true,
-	"fiscalYearStartMonth": 0,
-	"graphTooltip": 1,
-	"id": null,
-	"links": [],
-	"panels": [
-		{
-			"title": "Total Tool Events",
-			"type": "stat",
-			"gridPos": { "h": 4, "w": 12, "x": 0, "y": 0 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "tool_usage"
-				}
-			],
-			"fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
-			"options": {
-				"reduceOptions": { "calcs": ["count"], "fields": "/^event_type$/" },
-				"colorMode": "value"
-			}
-		},
-		{
-			"title": "Event Type Breakdown",
-			"type": "piechart",
-			"gridPos": { "h": 4, "w": 12, "x": 12, "y": 0 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "events_by_type"
-				}
-			],
-			"options": {
-				"legend": { "displayMode": "table", "placement": "right" },
-				"pieType": "donut"
-			}
-		},
-		{
-			"title": "Tool Usage Log",
-			"type": "table",
-			"gridPos": { "h": 14, "w": 24, "x": 0, "y": 4 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "tool_usage"
-				}
-			],
-			"options": {
-				"sortBy": [{ "displayName": "timestamp", "desc": true }]
-			}
-		}
-	],
-	"schemaVersion": 39,
-	"tags": ["onlooker", "tools"],
-	"templating": { "list": [] },
-	"time": { "from": "now-7d", "to": "now" },
-	"timepicker": {},
-	"timezone": "",
-	"title": "Tool Usage",
-	"uid": "onlooker-tool-usage"
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "title": "Total Tool Events",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "tool_usage"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": {
+        "reduceOptions": { "calcs": ["count"], "fields": "/^event_type$/" },
+        "colorMode": "value"
+      }
+    },
+    {
+      "title": "Event Type Breakdown",
+      "type": "piechart",
+      "gridPos": { "h": 4, "w": 12, "x": 12, "y": 0 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "events_by_type"
+        }
+      ],
+      "options": {
+        "legend": { "displayMode": "table", "placement": "right" },
+        "pieType": "donut"
+      }
+    },
+    {
+      "title": "Tool Usage Log",
+      "type": "table",
+      "gridPos": { "h": 14, "w": 24, "x": 0, "y": 4 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "tool_usage"
+        }
+      ],
+      "options": {
+        "sortBy": [{ "displayName": "timestamp", "desc": true }]
+      }
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["onlooker", "tools"],
+  "templating": { "list": [] },
+  "time": { "from": "now-7d", "to": "now" },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Tool Usage",
+  "uid": "onlooker-tool-usage"
 }

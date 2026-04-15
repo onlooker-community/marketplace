@@ -1,160 +1,160 @@
 {
-	"annotations": { "list": [] },
-	"editable": true,
-	"fiscalYearStartMonth": 0,
-	"graphTooltip": 1,
-	"id": null,
-	"links": [],
-	"panels": [
-		{
-			"title": "Total Estimated Cost",
-			"type": "stat",
-			"gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "costs"
-				}
-			],
-			"fieldConfig": {
-				"defaults": {
-					"unit": "currencyUSD",
-					"decimals": 4
-				},
-				"overrides": []
-			},
-			"options": {
-				"reduceOptions": {
-					"calcs": ["sum"],
-					"fields": "/^estimated_cost_usd$/"
-				},
-				"colorMode": "value",
-				"textMode": "auto"
-			}
-		},
-		{
-			"title": "Total Sessions",
-			"type": "stat",
-			"gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "costs"
-				}
-			],
-			"fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
-			"options": {
-				"reduceOptions": {
-					"calcs": ["count"],
-					"fields": "/^session_id$/"
-				},
-				"colorMode": "value"
-			}
-		},
-		{
-			"title": "Total Input Tokens",
-			"type": "stat",
-			"gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "costs"
-				}
-			],
-			"fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
-			"options": {
-				"reduceOptions": {
-					"calcs": ["sum"],
-					"fields": "/^input_tokens$/"
-				},
-				"colorMode": "value"
-			}
-		},
-		{
-			"title": "Total Output Tokens",
-			"type": "stat",
-			"gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "costs"
-				}
-			],
-			"fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
-			"options": {
-				"reduceOptions": {
-					"calcs": ["sum"],
-					"fields": "/^output_tokens$/"
-				},
-				"colorMode": "value"
-			}
-		},
-		{
-			"title": "Cost by Model",
-			"type": "piechart",
-			"gridPos": { "h": 10, "w": 12, "x": 0, "y": 4 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "cost_by_model"
-				}
-			],
-			"options": {
-				"legend": { "displayMode": "table", "placement": "right" },
-				"pieType": "donut"
-			}
-		},
-		{
-			"title": "Cost Over Time",
-			"type": "table",
-			"gridPos": { "h": 10, "w": 12, "x": 12, "y": 4 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "costs"
-				}
-			],
-			"fieldConfig": {
-				"defaults": {},
-				"overrides": [
-					{
-						"matcher": { "id": "byName", "options": "estimated_cost_usd" },
-						"properties": [
-							{ "id": "unit", "value": "currencyUSD" },
-							{ "id": "decimals", "value": 6 }
-						]
-					}
-				]
-			},
-			"options": {
-				"sortBy": [{ "displayName": "timestamp", "desc": true }]
-			}
-		}
-	],
-	"schemaVersion": 39,
-	"tags": ["onlooker", "cost"],
-	"templating": { "list": [] },
-	"time": { "from": "now-7d", "to": "now" },
-	"timepicker": {},
-	"timezone": "",
-	"title": "Cost Overview",
-	"uid": "onlooker-cost-overview"
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "title": "Total Estimated Cost",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "costs"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyUSD",
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["sum"],
+          "fields": "/^estimated_cost_usd$/"
+        },
+        "colorMode": "value",
+        "textMode": "auto"
+      }
+    },
+    {
+      "title": "Total Sessions",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "costs"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["count"],
+          "fields": "/^session_id$/"
+        },
+        "colorMode": "value"
+      }
+    },
+    {
+      "title": "Total Input Tokens",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "costs"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["sum"],
+          "fields": "/^input_tokens$/"
+        },
+        "colorMode": "value"
+      }
+    },
+    {
+      "title": "Total Output Tokens",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "costs"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": {
+        "reduceOptions": {
+          "calcs": ["sum"],
+          "fields": "/^output_tokens$/"
+        },
+        "colorMode": "value"
+      }
+    },
+    {
+      "title": "Cost by Model",
+      "type": "piechart",
+      "gridPos": { "h": 10, "w": 12, "x": 0, "y": 4 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "cost_by_model"
+        }
+      ],
+      "options": {
+        "legend": { "displayMode": "table", "placement": "right" },
+        "pieType": "donut"
+      }
+    },
+    {
+      "title": "Cost Over Time",
+      "type": "table",
+      "gridPos": { "h": 10, "w": 12, "x": 12, "y": 4 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "costs"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": { "id": "byName", "options": "estimated_cost_usd" },
+            "properties": [
+              { "id": "unit", "value": "currencyUSD" },
+              { "id": "decimals", "value": 6 }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "sortBy": [{ "displayName": "timestamp", "desc": true }]
+      }
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["onlooker", "cost"],
+  "templating": { "list": [] },
+  "time": { "from": "now-7d", "to": "now" },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Cost Overview",
+  "uid": "onlooker-cost-overview"
 }

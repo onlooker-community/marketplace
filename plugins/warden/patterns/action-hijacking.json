@@ -1,24 +1,24 @@
 {
-	"category": "action-hijacking",
-	"description": "Patterns that attempt to hijack the agent's next actions or tool calls",
-	"patterns": [
-		{
-			"id": "hijack-next-action",
-			"description": "Instructions directing the agent's next action",
-			"severity": "high",
-			"regex": "(?i)((?:first|next|now|then|immediately|before (?:anything|continuing)).*(?:run|execute|call|invoke|write|create|delete|modify)\\b|(?:do not|don't|never).*(?:tell|inform|alert|warn|notify).*(?:the user|human|operator))"
-		},
-		{
-			"id": "hijack-file-operation",
-			"description": "Instructions to create, modify, or delete specific files",
-			"severity": "high",
-			"regex": "(?i)((?:create|write|add|insert|append|modify|overwrite|replace).*(?:file|script|config|\\.env|\\.ssh|authorized_keys|crontab|\\.bashrc|\\.zshrc)|(?:add|insert|append).*(?:to|in|into).*(?:\\.(env|ssh|bash|zsh|profile|gitconfig)))"
-		},
-		{
-			"id": "hijack-suppress-output",
-			"description": "Instructions to hide or suppress evidence of injected actions",
-			"severity": "critical",
-			"regex": "(?i)((?:do not|don't|never|avoid).*(?:mention|show|display|reveal|output|print|log|report).*(?:this|these|the above|the following|what you did)|(?:silently|quietly|secretly|covertly|without (?:telling|informing|showing)).*(?:execute|run|perform|do|write|modify))"
-		}
-	]
+  "category": "action-hijacking",
+  "description": "Patterns that attempt to hijack the agent's next actions or tool calls",
+  "patterns": [
+    {
+      "id": "hijack-next-action",
+      "description": "Instructions directing the agent's next action",
+      "severity": "high",
+      "regex": "(?i)((?:first|next|now|then|immediately|before (?:anything|continuing)).*(?:run|execute|call|invoke|write|create|delete|modify)\\b|(?:do not|don't|never).*(?:tell|inform|alert|warn|notify).*(?:the user|human|operator))"
+    },
+    {
+      "id": "hijack-file-operation",
+      "description": "Instructions to create, modify, or delete specific files",
+      "severity": "high",
+      "regex": "(?i)((?:create|write|add|insert|append|modify|overwrite|replace).*(?:file|script|config|\\.env|\\.ssh|authorized_keys|crontab|\\.bashrc|\\.zshrc)|(?:add|insert|append).*(?:to|in|into).*(?:\\.(env|ssh|bash|zsh|profile|gitconfig)))"
+    },
+    {
+      "id": "hijack-suppress-output",
+      "description": "Instructions to hide or suppress evidence of injected actions",
+      "severity": "critical",
+      "regex": "(?i)((?:do not|don't|never|avoid).*(?:mention|show|display|reveal|output|print|log|report).*(?:this|these|the above|the following|what you did)|(?:silently|quietly|secretly|covertly|without (?:telling|informing|showing)).*(?:execute|run|perform|do|write|modify))"
+    }
+  ]
 }

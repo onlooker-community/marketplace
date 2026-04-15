@@ -1,9 +1,9 @@
 {
-	"mcpServers": {
-		"example-mcp": {
-			"command": "node",
-			"args": ["dist/index.js"],
-			"env": {}
-		}
-	}
+  "mcpServers": {
+    "example-mcp": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "env": {}
+    }
+  }
 }

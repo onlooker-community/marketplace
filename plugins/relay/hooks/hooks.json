@@ -1,27 +1,27 @@
 {
-	"hooks": {
-		"SessionEnd": [
-			{
-				"hooks": [
-					{
-						"type": "agent",
-						"prompt": "Generate a Relay handoff for this session. The session_id and cwd are in the hook input. Write the handoff JSON to ~/.claude/relay/handoffs/<session_id>.json. Follow the relay-capture agent instructions in the Relay plugin.",
-						"agentPath": "./agents/relay-capture.md",
-						"statusMessage": "Relay: capturing session handoff..."
-					}
-				]
-			}
-		],
-		"SessionStart": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/relay-inject.sh",
-						"statusMessage": "Relay: loading handoff..."
-					}
-				]
-			}
-		]
-	}
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "Generate a Relay handoff for this session. The session_id and cwd are in the hook input. Write the handoff JSON to ~/.claude/relay/handoffs/<session_id>.json. Follow the relay-capture agent instructions in the Relay plugin.",
+            "agentPath": "./agents/relay-capture.md",
+            "statusMessage": "Relay: capturing session handoff..."
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PLUGIN_ROOT\"/hooks/relay-inject.sh",
+            "statusMessage": "Relay: loading handoff..."
+          }
+        ]
+      }
+    ]
+  }
 }

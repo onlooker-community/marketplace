@@ -1,22 +1,22 @@
 {
-	"name": "example-plugin-mcp",
-	"version": "0.1.0",
-	"type": "module",
-	"description": "MCP server for example-plugin",
-	"author": "onlooker-community",
-	"main": "dist/index.js",
-	"scripts": {
-		"build": "tsc",
-		"dev": "tsc --watch",
-		"start": "bun run dist/index.js"
-	},
-	"devDependencies": {
-		"@types/bun": "latest"
-	},
-	"peerDependencies": {
-		"typescript": "^5"
-	},
-	"dependencies": {
-		"@modelcontextprotocol/sdk": "^1.29.0"
-	}
+  "name": "example-plugin-mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "MCP server for example-plugin",
+  "author": "onlooker-community",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "bun run dist/index.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  }
 }

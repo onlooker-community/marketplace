@@ -1,10 +1,10 @@
 #!/usr/bin/env bun
 
-import { up } from "../src/commands/up";
-import { down } from "../src/commands/down";
-import { status } from "../src/commands/status";
-import { logs } from "../src/commands/logs";
-import { open } from "../src/commands/open";
+import { up } from '../src/commands/up';
+import { down } from '../src/commands/down';
+import { status } from '../src/commands/status';
+import { logs } from '../src/commands/logs';
+import { open } from '../src/commands/open';
 
 const USAGE = `
 onlooker-dashboard — Grafana dashboards for Onlooker telemetry
@@ -28,28 +28,28 @@ const command = process.argv[2];
 const args = process.argv.slice(3);
 
 switch (command) {
-	case "up":
-		await up();
-		break;
-	case "down":
-		await down();
-		break;
-	case "status":
-		await status();
-		break;
-	case "logs":
-		await logs(args.includes("--follow") || args.includes("-f"));
-		break;
-	case "open":
-		await open();
-		break;
-	case "--help":
-	case "-h":
-	case undefined:
-		console.log(USAGE);
-		break;
-	default:
-		console.error(`Unknown command: ${command}\n`);
-		console.log(USAGE);
-		process.exit(1);
+  case 'up':
+    await up();
+    break;
+  case 'down':
+    await down();
+    break;
+  case 'status':
+    await status();
+    break;
+  case 'logs':
+    await logs(args.includes('--follow') || args.includes('-f'));
+    break;
+  case 'open':
+    await open();
+    break;
+  case '--help':
+  case '-h':
+  case undefined:
+    console.log(USAGE);
+    break;
+  default:
+    console.error(`Unknown command: ${command}\n`);
+    console.log(USAGE);
+    process.exit(1);
 }

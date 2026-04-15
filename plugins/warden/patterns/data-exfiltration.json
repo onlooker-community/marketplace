@@ -1,24 +1,24 @@
 {
-	"category": "data-exfiltration",
-	"description": "Patterns that attempt to exfiltrate data via tool calls or external communication",
-	"patterns": [
-		{
-			"id": "exfil-curl-post",
-			"description": "Instructions to POST or send data to external URLs",
-			"severity": "critical",
-			"regex": "(?i)((?:curl|wget|fetch|http).*(?:POST|PUT|send|upload|exfil).*(?:https?://|[a-z0-9]+\\.[a-z]{2,})|send (?:the |this |all )?(?:content|data|file|code|secret|key|token|password|credential).*(?:to |via |using ))"
-		},
-		{
-			"id": "exfil-tool-abuse",
-			"description": "Instructions to use tools for data exfiltration (MCP logging tools, etc)",
-			"severity": "critical",
-			"regex": "(?i)(use (?:the )?(?:log|logging|mcp|tool|function).*(?:to )?(?:send|record|capture|store|forward).*(?:secret|key|token|env|credential|password|private)|call (?:the )?.*(?:tool|function).*with (?:the )?(?:secret|key|token|credential))"
-		},
-		{
-			"id": "exfil-encode-smuggle",
-			"description": "Instructions to encode or obfuscate data for smuggling",
-			"severity": "high",
-			"regex": "(?i)((?:base64|hex|encode|encrypt|obfuscate).*(?:before sending|then send|and (?:post|send|upload))|(?:hide|embed|smuggle|conceal).*(?:in|inside|within).*(?:comment|metadata|header|cookie|url|param))"
-		}
-	]
+  "category": "data-exfiltration",
+  "description": "Patterns that attempt to exfiltrate data via tool calls or external communication",
+  "patterns": [
+    {
+      "id": "exfil-curl-post",
+      "description": "Instructions to POST or send data to external URLs",
+      "severity": "critical",
+      "regex": "(?i)((?:curl|wget|fetch|http).*(?:POST|PUT|send|upload|exfil).*(?:https?://|[a-z0-9]+\\.[a-z]{2,})|send (?:the |this |all )?(?:content|data|file|code|secret|key|token|password|credential).*(?:to |via |using ))"
+    },
+    {
+      "id": "exfil-tool-abuse",
+      "description": "Instructions to use tools for data exfiltration (MCP logging tools, etc)",
+      "severity": "critical",
+      "regex": "(?i)(use (?:the )?(?:log|logging|mcp|tool|function).*(?:to )?(?:send|record|capture|store|forward).*(?:secret|key|token|env|credential|password|private)|call (?:the )?.*(?:tool|function).*with (?:the )?(?:secret|key|token|credential))"
+    },
+    {
+      "id": "exfil-encode-smuggle",
+      "description": "Instructions to encode or obfuscate data for smuggling",
+      "severity": "high",
+      "regex": "(?i)((?:base64|hex|encode|encrypt|obfuscate).*(?:before sending|then send|and (?:post|send|upload))|(?:hide|embed|smuggle|conceal).*(?:in|inside|within).*(?:comment|metadata|header|cookie|url|param))"
+    }
+  ]
 }

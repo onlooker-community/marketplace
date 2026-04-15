@@ -1,32 +1,24 @@
 {
-	"name": "@onlooker-community/lore",
-	"version": "0.1.0",
-	"description": "Lore — local epistemic knowledge store (Knowledge Gravity Engine) for the Onlooker ecosystem",
-	"type": "module",
-	"bin": {
-		"lore": "./bin/cli.ts"
-	},
-	"files": [
-		"bin",
-		"src"
-	],
-	"keywords": [
-		"onlooker",
-		"knowledge",
-		"epistemic",
-		"sqlite"
-	],
-	"author": {
-		"name": "Onlooker Community",
-		"url": "https://github.com/onlooker-community"
-	},
-	"license": "BlueOak-1.0.0",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/onlooker-community/marketplace.git",
-		"directory": "tools/lore"
-	},
-	"scripts": {
-		"test": "bun test"
-	}
+  "name": "@onlooker-community/lore",
+  "version": "0.1.0",
+  "description": "Lore — local epistemic knowledge store (Knowledge Gravity Engine) for the Onlooker ecosystem",
+  "type": "module",
+  "bin": {
+    "lore": "./bin/cli.ts"
+  },
+  "files": ["bin", "src"],
+  "keywords": ["onlooker", "knowledge", "epistemic", "sqlite"],
+  "author": {
+    "name": "Onlooker Community",
+    "url": "https://github.com/onlooker-community"
+  },
+  "license": "BlueOak-1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onlooker-community/marketplace.git",
+    "directory": "tools/lore"
+  },
+  "scripts": {
+    "test": "bun test"
+  }
 }

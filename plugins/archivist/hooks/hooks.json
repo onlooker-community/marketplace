@@ -1,37 +1,37 @@
 {
-	"hooks": {
-		"PreCompact": [
-			{
-				"hooks": [
-					{
-						"type": "agent",
-						"prompt": "Extract structured session memory from the current session. The working directory is $CWD. Write the extraction to the Archivist storage path configured in config.json. Generate a UUID for the session_id and use the current ISO 8601 timestamp.",
-						"statusMessage": "Archivist: capturing session memory..."
-					}
-				]
-			}
-		],
-		"SessionEnd": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/archivist-extract.sh\" --finalize",
-						"async": true
-					}
-				]
-			}
-		],
-		"SessionStart": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/archivist-inject.sh\"",
-						"statusMessage": "Archivist: loading session context..."
-					}
-				]
-			}
-		]
-	}
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "Extract structured session memory from the current session. The working directory is $CWD. Write the extraction to the Archivist storage path configured in config.json. Generate a UUID for the session_id and use the current ISO 8601 timestamp.",
+            "statusMessage": "Archivist: capturing session memory..."
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/archivist-extract.sh\" --finalize",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/archivist-inject.sh\"",
+            "statusMessage": "Archivist: loading session context..."
+          }
+        ]
+      }
+    ]
+  }
 }

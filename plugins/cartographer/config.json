@@ -1,17 +1,17 @@
 {
-	"enabled": true,
-	"storage_path": "~/.claude/cartographer",
-	"audit_ttl_hours": 24,
-	"min_severity_to_inject": "medium",
-	"max_issues_to_inject": 3,
-	"checks": {
-		"contradictions": true,
-		"stale_file_refs": true,
-		"orphaned_plugin_refs": true,
-		"dead_tool_refs": true,
-		"duplicates": true,
-		"hierarchy_conflicts": true
-	},
-	"emit_health_metric": true,
-	"lore_sync_enabled": true
+  "enabled": true,
+  "storage_path": "~/.claude/cartographer",
+  "audit_ttl_hours": 24,
+  "min_severity_to_inject": "medium",
+  "max_issues_to_inject": 3,
+  "checks": {
+    "contradictions": true,
+    "stale_file_refs": true,
+    "orphaned_plugin_refs": true,
+    "dead_tool_refs": true,
+    "duplicates": true,
+    "hierarchy_conflicts": true
+  },
+  "emit_health_metric": true,
+  "lore_sync_enabled": true
 }

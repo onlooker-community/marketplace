@@ -1,18 +1,18 @@
-import { Database } from "bun:sqlite";
-import { dirname } from "node:path";
-import { mkdirSync } from "node:fs";
+import { Database } from 'bun:sqlite';
+import { dirname } from 'node:path';
+import { mkdirSync } from 'node:fs';
 
 export function openLoreDb(dbPath: string): Database {
-	mkdirSync(dirname(dbPath), { recursive: true });
-	const db = new Database(dbPath);
-	db.exec("PRAGMA journal_mode = WAL;");
-	db.exec("PRAGMA foreign_keys = ON;");
-	initSchema(db);
-	return db;
+  mkdirSync(dirname(dbPath), { recursive: true });
+  const db = new Database(dbPath);
+  db.exec('PRAGMA journal_mode = WAL;');
+  db.exec('PRAGMA foreign_keys = ON;');
+  initSchema(db);
+  return db;
 }
 
 function initSchema(db: Database): void {
-	db.exec(`
+  db.exec(`
     CREATE TABLE IF NOT EXISTS meta (
       key TEXT PRIMARY KEY,
       value TEXT NOT NULL
@@ -50,24 +50,24 @@ function initSchema(db: Database): void {
     CREATE INDEX IF NOT EXISTS idx_edges_from ON edges(from_id);
     CREATE UNIQUE INDEX IF NOT EXISTS idx_edges_unique_triple ON edges(from_id, to_id, kind);
   `);
-	const row = db
-		.query("SELECT value FROM meta WHERE key = 'schema_version'")
-		.get() as { value: string } | undefined;
-	if (!row) {
-		db.run("INSERT INTO meta (key, value) VALUES ('schema_version', '1')");
-	}
+  const row = db
+    .query("SELECT value FROM meta WHERE key = 'schema_version'")
+    .get() as { value: string } | undefined;
+  if (!row) {
+    db.run("INSERT INTO meta (key, value) VALUES ('schema_version', '1')");
+  }
 }
 
 export function mergeMetadata(
-	existing: string,
-	incoming: Record<string, unknown>,
+  existing: string,
+  incoming: Record<string, unknown>,
 ): string {
-	let base: Record<string, unknown> = {};
-	try {
-		base = JSON.parse(existing) as Record<string, unknown>;
-	} catch {
-		base = {};
-	}
-	const merged = { ...base, ...incoming };
-	return JSON.stringify(merged);
+  let base: Record<string, unknown> = {};
+  try {
+    base = JSON.parse(existing) as Record<string, unknown>;
+  } catch {
+    base = {};
+  }
+  const merged = { ...base, ...incoming };
+  return JSON.stringify(merged);
 }

@@ -1,43 +1,43 @@
 {
-	"description": "Scribe — intent documentation from agent activity",
-	"hooks": {
-		"PostToolUse": [
-			{
-				"matcher": "Write|Edit",
-				"hooks": [
-					{
-						"type": "agent",
-						"prompt": "You are the Scribe capture agent. A file operation just completed.\n\nContext from the tool call: $ARGUMENTS\n\nExtract the intent behind this file operation. Return ONLY a JSON capture entry:\n{\n  \"file\": \"path/to/file\",\n  \"change_type\": \"created|modified\",\n  \"intent\": \"One sentence: what problem does this change solve? (max 20 words)\",\n  \"decision\": \"The key technical or design decision made, if any. Null if purely mechanical. (max 40 words)\",\n  \"tradeoffs\": \"What was considered and rejected, or what this approach sacrifices. Null if none. (max 40 words)\",\n  \"follow_up\": \"What likely needs to change next as a consequence. Null if none. (max 30 words)\",\n  \"tags\": [\"feature\", \"fix\", \"refactor\", \"config\", \"test\", \"docs\"]\n}\n\nIf the change is trivial (whitespace, formatting, comment typo), return {\"trivial\": true}.\n\nDo NOT describe what the code does. Focus entirely on WHY it exists and what shaped the decision.\nBe fast. Three sentences maximum across all fields.",
-						"timeout": 20,
-						"statusMessage": "Scribe: capturing intent..."
-					}
-				]
-			}
-		],
-		"Stop": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/distill.sh\" --trigger stop",
-						"async": true,
-						"timeout": 120,
-						"statusMessage": "Scribe: distilling session documentation..."
-					}
-				]
-			}
-		],
-		"SessionEnd": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/distill.sh\" --trigger session_end",
-						"async": true,
-						"timeout": 120
-					}
-				]
-			}
-		]
-	}
+  "description": "Scribe — intent documentation from agent activity",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "You are the Scribe capture agent. A file operation just completed.\n\nContext from the tool call: $ARGUMENTS\n\nExtract the intent behind this file operation. Return ONLY a JSON capture entry:\n{\n  \"file\": \"path/to/file\",\n  \"change_type\": \"created|modified\",\n  \"intent\": \"One sentence: what problem does this change solve? (max 20 words)\",\n  \"decision\": \"The key technical or design decision made, if any. Null if purely mechanical. (max 40 words)\",\n  \"tradeoffs\": \"What was considered and rejected, or what this approach sacrifices. Null if none. (max 40 words)\",\n  \"follow_up\": \"What likely needs to change next as a consequence. Null if none. (max 30 words)\",\n  \"tags\": [\"feature\", \"fix\", \"refactor\", \"config\", \"test\", \"docs\"]\n}\n\nIf the change is trivial (whitespace, formatting, comment typo), return {\"trivial\": true}.\n\nDo NOT describe what the code does. Focus entirely on WHY it exists and what shaped the decision.\nBe fast. Three sentences maximum across all fields.",
+            "timeout": 20,
+            "statusMessage": "Scribe: capturing intent..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/distill.sh\" --trigger stop",
+            "async": true,
+            "timeout": 120,
+            "statusMessage": "Scribe: distilling session documentation..."
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/distill.sh\" --trigger session_end",
+            "async": true,
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
 }

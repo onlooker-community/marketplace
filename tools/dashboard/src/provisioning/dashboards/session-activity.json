@@ -1,110 +1,110 @@
 {
-	"annotations": { "list": [] },
-	"editable": true,
-	"fiscalYearStartMonth": 0,
-	"graphTooltip": 1,
-	"id": null,
-	"links": [],
-	"panels": [
-		{
-			"title": "Total Sessions",
-			"type": "stat",
-			"gridPos": { "h": 4, "w": 8, "x": 0, "y": 0 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "sessions"
-				}
-			],
-			"fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
-			"options": {
-				"reduceOptions": { "calcs": ["count"], "fields": "/^session_id$/" },
-				"colorMode": "value"
-			}
-		},
-		{
-			"title": "Total Events",
-			"type": "stat",
-			"gridPos": { "h": 4, "w": 8, "x": 8, "y": 0 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "events"
-				}
-			],
-			"fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
-			"options": {
-				"reduceOptions": { "calcs": ["count"], "fields": "/^event_type$/" },
-				"colorMode": "value"
-			}
-		},
-		{
-			"title": "Event Types",
-			"type": "stat",
-			"gridPos": { "h": 4, "w": 8, "x": 16, "y": 0 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "events_by_type"
-				}
-			],
-			"fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
-			"options": {
-				"reduceOptions": { "calcs": ["count"], "fields": "/^event_type$/" },
-				"colorMode": "value"
-			}
-		},
-		{
-			"title": "Sessions",
-			"type": "table",
-			"gridPos": { "h": 10, "w": 12, "x": 0, "y": 4 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "sessions"
-				}
-			],
-			"options": {
-				"sortBy": [{ "displayName": "timestamp", "desc": true }]
-			}
-		},
-		{
-			"title": "Events by Type",
-			"type": "barchart",
-			"gridPos": { "h": 10, "w": 12, "x": 12, "y": 4 },
-			"targets": [
-				{
-					"datasource": {
-						"type": "marcusolsson-json-datasource",
-						"uid": "onlooker"
-					},
-					"target": "events_by_type"
-				}
-			],
-			"options": {
-				"orientation": "horizontal",
-				"legend": { "displayMode": "hidden" }
-			}
-		}
-	],
-	"schemaVersion": 39,
-	"tags": ["onlooker", "sessions"],
-	"templating": { "list": [] },
-	"time": { "from": "now-7d", "to": "now" },
-	"timepicker": {},
-	"timezone": "",
-	"title": "Session Activity",
-	"uid": "onlooker-session-activity"
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "title": "Total Sessions",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 8, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "sessions"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": {
+        "reduceOptions": { "calcs": ["count"], "fields": "/^session_id$/" },
+        "colorMode": "value"
+      }
+    },
+    {
+      "title": "Total Events",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 8, "x": 8, "y": 0 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "events"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": {
+        "reduceOptions": { "calcs": ["count"], "fields": "/^event_type$/" },
+        "colorMode": "value"
+      }
+    },
+    {
+      "title": "Event Types",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 8, "x": 16, "y": 0 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "events_by_type"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] },
+      "options": {
+        "reduceOptions": { "calcs": ["count"], "fields": "/^event_type$/" },
+        "colorMode": "value"
+      }
+    },
+    {
+      "title": "Sessions",
+      "type": "table",
+      "gridPos": { "h": 10, "w": 12, "x": 0, "y": 4 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "sessions"
+        }
+      ],
+      "options": {
+        "sortBy": [{ "displayName": "timestamp", "desc": true }]
+      }
+    },
+    {
+      "title": "Events by Type",
+      "type": "barchart",
+      "gridPos": { "h": 10, "w": 12, "x": 12, "y": 4 },
+      "targets": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "onlooker"
+          },
+          "target": "events_by_type"
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "legend": { "displayMode": "hidden" }
+      }
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["onlooker", "sessions"],
+  "templating": { "list": [] },
+  "time": { "from": "now-7d", "to": "now" },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Session Activity",
+  "uid": "onlooker-session-activity"
 }

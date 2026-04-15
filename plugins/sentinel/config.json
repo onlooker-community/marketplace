@@ -1,13 +1,13 @@
 {
-	"enabled": true,
-	"default_behaviors": {
-		"critical": "block",
-		"high": "review",
-		"medium": "log",
-		"low": "allow"
-	},
-	"session_overrides": {},
-	"audit_log": "~/.claude/sentinel/audit.jsonl",
-	"protect_paths": [],
-	"safe_paths": ["/tmp", "~/.claude/archivist"]
+  "enabled": true,
+  "default_behaviors": {
+    "critical": "block",
+    "high": "review",
+    "medium": "log",
+    "low": "allow"
+  },
+  "session_overrides": {},
+  "audit_log": "~/.claude/sentinel/audit.jsonl",
+  "protect_paths": [],
+  "safe_paths": ["/tmp", "~/.claude/archivist"]
 }
