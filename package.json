@@ -43,7 +43,6 @@
 		"lint:markdown": "markdownlint-cli2 \"**/*.md\"",
 		"lint:format": "biome format",
 		"lint:biome": "biome lint",
-		"lint:types": "tsc --noEmit",
 		"prepare": "husky"
 	},
 	"devDependencies": {
