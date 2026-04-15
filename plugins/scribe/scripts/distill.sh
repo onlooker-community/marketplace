@@ -11,6 +11,13 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/utils.sh"
+# shellcheck source=lore-invoke.sh
+if [[ -f "$SCRIPT_DIR/lore-invoke.sh" ]]; then
+    source "$SCRIPT_DIR/lore-invoke.sh"
+else
+    lore_cli_run() { :; }
+    lore_enabled_default_true() { [[ "${1:-true}" != "false" ]]; }
+fi
 
 slugify() {
     local text="$1"
@@ -234,6 +241,22 @@ distill_session() {
     printf -- '- [%s - %s](changes/%s-%s.md)\n' "$date" "$summary" "$date" "$session_short" >> "$index_path" 2>/dev/null || true
 
     mark_session_distilled "$session_id"
+
+    local lore_on
+    lore_on="$(scribe_config_get "$config" '.lore_enabled' 'true')"
+    if lore_enabled_default_true "$lore_on"; then
+        local tmp
+        tmp="$(mktemp)" || true
+        if [[ -n "$tmp" ]]; then
+            jq -n \
+                --arg sid "$session_id" \
+                --arg cwd "$cwd" \
+                --argjson caps "$captures" \
+                '{session_id: $sid, cwd: $cwd, captures: $caps}' > "$tmp" 2>/dev/null \
+                && lore_cli_run ingest --format scribe-session --file "$tmp" 2>/dev/null || true
+            rm -f "$tmp" 2>/dev/null || true
+        fi
+    fi
 }
 
 main() {

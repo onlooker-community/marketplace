@@ -13,7 +13,7 @@ SCRIBE_PLUGIN_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 get_config() {
     local config_path="$SCRIBE_PLUGIN_ROOT/config.json"
-    local defaults='{"output_dir":"docs/scribe","capture_dir":"~/.claude/scribe/captures","min_captures_for_stop_distill":3,"skip_trivial":true,"skip_paths":["node_modules/",".git/","*.lock","*.min.js"],"archivist_integration":true,"archivist_session_dir":"~/.claude/archivist/sessions"}'
+    local defaults='{"output_dir":"docs/scribe","capture_dir":"~/.claude/scribe/captures","min_captures_for_stop_distill":3,"skip_trivial":true,"skip_paths":["node_modules/",".git/","*.lock","*.min.js"],"archivist_integration":true,"archivist_session_dir":"~/.claude/archivist/sessions","lore_enabled":true}'
 
     if [[ -f "$config_path" ]]; then
         # Merge defaults with config (config values take precedence)

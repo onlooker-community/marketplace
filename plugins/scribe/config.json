@@ -5,5 +5,6 @@
 	"skip_trivial": true,
 	"skip_paths": ["node_modules/", ".git/", "*.lock", "*.min.js"],
 	"archivist_integration": true,
-	"archivist_session_dir": "~/.claude/archivist/sessions"
+	"archivist_session_dir": "~/.claude/archivist/sessions",
+	"lore_enabled": true
 }

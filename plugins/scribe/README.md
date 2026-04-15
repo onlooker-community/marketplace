@@ -8,7 +8,7 @@ Git logs record what changed. Code comments describe what code does. Scribe reco
 
 1. **Capture** (PostToolUse on Write|Edit) — After each file operation, a lightweight prompt extracts the intent behind the change while the agent still has its reasoning in context. Captures are fast (≤3 seconds target) and append to a JSONL file.
 
-2. **Distill** (Stop, SessionEnd, or manual) — Captures are grouped into logical change sets and synthesized into readable Markdown documentation. If Archivist is installed, its decisions and dead ends enrich the output.
+2. **Distill** (Stop, SessionEnd, or manual) — Captures are grouped into logical change sets and synthesized into readable Markdown documentation. If Archivist is installed, its decisions and dead ends enrich the output. When **`lore_enabled`** is true (default), each successful distill also **ingests** capture rows that include a `decision` into [Lore](../../tools/lore/README.md) as structured knowledge objects so Counsel, Cartographer-fed edges, and optional Archivist/Relay injection can rank them with the rest of the org graph.
 
 ## Install
 
@@ -49,6 +49,7 @@ Edit `config.json` in the plugin directory:
 | `skip_paths` | `["node_modules/", ".git/", "*.lock", "*.min.js"]` | Glob patterns for files to never capture |
 | `archivist_integration` | `true` | Read Archivist session logs during distillation if available |
 | `archivist_session_dir` | `~/.claude/archivist/sessions` | Where to find Archivist session files |
+| `lore_enabled` | `true` | After distill, ingest decisions from captures into Lore (`lore ingest --format scribe-session`). Set `false` to skip |
 
 ## Example capture entry
 
@@ -93,6 +94,16 @@ per active session.
 When Archivist is installed, Scribe reads its session logs during distillation to enrich documentation with structured decisions and dead ends. This avoids duplicating extraction logic — Archivist captures for the agent, Scribe captures for humans.
 
 If Archivist is not installed, Scribe works standalone with its own capture data.
+
+## Lore integration
+
+Scribe **writes** to Lore at distill time (not on every PostToolUse capture). The script builds a small JSON payload `{ session_id, cwd, captures }` and invokes `lore ingest --format scribe-session`. Only entries with a non-empty **`decision`** field are represented as knowledge objects (default epistemic class **DECISION**, with intent/tradeoffs/file path in metadata).
+
+This complements Archivist: Archivist extracts from the full transcript at compaction; Scribe promotes **human-facing** decision text from intent capture into the same store. Deduplication in Lore is by canonical hash of cwd + class + body, so near-duplicate wording may collapse to one object.
+
+**CLI resolution:** `LORE_CLI`, `lore` on `PATH`, monorepo `tools/lore/bin/cli.ts`, or `bunx @onlooker-community/lore`. Failures are ignored so distillation never blocks.
+
+Details on storage, decay, and consumers (Counsel, Relay, Archivist) live in the [Lore tool README](../../tools/lore/README.md).
 
 ## Onlooker integration
 
