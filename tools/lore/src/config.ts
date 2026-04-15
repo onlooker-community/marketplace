@@ -24,11 +24,11 @@ function expandPath(p: string): string {
   return p;
 }
 
-export function defaultDbPath(): string {
+function defaultDbPath(): string {
   return expandPath('~/.claude/lore/lore.sqlite');
 }
 
-export function defaultConfigPath(): string {
+function defaultConfigPath(): string {
   return expandPath('~/.claude/lore/config.json');
 }
 

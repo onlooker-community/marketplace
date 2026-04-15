@@ -13,7 +13,7 @@ function nowIso(): string {
   return new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
 }
 
-export type UpsertInput = {
+type UpsertInput = {
   cwd: string;
   body: string;
   epistemic_class: EpistemicClass;
@@ -23,10 +23,7 @@ export type UpsertInput = {
   metadata: Record<string, unknown>;
 };
 
-export function upsertKnowledgeObject(
-  db: Database,
-  input: UpsertInput,
-): string {
+function upsertKnowledgeObject(db: Database, input: UpsertInput): string {
   const cwd = resolveCwd(input.cwd);
   const ckey = canonicalKey(cwd, input.epistemic_class, input.body);
   const ts = nowIso();

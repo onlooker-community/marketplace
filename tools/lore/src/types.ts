@@ -5,7 +5,7 @@ export type EpistemicClass =
   | 'QUESTION'
   | 'DEAD_END';
 
-export const EPISTEMIC_CLASSES: readonly EpistemicClass[] = [
+const EPISTEMIC_CLASSES: readonly EpistemicClass[] = [
   'DECISION',
   'HYPOTHESIS',
   'FACT',

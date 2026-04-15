@@ -1,6 +1,6 @@
 import { detectRuntime } from './runtime';
 
-export interface ContainerRunOpts {
+interface ContainerRunOpts {
   name: string;
   image: string;
   ports: Record<number, number>;
@@ -25,7 +25,7 @@ export async function isRunning(name: string): Promise<boolean> {
   }
 }
 
-export async function containerExists(name: string): Promise<boolean> {
+async function containerExists(name: string): Promise<boolean> {
   const runtime = await detectRuntime();
   try {
     const proc = Bun.spawnSync([runtime, 'inspect', name]);

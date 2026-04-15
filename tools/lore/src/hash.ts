@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 
-export function normalizeBody(text: string): string {
+function normalizeBody(text: string): string {
   return text.trim().toLowerCase().replace(/\s+/g, ' ').slice(0, 8_000);
 }
 

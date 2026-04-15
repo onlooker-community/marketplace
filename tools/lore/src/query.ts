@@ -3,13 +3,13 @@ import type { EpistemicClass, KnowledgeRow, LoreDecayConfig } from './types';
 import { effectiveScore } from './scoring';
 
 /** cwd query matches rows where row.cwd is same or parent of query cwd (prefix path). */
-export function cwdMatches(rowCwd: string, queryCwd: string): boolean {
+function cwdMatches(rowCwd: string, queryCwd: string): boolean {
   const rc = rowCwd.replace(/\/$/, '');
   const qc = queryCwd.replace(/\/$/, '');
   return qc === rc || qc.startsWith(`${rc}/`);
 }
 
-export function loadContradictionSums(
+function loadContradictionSums(
   db: Database,
   ids: string[],
 ): Map<string, number> {
@@ -32,7 +32,7 @@ export function loadContradictionSums(
   return sums;
 }
 
-export type RankedRow = KnowledgeRow & {
+type RankedRow = KnowledgeRow & {
   effective_score: number;
   sum_contradiction_weights: number;
 };

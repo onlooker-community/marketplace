@@ -9,7 +9,7 @@ export const GRAFANA_IMAGE = 'grafana/grafana-oss:latest';
 const home = homedir();
 export const EVENTS_LOG = join(home, '.claude/logs/onlooker-events.jsonl');
 export const COSTS_LOG = join(home, '.claude/onlooker/metrics/costs.jsonl');
-export const HOOK_HEALTH_LOG_DIR = join(home, '.claude');
+// const HOOK_HEALTH_LOG_DIR = join(home, '.claude');
 export const PID_FILE = join(home, '.claude/onlooker/dashboard.pid');
 export const GRAFANA_URL = `http://localhost:${GRAFANA_PORT}`;
 

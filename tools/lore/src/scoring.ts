@@ -32,7 +32,7 @@ export function classDecayFactor(
 /**
  * QUESTION: keep a mild decay floor so unresolved items do not fade; urgency dominates elsewhere.
  */
-export function questionDecayFloor(
+function questionDecayFloor(
   firstSeenAt: string,
   nowIso: string,
   cfg: LoreDecayConfig,

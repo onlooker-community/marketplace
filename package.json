@@ -45,6 +45,7 @@
     "@biomejs/biome": "^2.4.10",
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
+    "@types/bun": "^1.3.12",
     "@types/node": "^25.5.2",
     "cspell": "^9.8.0",
     "globals": "^17.5.0",
@@ -54,10 +55,19 @@
     "markdownlint-cli2": "^0.22.0",
     "markdownlint-cli2-formatter-pretty": "^0.0.10",
     "npm-run-all2": "^8.0.4",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "which": "^6.0.1"
   },
   "knip": {
-    "tags": ["-knipignore"]
+    "tags": ["-knipignore"],
+    "ignore": [
+      ".claude/skills/create-new-plugin/references/example-plugin/src/index.ts"
+    ],
+    "ignoreDependencies": [
+      "markdownlint-cli2-formatter-pretty",
+      "globals",
+      "which"
+    ]
   },
   "lint-staged": {
     "*.{ts,js,yml,json5}": [
