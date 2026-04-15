@@ -3,12 +3,11 @@
 	"version": "0.4.0",
 	"description": "Prompt regression testing system for Claude Code agent files. CI layer for the Onlooker plugin ecosystem.",
 	"author": {
-		"name": "Meagan Waller",
-		"email": "meaganewaller@gmail.com",
-		"url": "https://github.com/meaganewaller/echo"
+		"name": "Onlooker Community",
+		"url": "https://github.com/onlooker-community/echo"
 	},
-	"homepage": "https://github.com/meaganewaller/echo",
-	"repository": "https://github.com/meaganewaller/echo",
+	"homepage": "https://github.com/onlooker-community/echo",
+	"repository": "https://github.com/onlooker-community/echo",
 	"license": "MIT",
 	"keywords": [
 		"testing",
