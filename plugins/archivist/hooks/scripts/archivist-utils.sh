@@ -25,6 +25,8 @@ _ARCHIVIST_DEFAULT_INJECT_ON_START="true"
 _ARCHIVIST_DEFAULT_EXTRACT_ON_COMPACT="true"
 _ARCHIVIST_DEFAULT_EXTRACT_ON_END="true"
 _ARCHIVIST_DEFAULT_MIN_CONFIDENCE="medium"
+_ARCHIVIST_DEFAULT_LORE_ENABLED="true"
+_ARCHIVIST_DEFAULT_LORE_RANKING="false"
 
 # archivist_get_config_value <key>
 # Returns the config value for <key>, falling back to the default.
@@ -40,6 +42,8 @@ archivist_get_config_value() {
     extract_on_compact)        default="$_ARCHIVIST_DEFAULT_EXTRACT_ON_COMPACT" ;;
     extract_on_end)            default="$_ARCHIVIST_DEFAULT_EXTRACT_ON_END" ;;
     min_confidence_to_inject)  default="$_ARCHIVIST_DEFAULT_MIN_CONFIDENCE" ;;
+    lore_enabled)              default="$_ARCHIVIST_DEFAULT_LORE_ENABLED" ;;
+    lore_ranking)              default="$_ARCHIVIST_DEFAULT_LORE_RANKING" ;;
     *)                         default="" ;;
   esac
 
@@ -159,6 +163,33 @@ archivist_find_sessions_for_cwd() {
   elif [[ $n -eq 1 ]]; then
     echo "${matches[0]}"
   fi
+}
+
+# archivist_lore_maybe_ingest <session_json_path>
+# Non-blocking: fails silently if Lore is unavailable.
+archivist_lore_maybe_ingest() {
+  local path="$1"
+  local le
+  le=$(archivist_get_config_value "lore_enabled")
+  [[ "$le" == "false" ]] && return 0
+  [[ -z "$path" || ! -f "$path" ]] && return 0
+  # shellcheck source=lore-invoke.sh
+  source "$_ARCHIVIST_SCRIPT_DIR/lore-invoke.sh" 2>/dev/null || return 0
+  lore_cli_run ingest --format archivist-session --file "$path" 2>/dev/null || true
+}
+
+# archivist_lore_context_block <cwd> <max_words>
+# Prints extra context from Lore (may be empty).
+archivist_lore_context_block() {
+  local cwd="$1"
+  local max_words="$2"
+  local lr
+  lr=$(archivist_get_config_value "lore_ranking")
+  [[ "$lr" != "true" ]] && return 0
+  [[ -z "$cwd" ]] && return 0
+  # shellcheck source=lore-invoke.sh
+  source "$_ARCHIVIST_SCRIPT_DIR/lore-invoke.sh" 2>/dev/null || return 0
+  lore_cli_run context-for-inject --cwd "$cwd" --max-words "$max_words" 2>/dev/null || true
 }
 
 # archivist_find_most_recent_session <cwd>

@@ -4,5 +4,7 @@
 	"inject_on_start": true,
 	"extract_on_compact": true,
 	"extract_on_end": true,
-	"min_confidence_to_inject": "medium"
+	"min_confidence_to_inject": "medium",
+	"lore_enabled": true,
+	"lore_ranking": false
 }

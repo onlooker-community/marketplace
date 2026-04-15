@@ -40,9 +40,11 @@ build_summary() {
       elif . == "low" then 1
       else 0 end;
 
-    # Open questions: top 3 by priority
+    # Open questions: top 3 by priority, then by sessions_unresolved (mounting urgency)
     (.open_questions // []
-      | sort_by(.priority // "low" | level_value)
+      | sort_by(
+          (.priority // "low" | level_value) * 100 + (.sessions_unresolved // 0)
+        )
       | reverse
       | .[:3]) as $questions |
 
@@ -116,6 +118,12 @@ main() {
   local summary
   summary=$(build_summary "$session_json" "$min_confidence" "$max_words") || return 0
   [[ -z "$summary" ]] && return 0
+
+  local lore_block
+  lore_block="$(archivist_lore_context_block "$cwd" "$max_words")" || lore_block=""
+  if [[ -n "${lore_block// }" ]]; then
+    summary=$(printf '%s\n\n%s' "$summary" "$lore_block")
+  fi
 
   jq -cn --arg summary "$summary" '{ additionalContext: $summary }'
 }

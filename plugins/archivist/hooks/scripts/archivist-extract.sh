@@ -102,7 +102,9 @@ extract_from_stdin() {
              $input.dead_ends, $input.open_questions) | $input)
     ' 2>/dev/null) || return 0
 
-  archivist_write_session "$session_id" "$session_json" > /dev/null
+  local session_path
+  session_path="$(archivist_write_session "$session_id" "$session_json")" || return 0
+  archivist_lore_maybe_ingest "$session_path"
 }
 
 # ----------------------------------------------------------------------------

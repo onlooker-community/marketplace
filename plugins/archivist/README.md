@@ -53,6 +53,8 @@ Edit `config.json` in the plugin directory:
 | `extract_on_compact` | `true` | Whether to extract on PreCompact |
 | `extract_on_end` | `true` | Whether to finalize on SessionEnd |
 | `min_confidence_to_inject` | `"medium"` | Minimum confidence level for injecting decisions |
+| `lore_enabled` | `true` | After each extract, ingest session JSON into [Lore](../../tools/lore/README.md) (no-op if Lore CLI unavailable) |
+| `lore_ranking` | `false` | When `true`, append Lore-ranked context to SessionStart injection (set `LORE_CLI` or install `@onlooker-community/lore` if needed) |
 
 ## Example session extract
 
