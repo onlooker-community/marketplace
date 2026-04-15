@@ -352,6 +352,12 @@ CLI tool to spin up a pre-configured Grafana dashboard for Onlooker telemetry da
 bunx @onlooker-community/dashboard up
 ```
 
+### @onlooker-community/lore
+
+[Tool README](tools/lore/README.md)
+
+Lore is the epistemic infrastructure layer: a local SQLite store for typed knowledge objects, decay and rising urgency for open questions, and signed contradiction edges. Archivist, Scribe, and Cartographer write into it; Counsel, Relay, and Archivist (optional) read ranked context. Configure plugin `lore_*` flags per README; set `LORE_CLI` if the `lore` binary is not on your `PATH`.
+
 ## Development
 
 This is a monorepo containing multiple plugins and tools. Plugins are in `plugins/`, standalone tools are in `tools/`.

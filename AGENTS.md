@@ -19,6 +19,7 @@ This file provides guidance to Claude Code when working with this repository.
   - counsel (weekly synthesis and improvement recommendations)
 - **Tools**:
   - @onlooker-community/dashboard (Grafana dashboard CLI for Onlooker telemetry)
+  - @onlooker-community/lore (Lore — epistemic knowledge store; see [tools/lore/README.md](tools/lore/README.md))
 
 ## Quick Start
 

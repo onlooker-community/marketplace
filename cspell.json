@@ -50,7 +50,9 @@
 		"reinjects",
 		"gdate",
 		"exfil",
-		"ufeff"
+		"ufeff",
+		"OIDA",
+		"ckey"
 	],
 	"words": ["myproject", "unpushed", "fallocate", "urandom", "exfiltration", "pytest", "marcusolsson", "nerdctl", "datasource", "datasources"]
 }

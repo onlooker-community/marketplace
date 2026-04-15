@@ -169,6 +169,18 @@
 			],
 			"initial-version": "0.1.0",
 			"release-type": "node"
+		},
+		"tools/lore": {
+			"component": "lore",
+			"extra-files": [
+				{
+					"jsonpath": "$.version",
+					"path": "package.json",
+					"type": "json"
+				}
+			],
+			"initial-version": "0.1.0",
+			"release-type": "node"
 		}
 	}
 }
