@@ -24,6 +24,8 @@ Nobody notices until an agent does something wrong, and you spend an hour tracin
 
 3. **ConfigChange (command)** — When Claude Code configuration changes (plugin installed/removed, settings updated), the hash cache is invalidated so the next session triggers a fresh audit. Plugin installation changes which `/plugin:command` references are valid.
 
+4. **SessionEnd (command, async)** — After a session ends, a lightweight script reads the latest audit from `state.json` and pushes **contradiction** and **hierarchy_conflict** issues into [Lore](../../tools/lore/README.md) (the shared epistemic store). Lore creates paired hypothesis objects and **CONTRADICTS** edges so Counsel, Relay, and Archivist can rank contested instruction guidance alongside session memory. If the Lore CLI is unavailable, the step no-ops; set `LORE_CLI` or install `@onlooker-community/lore` when you want this path active.
+
 ## Install
 
 Install from the Onlooker Marketplace:
@@ -70,6 +72,17 @@ Edit `config.json` in the plugin directory:
 | `max_issues_to_inject` | `3` | Maximum issues to show in session injection |
 | `checks.contradictions` | `true` | Enable/disable each check category individually |
 | `emit_health_metric` | `true` | Emit `instruction_health` events to Onlooker |
+| `lore_sync_enabled` | `true` | On session end, sync contradiction / hierarchy_conflict issues from the latest audit JSON into Lore (`lore sync-cartographer`). Set to `false` to skip |
+
+## Lore integration
+
+Cartographer stays the source of truth for **detecting** instruction conflicts; Lore persists them as a small knowledge graph so the rest of the ecosystem can treat contradictions as first-class, scored objects instead of one-off audit text.
+
+- **When:** `hooks/cartographer-lore-sync.sh` runs on **SessionEnd** (async), using `audit_file` from `~/.claude/cartographer/state.json`.
+- **What gets synced:** Issues with `category` `contradiction` or `hierarchy_conflict` only. Each issue becomes two linked knowledge objects (hypotheses) plus one signed **CONTRADICTS** edge (weight from Lore config, default -0.6).
+- **Requirements:** [Lore](../../tools/lore/README.md) CLI reachable via `LORE_CLI`, `lore` on `PATH`, monorepo `tools/lore`, or `bunx @onlooker-community/lore`.
+
+For Lore commands, storage paths, and tuning decay or edge weights, see the [Lore tool README](../../tools/lore/README.md).
 
 ## Health score
 

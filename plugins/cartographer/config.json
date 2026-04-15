@@ -12,5 +12,6 @@
 		"duplicates": true,
 		"hierarchy_conflicts": true
 	},
-	"emit_health_metric": true
+	"emit_health_metric": true,
+	"lore_sync_enabled": true
 }
