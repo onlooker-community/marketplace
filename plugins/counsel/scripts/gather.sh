@@ -11,6 +11,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/utils.sh"
+# shellcheck source=lore-invoke.sh
+[[ -f "$SCRIPT_DIR/lore-invoke.sh" ]] && source "$SCRIPT_DIR/lore-invoke.sh"
 
 OUTPUT_PATH="${1:-}"
 
@@ -97,6 +99,15 @@ TRIBUNAL_DATA=$(read_dir_source "$TRIBUNAL_PATH" "$MAX_EVENTS")
 ECHO_DATA=$(read_dir_source "$ECHO_PATH" "$MAX_EVENTS")
 ARCHIVIST_DATA=$(read_dir_source "$ARCHIVIST_PATH" "$MAX_EVENTS")
 
+LORE_SNAPSHOT='{}'
+if [[ "$(counsel_config_get "$CONFIG" '.lore.enabled' 'true')" == "true" ]] && type lore_cli_run >/dev/null 2>&1; then
+    CWD_GATHER="$(pwd -P 2>/dev/null || pwd)"
+    LORE_SNAPSHOT="$(lore_cli_run export-for-brief --cwd "$CWD_GATHER" --since "$CUTOFF" 2>/dev/null)" || LORE_SNAPSHOT='{}'
+    if ! echo "$LORE_SNAPSHOT" | jq -e . >/dev/null 2>&1; then
+        LORE_SNAPSHOT='{}'
+    fi
+fi
+
 # Assemble gathered data
 GATHERED=$(jq -n \
     --arg ts "$TIMESTAMP" \
@@ -109,6 +120,7 @@ GATHERED=$(jq -n \
     --argjson tribunal "$TRIBUNAL_DATA" \
     --argjson echo_data "$ECHO_DATA" \
     --argjson archivist "$ARCHIVIST_DATA" \
+    --argjson lore_snap "$LORE_SNAPSHOT" \
     '{
         gathered_at: $ts,
         lookback_cutoff: $cutoff,
@@ -120,7 +132,11 @@ GATHERED=$(jq -n \
             warden: {count: ($warden | length), events: $warden},
             tribunal: {count: ($tribunal | length), events: $tribunal},
             echo: {count: ($echo_data | length), events: $echo_data},
-            archivist: {count: ($archivist | length), events: $archivist}
+            archivist: {count: ($archivist | length), events: $archivist},
+            lore: {
+                count: (($lore_snap.top_questions // []) | length),
+                snapshot: $lore_snap
+            }
         }
     }')
 

@@ -41,6 +41,9 @@ The brief MUST organize findings by plugin layer, not by metric type. This struc
 ```
 ## This Week's Friction by Layer
 
+### Epistemic layer (Lore + Archivist)
+When `sources.lore.snapshot` is present and non-empty, briefly note unresolved questions with high urgency and any active contradiction pairs before Archivist-only findings.
+
 ### Belief / Memory layer (Archivist)
 - [findings about session memory quality, extraction failures, stale memories]
 - Recommended action: [one concrete action]

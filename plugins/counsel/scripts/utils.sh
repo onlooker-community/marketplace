@@ -14,7 +14,7 @@ COUNSEL_PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/
 
 counsel_get_config() {
     local config_path="$COUNSEL_PLUGIN_ROOT/config.json"
-    local defaults='{"enabled":true,"schedule":{"day":"monday","min_days_between_runs":6,"auto_run_on_session_start":true},"sources":{"onlooker_events":"~/.claude/logs/onlooker-events.jsonl","sentinel_audit":"~/.claude/sentinel/audit.jsonl","oracle_audit":"~/.claude/oracle/audit.jsonl","warden_audit":"~/.claude/warden/audit.jsonl","tribunal_verdicts":"~/.claude/tribunal/verdicts","echo_baselines":"~/.claude/echo/runs","archivist_sessions":"~/.claude/archivist/sessions"},"output_dir":"~/.claude/counsel","last_run_file":"~/.claude/counsel/last-run.json","lookback_days":7,"max_events_per_source":500,"brief_format":"layer-attributed"}'
+    local defaults='{"enabled":true,"schedule":{"day":"monday","min_days_between_runs":6,"auto_run_on_session_start":true},"sources":{"onlooker_events":"~/.claude/logs/onlooker-events.jsonl","sentinel_audit":"~/.claude/sentinel/audit.jsonl","oracle_audit":"~/.claude/oracle/audit.jsonl","warden_audit":"~/.claude/warden/audit.jsonl","tribunal_verdicts":"~/.claude/tribunal/verdicts","echo_baselines":"~/.claude/echo/runs","archivist_sessions":"~/.claude/archivist/sessions"},"lore":{"enabled":true},"output_dir":"~/.claude/counsel","last_run_file":"~/.claude/counsel/last-run.json","lookback_days":7,"max_events_per_source":500,"brief_format":"layer-attributed"}'
 
     if [[ -f "$config_path" ]]; then
         jq -s '.[0] * .[1]' <(echo "$defaults") "$config_path" 2>/dev/null || echo "$defaults"

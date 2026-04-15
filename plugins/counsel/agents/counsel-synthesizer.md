@@ -23,6 +23,7 @@ You will receive a path to a gathered data file (JSON) containing events from:
 - **Oracle** — confidence calibration decisions, uncertainty flags
 - **Archivist** — session extracts, memory operations
 - **Scribe** — intent captures, distillation status
+- **Lore** (`sources.lore.snapshot`) — epistemic knowledge graph: `top_questions` (unresolved ignorance with rising urgency), `top_contradictions` (objects with contradiction suppression), `stale_hypotheses`. Use this to separate settled organizational knowledge from contested or unresolved items in the Belief / Memory and Planning sections.
 
 ## Output Format
 
