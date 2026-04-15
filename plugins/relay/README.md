@@ -24,13 +24,17 @@ Both plugins fire at session boundaries. They solve different problems at differ
 
 Install both if you want both. They complement rather than duplicate — the schemas don't overlap.
 
+### Relay vs Lore
+
+**[Lore](../../tools/lore/README.md)** holds long-lived organizational knowledge (typed objects, decay, open-question urgency, contradiction edges). Relay stays focused on the **current task handoff**. When `inject_lore` is enabled, SessionStart injection **appends** a short Lore context block (ranked questions and related items) after the handoff prose, within `lore_max_words`. That gives the next session both immediate task state and broader epistemic signal without merging the two into one schema.
+
 ## How it works
 
 1. **Capture** — At `SessionEnd`, an agent reads the session and writes a handoff JSON to `~/.claude/relay/handoffs/<session_id>.json`. The agent captures task state, not decisions — what's in progress, what comes next, what's blocking.
 
-2. **Inject** — At `SessionStart`, a command script finds the most recent handoff for the current working directory and returns it as `additionalContext`. Claude sees the handoff before the user's first message.
+2. **Inject** — At `SessionStart`, a command script finds the most recent handoff for the current working directory and returns it as `additionalContext`. Claude sees the handoff before the user's first message. Optionally, Lore can append a compact block from `lore context-for-inject` (same cwd, word budget from config).
 
-3. **Skip complete tasks** — If the last handoff has `task.status: "complete"`, injection is skipped. A finished task doesn't need a briefing.
+3. **Skip complete tasks** — If the last handoff has `task.status: "complete"`, injection is skipped. A finished task doesn't need a briefing. (Lore is not appended when injection is skipped.)
 
 ## Install
 
@@ -65,6 +69,16 @@ Edit `config.json` in the plugin directory:
 | `inject_on_start` | `true` | Whether to inject at SessionStart |
 | `max_handoffs_to_keep` | `10` | Maximum handoffs retained per directory |
 | `max_injection_words` | `500` | Word limit on the injected briefing |
+| `inject_lore` | `false` | When `true`, append Lore-ranked organizational memory after the handoff (requires [Lore](../../tools/lore/README.md) CLI) |
+| `lore_max_words` | `80` | Word budget for the Lore block (separate from `max_injection_words`, which applies to the handoff itself) |
+
+## Lore integration
+
+Relay does not write to Lore. With **`inject_lore`: `true`**, `relay-inject.sh` calls `lore context-for-inject` for the session cwd and concatenates the result below the formatted handoff before emitting `additionalContext`. If the Lore CLI is missing, injection degrades to the handoff only.
+
+Resolve the CLI the same way as other plugins: **`LORE_CLI`**, `lore` on `PATH`, a monorepo checkout containing `tools/lore/bin/cli.ts`, or `bunx @onlooker-community/lore`.
+
+Use Lore when you want unresolved questions and contradiction-aware ranking to surface on **every** new session alongside Relay’s task briefing. Keep it off if you prefer a slimmer prompt or do not use Lore yet.
 
 ## Handoff schema
 
@@ -132,7 +146,7 @@ Last intent: Get the refresh token rotation working so the expiry tests pass
 - **In-session context loss** — Relay fires at session boundaries, not on context truncation mid-session. For mid-session memory across compaction, use Archivist
 - **MCP tool activity** — Operations via MCP servers bypass Claude Code's hook system
 - **Crashed sessions** — If Claude Code crashes rather than closing cleanly, `SessionEnd` may not fire. The previous handoff remains until a new one is written
-- **Long-horizon learning** — Reusable rules and project conventions are Archivist's domain. Relay captures state, not knowledge
+- **Long-horizon learning** — Reusable rules are Archivist’s domain; the epistemic graph (questions, contradictions, decay) is Lore’s. Relay captures immediate task state only, but can **surface** Lore when `inject_lore` is enabled
 
 ## Architecture
 

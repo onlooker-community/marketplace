@@ -1,4 +1,6 @@
 {
+	"inject_lore": false,
+	"lore_max_words": 80,
 	"enabled": true,
 	"storage_path": "~/.claude/relay/handoffs",
 	"inject_on_start": true,

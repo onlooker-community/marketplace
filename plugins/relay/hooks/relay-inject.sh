@@ -10,6 +10,8 @@ set -uo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=relay-utils.sh
 source "$SCRIPT_DIR/relay-utils.sh"
+# shellcheck source=lore-invoke.sh
+[[ -f "$SCRIPT_DIR/lore-invoke.sh" ]] && source "$SCRIPT_DIR/lore-invoke.sh"
 
 main() {
   relay_enabled || return 0
@@ -38,6 +40,17 @@ main() {
   local briefing
   briefing="$(relay_format_briefing "$handoff" "$max_words")" || return 0
   [[ -z "$briefing" ]] && return 0
+
+  local inject_lore lore_words lore_extra
+  inject_lore="$(_relay_config_value 'inject_lore' 'false')"
+  lore_words="$(_relay_config_value 'lore_max_words' '80')"
+  lore_extra=""
+  if [[ "$inject_lore" == "true" ]] && type lore_cli_run >/dev/null 2>&1; then
+    lore_extra="$(lore_cli_run context-for-inject --cwd "$cwd" --max-words "$lore_words" 2>/dev/null)" || lore_extra=""
+  fi
+  if [[ -n "${lore_extra// }" ]]; then
+    briefing=$(printf '%s\n\n%s' "$briefing" "$lore_extra")
+  fi
 
   jq -cn --arg briefing "$briefing" '{ additionalContext: $briefing }'
 }
