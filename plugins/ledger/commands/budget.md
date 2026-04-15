@@ -12,6 +12,7 @@ Manage and inspect the Ledger resource budget for the current and past sessions.
 ### `status`
 
 Display the current session's budget state:
+
 - Session ID and start time
 - Accumulated input/output tokens (main + subagent)
 - Estimated cost so far (USD)
@@ -49,6 +50,7 @@ Confirm before clearing. Show the cost that will be discarded.
 ### `config`
 
 Display the full current configuration from `${CLAUDE_PLUGIN_ROOT}/config.json`:
+
 - enabled
 - storage_path
 - budgets (session_cost_usd, warning_threshold_pct)

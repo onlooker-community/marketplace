@@ -36,6 +36,7 @@ Rejected. This creates an external dependency with availability, authentication,
 Store baselines as plain JSON files in `baselines/`, committed to the same repository as the agent files and test cases.
 
 Accepted. This approach:
+
 - Makes baseline changes visible in PR diffs. When a baseline is re-recorded after a prompt change, the diff shows the before/after scores directly in the review interface.
 - Requires no external infrastructure. The repo is the database.
 - Is portable. Any engineer who clones the repo can run regression tests immediately.

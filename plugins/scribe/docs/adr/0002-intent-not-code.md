@@ -23,6 +23,7 @@ Git logs record what changed. Code comments (when they exist) describe what the 
 Scribe captures intent — the reasoning behind changes — not descriptions of what code does.
 
 The capture agent prompt explicitly constrains its output:
+
 - `intent`: "What problem does this change solve?" (not "What does this code do?")
 - `decision`: "What technical or design decision was made?" (not "What functions were added?")
 - `tradeoffs`: "What was considered and rejected?" (not "What does the implementation look like?")

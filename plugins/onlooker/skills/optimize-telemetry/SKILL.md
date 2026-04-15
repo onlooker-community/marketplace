@@ -21,6 +21,7 @@ Analyze current telemetry and suggest optimizations.
 ## Recommendations
 
 Provide:
+
 - Which hooks can be removed (unused)
 - Which metrics could be added (missing)
 - How often events are emitted
@@ -30,6 +31,7 @@ Provide:
 ## Output
 
 A clear optimization plan:
+
 - What to remove
 - What to add
 - How it improves observability

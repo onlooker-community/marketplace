@@ -42,6 +42,7 @@ Without Counsel, the weekly review is a manual process of reading dashboards and
 By default, Counsel checks on SessionStart whether a brief is due (>6 days since last run). It notifies you but does not auto-generate — you trigger generation with `/counsel:brief generate`.
 
 Configure in `config.json`:
+
 - `schedule.day` — preferred day for briefs (default: monday)
 - `schedule.min_days_between_runs` — minimum days between briefs (default: 6)
 - `schedule.auto_run_on_session_start` — whether to check on session start (default: true)

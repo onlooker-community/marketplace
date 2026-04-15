@@ -51,24 +51,18 @@
 		"@commitlint/config-conventional": "^20.5.0",
 		"@types/node": "^25.5.2",
 		"cspell": "^9.8.0",
-		"globals": "^17.4.0",
+		"globals": "^17.5.0",
 		"husky": "^9.1.7",
 		"knip": "^6.4.1",
 		"lint-staged": "^16.4.0",
 		"markdownlint-cli2": "^0.22.0",
+		"markdownlint-cli2-formatter-pretty": "^0.0.10",
 		"npm-run-all2": "^8.0.4",
 		"typescript": "^6.0.2"
 	},
 	"knip": {
-		"ignore": [
-			"**/*.d.ts",
-			".worktrees/**/*"
-		],
 		"tags": [
 			"-knipignore"
-		],
-		"ignoreFiles": [
-			"plugins/**/scripts/*"
 		]
 	},
 	"lint-staged": {

@@ -15,29 +15,29 @@ The current Actor prompt includes a "Quality checks before submission" section w
 
 ## Decision Drivers
 
-* RefineRL evidence suggests internalized producer skepticism reduces iteration cycles and improves final quality.
-* Clear separation of concerns (Actor produces, Judge evaluates) is architecturally clean and makes role boundaries explicit.
-* The Actor already has task context, rubric access, and domain knowledge — it is well-positioned to anticipate Judge critiques.
-* Self-challenge adds cognitive overhead to the Actor's execution phase, potentially slowing down first-iteration output.
-* The Judge provides an external perspective that may catch blind spots the Actor would miss even with self-challenge.
-* Tribunal already has a multi-persona judge panel (ADR 0005) that surfaces diverse issues — Actor skepticism could complement this rather than duplicate it.
+- RefineRL evidence suggests internalized producer skepticism reduces iteration cycles and improves final quality.
+- Clear separation of concerns (Actor produces, Judge evaluates) is architecturally clean and makes role boundaries explicit.
+- The Actor already has task context, rubric access, and domain knowledge — it is well-positioned to anticipate Judge critiques.
+- Self-challenge adds cognitive overhead to the Actor's execution phase, potentially slowing down first-iteration output.
+- The Judge provides an external perspective that may catch blind spots the Actor would miss even with self-challenge.
+- Tribunal already has a multi-persona judge panel (ADR 0005) that surfaces diverse issues — Actor skepticism could complement this rather than duplicate it.
 
 ## Considered Options
 
-* **Option A: Current Design (Actor submits, Judge evaluates)**
+- **Option A: Current Design (Actor submits, Judge evaluates)**
   - Actor focuses purely on task execution with basic quality checks.
   - All substantive skepticism and quality evaluation happens post-submission via Judge.
   - Clear separation of concerns: Actor = producer, Judge = evaluator, Meta-Judge = quality assurance.
   - Judge provides external perspective unconstrained by Actor's mental model.
 
-* **Option B: Actor Self-Challenges Before Submission**
+- **Option B: Actor Self-Challenges Before Submission**
   - Actor applies a skepticism-driven checklist before submitting (e.g., "What assumptions am I making?", "What edge cases did I miss?", "What would the adversarial judge say?", "What breaks if inputs are malformed?").
   - Structured as a mandatory pre-submission phase, not optional hygiene checks.
   - Actor anticipates Judge critiques and fixes issues proactively.
   - Reduces iteration cycles by catching problems before they reach the Judge.
   - Risk: Adds latency to first iteration; Actor may over-correct or second-guess valid work.
 
-* **Option C: Adaptive Feedback Mode**
+- **Option C: Adaptive Feedback Mode**
   - First iteration: Actor uses failure-driven feedback (fix what broke, no pre-submission skepticism).
   - Subsequent iterations after gate failure: Actor receives skepticism-driven feedback ("self-challenge on weak areas X, Y, Z").
   - Combines external critique with internalized skepticism only when needed.
@@ -52,6 +52,7 @@ The Actor's prompt will be updated to include a mandatory **pre-submission skept
 **Pre-Submission Skepticism Checklist:**
 
 *Universal probes (apply to all task types):*
+
 1. **Correctness probe:** "What assumptions did I make? What happens if they're false?"
 2. **Completeness probe:** "Did I address every explicit requirement? What did I skip or defer?"
 3. **Edge case probe:** "What inputs, states, or contexts would break this?"
@@ -69,18 +70,18 @@ This maintains the Judge's role as the authoritative evaluator while reducing it
 
 ### Consequences
 
-* Good: Aligns with RefineRL findings — internalized skepticism by the producer improves output quality more than post-hoc evaluation alone.
-* Good: Reduces iteration cycles by catching high-confidence issues before they reach the Judge, saving cost and latency.
-* Good: Complements the multi-persona judge panel (ADR 0005) rather than duplicating it — Actor catches obvious gaps, diverse judges surface subtle blind spots.
-* Good: Maintains Judge authority — the Actor self-challenges but does not self-approve; final quality determination still happens externally.
-* Bad: Adds latency to first-iteration output — Actor must complete skepticism phase before submission.
-* Bad: Risk of over-correction — Actor may second-guess valid work or introduce new issues while "fixing" non-issues.
-* Bad: Increases Actor prompt complexity and cognitive load — more instructions to parse and apply.
-* Neutral: The skepticism checklist will need tuning based on observed Actor behavior — initial version may be too aggressive or too weak.
-* Neutral: The Judge's role shifts slightly — it becomes more of a reviewer of self-challenged work rather than the first line of defense against all issues.
+- Good: Aligns with RefineRL findings — internalized skepticism by the producer improves output quality more than post-hoc evaluation alone.
+- Good: Reduces iteration cycles by catching high-confidence issues before they reach the Judge, saving cost and latency.
+- Good: Complements the multi-persona judge panel (ADR 0005) rather than duplicating it — Actor catches obvious gaps, diverse judges surface subtle blind spots.
+- Good: Maintains Judge authority — the Actor self-challenges but does not self-approve; final quality determination still happens externally.
+- Bad: Adds latency to first-iteration output — Actor must complete skepticism phase before submission.
+- Bad: Risk of over-correction — Actor may second-guess valid work or introduce new issues while "fixing" non-issues.
+- Bad: Increases Actor prompt complexity and cognitive load — more instructions to parse and apply.
+- Neutral: The skepticism checklist will need tuning based on observed Actor behavior — initial version may be too aggressive or too weak.
+- Neutral: The Judge's role shifts slightly — it becomes more of a reviewer of self-challenged work rather than the first line of defense against all issues.
 
 ## Links
 
-* Fu, S., et al. (2026). RefineRL: Advancing Competitive Programming with Self-Refinement Reinforcement Learning. arXiv:2604.00790.
-* Relates to: [0005 — Judge persona panel](0005-judge-persona-panel.md) (diverse judges surface different issues; Actor skepticism reduces iteration cycles before panel evaluation)
-* Relates to: [0006 — Meta-Judge override thresholds](0006-meta-judge-override-thresholds.md) (Meta-Judge still provides quality assurance even with Actor self-challenge)
+- Fu, S., et al. (2026). RefineRL: Advancing Competitive Programming with Self-Refinement Reinforcement Learning. arXiv:2604.00790.
+- Relates to: [0005 — Judge persona panel](0005-judge-persona-panel.md) (diverse judges surface different issues; Actor skepticism reduces iteration cycles before panel evaluation)
+- Relates to: [0006 — Meta-Judge override thresholds](0006-meta-judge-override-thresholds.md) (Meta-Judge still provides quality assurance even with Actor self-challenge)

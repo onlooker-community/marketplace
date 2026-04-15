@@ -4,7 +4,7 @@
 
 Add this marketplace to Claude Code:
 
-```
+```text
 # From GitHub
 /plugin marketplace add onlooker-community/onlooker-marketplace
 
@@ -91,7 +91,6 @@ Contextual guidance injected automatically based on triggers. Cues match prompts
 ```bash
 /plugin install cues@onlooker-marketplace
 ```
-
 
 ### ledger
 
@@ -368,7 +367,7 @@ Contributor-focused documentation (repository layout, workflows, plugin index) l
 
 Clone this repository and run the following commands to get started:
 
-```
+```bash
 # Install dependencies, run prepare scripts
 bun install
 ```

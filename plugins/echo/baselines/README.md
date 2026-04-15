@@ -76,7 +76,7 @@ To overwrite an existing baseline:
 
 If the agent file changes after a baseline is recorded, Echo will warn:
 
-```
+```text
 Warning: Agent file hash mismatch for tribunal/agents/judge.md.
 Baseline was recorded against a different version of the agent.
 Consider re-recording: /echo:regression record --test judge-bias-detection-001 --force

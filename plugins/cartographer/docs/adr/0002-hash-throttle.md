@@ -15,6 +15,7 @@ Accepted
 InstructionsLoaded fires frequently — at minimum once per session, and potentially more often if the working directory changes mid-session. Running the full audit agent on every invocation would be prohibitively expensive in both time and API cost.
 
 The audit only needs to run when something relevant has changed:
+
 1. An instruction file was added, removed, or modified
 2. The plugin configuration changed (which could affect plugin reference validity)
 3. The last audit is older than the TTL (to catch environmental changes like files being deleted)
@@ -26,12 +27,14 @@ Without a throttle, a developer who opens five sessions in a day would run five 
 We will use a content-hash-based throttle with a TTL fallback.
 
 **Hash computation:** The auditor agent computes a hash of the current instruction files by:
+
 1. Collecting all instruction file paths (CLAUDE.md hierarchy, .claude/rules/*, .claude/agents/*)
 2. Reading their content
 3. Concatenating `path + content` for all files in sorted order
 4. Deriving a change-detection string (content length + prefix sampling — a fast approximation, not a cryptographic hash)
 
 **Throttle logic:**
+
 - If the computed hash matches the stored hash AND the last audit was within `audit_ttl_hours`: exit immediately (no analysis, no API call)
 - If the hash differs OR the audit is older than TTL: run the full audit, update the stored hash
 

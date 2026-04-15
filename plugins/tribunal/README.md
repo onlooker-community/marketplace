@@ -31,7 +31,7 @@ It installs into your `.claude/` directory — either project-level or globally 
 - A meta-evaluation layer that prevents judgment saturation over iterations
 - `/tribunal:run` slash command for manual override and configuration
 
-Tribunal is grounded in two research frameworks: **LLM-as-a-Judge** (Zheng et al., NeurIPS 2023) and **LLM-as-a-Meta-Judge** (Wu et al., 2024). See [Research Foundation]().
+Tribunal is grounded in two research frameworks: **LLM-as-a-Judge** (Zheng et al., NeurIPS 2023) and **LLM-as-a-Meta-Judge** (Wu et al., 2024). See [Research Foundation](#research-foundation).
 
 ## Core Concepts
 
@@ -124,7 +124,7 @@ Task Input
 
 **Global** (available across all your projects):
 
-```
+```text
 /plugin install --global tribunal
 ```
 
@@ -132,7 +132,7 @@ Task Input
 
 After installing, confirm Tribunal's agents and commands are available:
 
-```
+```text
 /tribunal:run status
 ```
 
@@ -165,7 +165,7 @@ After installation, your `.claude/tribunal/` directory looks like this:
 
 `manifest.json` - Declares the plugin to Claude Code. Sets component paths and plugin metadata.
 
-`config.json` - Your primary configuration file. Controls panel size, passing score, iteration limits, and aggregation strategy. See [Configuration]().
+`config.json` - Your primary configuration file. Controls panel size, passing score, iteration limits, and aggregation strategy. See [Configuration](#configuration).
 
 `agents/*.md` - Markdown files that define each sub-agent's role, system prompt, and behavior. You can edit these to customize how each tier evaluates tasks.
 
@@ -222,7 +222,7 @@ Return a score from 0.0 to 1.0 and specific, actionable feedback the developer c
 
 You can override the default rubric for a specific invocation using the `/tribunal:run` command:
 
-```
+```text
 /tribunal:run --rubric rubrics/sql.md Write a migration to add soft-delete to users
 ```
 
@@ -236,13 +236,13 @@ If the gate fails, Tribunal surfaces the Meta-Judge's refined feedback directly 
 
 To **disable auto-hook** for a session:
 
-```
+```text
 /tribunal:run pause
 ```
 
 To **re-enable**:
 
-```
+```text
 /tribunal:run resume
 ```
 
@@ -250,13 +250,13 @@ To **re-enable**:
 
 Use `/tribunal:run` to manually dispatch a task through the full pipeline:
 
-```
+```text
 /tribunal:run Write a Python function that validates email addresses
 ```
 
 With options:
 
-```
+```text
 /tribunal:run --rubric rubrics/writing.md --iterations 4 --score 0.9 Draft the onboarding email copy
 ```
 
@@ -282,7 +282,7 @@ Each agent is defined as a Markdown file in `.claude/tribunal/agents/`. You can 
 
 The Actor is the worker agent. It receives the task description and any context from previous failed iterations (the Meta-Judge's refined feedback).
 
-#### Frontmatter defaults:
+#### Frontmatter defaults
 
 ```yaml
 ---
@@ -303,7 +303,7 @@ maxTurns: 20
 
 The Judge evaluates Actor output against the rubric. It returns a structured verdict.
 
-#### Frontmatter defaults:
+#### Frontmatter defaults
 
 ```yaml
 ---
@@ -337,7 +337,7 @@ maxTurns: 5
 
 The Meta-Judge reviews the Judge's verdict. It checks for evaluation quality and known LLM judge biases before the gate decision is made.
 
-#### Frontmatter defaults:
+#### Frontmatter defaults
 
 ```yaml
 name: tribunal-meta-judge
@@ -351,7 +351,7 @@ maxTurns: 5
 ---
 ```
 
-#### Meta-verdict schema (Meta-Judge agents must return this structure):
+#### Meta-verdict schema (Meta-Judge agents must return this structure)
 
 ```json
 {
@@ -364,9 +364,9 @@ maxTurns: 5
 ```
 
 - **Bias flags** the Meta-Judge is prompted to detect:
-    - `positional_bias` — Judge favored the first candidate in a multi-actor run
-    - `verbosity_bias` — Judge scored longer outputs higher regardless of quality
-    - `self_enhancement_bias` — Judge preferred outputs stylistically similar to its own tendencies
+  - `positional_bias` — Judge favored the first candidate in a multi-actor run
+  - `verbosity_bias` — Judge scored longer outputs higher regardless of quality
+  - `self_enhancement_bias` — Judge preferred outputs stylistically similar to its own tendencies
 
 **What to customize:** The system prompt body. Add project-specific consistency requirements or additional bias checks.
 

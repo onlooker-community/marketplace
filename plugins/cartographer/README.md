@@ -30,7 +30,7 @@ Nobody notices until an agent does something wrong, and you spend an hour tracin
 
 Install from the Onlooker Marketplace:
 
-```
+```text
 /plugin
 # Add marketplace → https://github.com/onlooker-community/marketplace
 # Then install cartographer from it
@@ -40,7 +40,7 @@ Install from the Onlooker Marketplace:
 
 Cartographer is automatic once installed. The slash command gives you full control:
 
-```
+```text
 /cartographer:audit view           # Most recent audit for current directory
 /cartographer:audit run            # Force a fresh audit now
 /cartographer:audit history        # Last 10 audits
@@ -88,7 +88,7 @@ For Lore commands, storage paths, and tuning decay or edge weights, see the [Lor
 
 Each audit produces a health score from 0.0 to 1.0:
 
-```
+```md
 score = 1.0 - (high_issues × 0.15 + medium_issues × 0.05 + low_issues × 0.01)
 ```
 

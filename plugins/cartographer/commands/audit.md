@@ -14,6 +14,7 @@ Audit CLAUDE.md and `.claude/rules/` files for contradictions, stale references,
 Show the most recent audit for the current working directory.
 
 Display:
+
 - Health score (0.0–1.0) with a visual indicator (✓ healthy / ⚠ issues / ✗ critical)
 - Issue count by severity (high / medium / low)
 - Audit timestamp and files checked
@@ -50,6 +51,7 @@ Categories: `contradiction`, `stale_reference`, `orphaned_plugin`, `dead_tool`, 
 ### `config`
 
 Display the current Cartographer configuration from `${CLAUDE_PLUGIN_ROOT}/config.json`:
+
 - enabled
 - storage_path
 - audit_ttl_hours

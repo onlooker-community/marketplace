@@ -31,6 +31,7 @@ The question is: which hook event?
 We will use `type: agent` at `SessionEnd`.
 
 The agent is the right capture mechanism because:
+
 1. It can reason about "what was being done" rather than just extracting structured fields
 2. It can use the Write tool to persist the handoff JSON
 3. It fires exactly once at session close — the moment the handoff is needed

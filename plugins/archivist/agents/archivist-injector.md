@@ -22,7 +22,7 @@ Return **plain prose** (not JSON, not markdown). Maximum 400 words.
 
 Format:
 
-```
+```text
 Continuing from last session:
 
 [Open questions — the 2-3 most important unresolved items, with enough context to act on them immediately]

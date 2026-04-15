@@ -47,6 +47,7 @@ Dispatch a task through the full Tribunal pipeline:
      reached and the final score.
 
 **Flags:**
+
 - `--rubric <path>`: path to rubric file, relative to plugin root
 - `--iterations <n>`: override maxIterations for this run
 - `--score <threshold>`: override passingScore for this run (0.0–1.0)
@@ -56,6 +57,7 @@ Dispatch a task through the full Tribunal pipeline:
 ### `status`
 
 Display current Tribunal configuration and session state:
+
 - Current config values (passingScore, maxIterations, panel size, defaultRubric)
 - Whether auto-hook is active for this session
 - Last verdict summary if one exists (score, pass/fail, iteration count)
@@ -85,6 +87,7 @@ Acknowledge with: "Tribunal auto-hook resumed."
 
 Show the full structured verdict from the most recent Tribunal evaluation in
 this session, including:
+
 - Final score and pass/fail
 - Judge strengths and weaknesses
 - Any bias flags raised by the Meta-Judge

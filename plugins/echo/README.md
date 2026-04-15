@@ -21,7 +21,7 @@ Echo depends on Tribunal as its evaluation engine. Echo spawns Tribunal's subage
 
 Echo installs without Tribunal present. Running tests without Tribunal installed produces:
 
-```
+```text
 Echo requires Tribunal. Install with: /plugin install tribunal
 ```
 
@@ -29,13 +29,13 @@ Echo requires Tribunal. Install with: /plugin install tribunal
 
 ### User scope (available in all projects)
 
-```
+```text
 /plugin install echo --scope user
 ```
 
 ### Project scope (available in this project only)
 
-```
+```text
 /plugin install echo --scope project
 ```
 
@@ -60,7 +60,7 @@ Create `test-cases/my-test.json`:
 
 ### 2. Record a baseline
 
-```
+```text
 /echo:regression record --test judge-handles-empty-output-001
 ```
 
@@ -94,7 +94,7 @@ Review degraded tests before merging
 
 ### 5. Run manually
 
-```
+```text
 /echo:regression run --agent tribunal/agents/judge.md
 /echo:regression run --all
 /echo:regression run --test judge-handles-empty-output-001

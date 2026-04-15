@@ -34,6 +34,7 @@ Rejected. Rubric scores are themselves the output of an LLM Judge. Judge outputs
 Compare overall score and per-criterion scores against the baseline. A run is degraded only if the delta exceeds the configured `regression_threshold` (default: 0.05) at the overall level, or `per_criterion_regression_threshold` (default: 0.10) on any individual criterion.
 
 Accepted. This approach:
+
 - Is robust to natural LLM variance (small random fluctuations within threshold are treated as neutral)
 - Is sensitive to genuine regressions (a 5-point overall drop or a 10-point criterion drop is clearly meaningful)
 - Is transparent — the thresholds are explicit in `config.json` and can be tuned per project

@@ -28,14 +28,17 @@ You write in plain, direct prose. No bullet lists of features. No "This function
 ## What you produce
 
 ### Change log (`changes/<date>-<session_short>.md`)
+
 A narrative summary of the session's work. Lead with the problem being solved, then walk through the changes logically (not chronologically). Group related files together. Mention tradeoffs and rejected approaches where relevant.
 
 ### Decision docs (`decisions/<topic>.md`)
+
 Only create a decision doc if the capture entries contain a genuine architectural decision — something that will affect future development, has non-obvious rationale, or involved real tradeoffs. Do not create decision docs for implementation details.
 
 If a decision doc already exists for the topic, append a new dated section rather than overwriting.
 
 ### Index entry
+
 One line appended to `index.md` linking to the change log.
 
 ## Rules

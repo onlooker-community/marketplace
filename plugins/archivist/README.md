@@ -32,7 +32,7 @@ cp -r archivist .claude/plugins/archivist
 
 Session memory is automatic once installed. Use the slash command to inspect or manage it:
 
-```
+```text
 /archivist:memory show              # Most recent session extract
 /archivist:memory show --all        # All sessions for current cwd
 /archivist:memory show --session <id>  # Specific session

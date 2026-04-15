@@ -3,6 +3,7 @@
 This rubric evaluates Claude Code plugin files for schema compliance, structural correctness, and adherence to plugin conventions. It covers `plugin.json`, `hooks.json`, agent `.md` files, and overall plugin structure.
 
 **Canonical references:**
+
 - Plugin manifest & components: https://code.claude.com/docs/en/plugins-reference
 - Hooks system: https://code.claude.com/docs/en/hooks
 - Subagents: https://code.claude.com/docs/en/sub-agents
@@ -157,6 +158,7 @@ There are **4 valid hook types**: `command`, `http`, `prompt`, `agent`.
 | `agent` | `prompt` (instructions for the subagent) | `model` |
 
 **Common optional fields (all types):**
+
 - `timeout` — optional, with defaults: 600s (command), 30s (prompt), 60s (agent)
 - `statusMessage` — custom spinner message
 - `if` — permission rule syntax filter (tool events only)
@@ -215,6 +217,7 @@ Agent files live in the `agents/` directory as Markdown files with YAML frontmat
 **4. Path and Reference Integrity (15%)**
 
 Ensure all cross-references are valid:
+
 - Agents listed/referenced in `plugin.json` match actual agent file names in the agents directory
 - Commands listed/referenced in `plugin.json` match actual command files in the commands directory
 - Hooks referencing scripts use `${CLAUDE_PLUGIN_ROOT}` for portability
@@ -228,6 +231,7 @@ Ensure all cross-references are valid:
 **5. Structural Clarity and Best Practices (15%)**
 
 Evaluate overall plugin structure quality:
+
 - JSON files are properly formatted with consistent indentation
 - Field ordering follows logical conventions (`name`, `version`, `description` at top of manifest)
 - Agent descriptions are clear and actionable — they should convey when Claude should invoke the agent
@@ -262,6 +266,7 @@ When providing feedback, be specific and actionable:
 - **For environment variables**: Flag use of non-standard variables (e.g., `$PLUGIN_DIR` should be `${CLAUDE_PLUGIN_ROOT}`)
 
 Prioritize issues by severity:
+
 1. **Critical**: Missing required fields (`name` in manifest, `name`/`description` in agents), invalid JSON/YAML syntax, broken references, wrong hook structure format
 2. **High**: Invalid enum values, incorrect path conventions (missing `./` prefix), wrong hook type fields (e.g., `agent` field on type `"agent"`), unsupported agent frontmatter fields (`hooks`, `mcpServers`, `permissionMode`)
 3. **Medium**: Naming convention violations, missing recommended metadata (`version`, `description`), non-standard environment variables in hooks

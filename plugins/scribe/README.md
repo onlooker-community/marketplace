@@ -14,7 +14,7 @@ Git logs record what changed. Code comments describe what code does. Scribe reco
 
 Install from the Onlooker Marketplace:
 
-```
+```text
 /plugin
 # Add marketplace → https://github.com/onlooker-community/marketplace
 # Then install scribe from it
@@ -24,7 +24,7 @@ Install from the Onlooker Marketplace:
 
 Scribe is automatic once installed. Intent is captured on every file write, and documentation is distilled when the agent finishes.
 
-```
+```text
 /scribe:intent status              # Pending captures, config, integrations
 /scribe:intent distill             # Distill current session now
 /scribe:intent distill --all       # Distill all undistilled sessions
@@ -130,11 +130,13 @@ Scribe emits `scribe_entry` events that Onlooker automatically picks up if insta
 Scribe records the agent's stated intent — what it claimed to be doing and why. This is not a ground truth record of what the agent was "really thinking." It is the reasoning the agent articulated when asked to explain its changes, captured at the moment of execution.
 
 This is valuable because:
+
 - Stated intent is usually accurate and always informative
 - It captures reasoning that is unrecoverable after the session ends
 - Even when intent is imprecise, it provides context that git logs cannot
 
 It is not:
+
 - A guarantee that the code does what the intent describes
 - A substitute for code review
 - A complete record of all reasoning (only changes to files are captured)

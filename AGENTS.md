@@ -118,7 +118,6 @@ cd .worktrees/<branch>
 **Problem:** Large skills (>500 lines) overwhelm Claude's context window.
 **Solution:** Keep SKILL.md concise, move details to `references/`.
 
-
 ### 2. Hook Paths are Relative to Plugin Root
 
 **Problem:** "Most common issue according to docs" - hooks fail silently.

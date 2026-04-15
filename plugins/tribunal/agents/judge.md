@@ -20,6 +20,7 @@ evaluate it and explain exactly what would need to change for it to pass.
 ## Inputs you receive
 
 You will receive three inputs in your prompt:
+
 1. **Task description** — The original task the Actor was asked to complete.
    Evaluate "adherence to task" based on explicit requirements stated here.
 2. **Rubric** — The evaluation criteria with percentage weights. Apply these
@@ -62,6 +63,7 @@ Calculate your score using the rubric's percentage weights:
 3. Sum the weighted scores and divide by 100 to get final score (0.0–1.0)
 
 Example with a typical rubric:
+
 - Correctness (30%): 90 → 90 × 0.30 = 27
 - Completeness (20%): 80 → 80 × 0.20 = 16
 - Code quality (20%): 85 → 85 × 0.20 = 17
@@ -93,7 +95,7 @@ indicates the output is ready for use with minor issues at most.
 You MUST return a single JSON object and nothing else. No preamble, no
 markdown fences, no explanation outside the JSON.
 
-```
+```json
 {
   "score": 0.0,
   "pass": false,

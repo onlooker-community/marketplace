@@ -24,7 +24,7 @@ The key insight: when an orchestrator creates subcontracts for workers, each wor
 
 Install from the Onlooker Marketplace:
 
-```
+```text
 /plugin
 # Add marketplace → https://github.com/onlooker-community/marketplace
 # Then install ledger from it
@@ -34,7 +34,7 @@ Install from the Onlooker Marketplace:
 
 Ledger is automatic once installed. Use the slash command to inspect budget state:
 
-```
+```text
 /ledger:budget status          # Current session cost and budget consumption
 /ledger:budget report          # Last 10 sessions summary table
 /ledger:budget report --sessions 30  # Last 30 sessions
@@ -61,7 +61,7 @@ Edit `config.json` in the plugin directory:
 
 The block fires at `session_cost_usd × (1 − reserve_buffer_pct / 100)`. With the defaults:
 
-```
+```markdown
 $2.00 × (1 − 0.12) = $1.76 effective limit
 ```
 
@@ -75,13 +75,13 @@ Set `budgets.session_cost_usd` to `0` to disable cost-based budgeting. Token-cou
 
 When the session reaches the warning threshold (default: 80% of budget), Ledger writes to stderr:
 
-```
+```markdown
 Ledger: Session budget at 83% of $2.00 (total: $1.66).
 ```
 
 When the effective limit is reached and a subagent attempts to spawn:
 
-```
+```markdown
 Ledger: Session budget exceeded (92% of $2.00). Total cost: $1.84. Blocking subagent spawn.
 Use /ledger:budget status to review.
 ```

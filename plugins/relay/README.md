@@ -40,7 +40,7 @@ Install both if you want both. They complement rather than duplicate — the sch
 
 Install from the Onlooker Marketplace:
 
-```
+```text
 /plugin
 # Add marketplace → https://github.com/onlooker-community/marketplace
 # Then install relay from it
@@ -50,7 +50,7 @@ Install from the Onlooker Marketplace:
 
 Relay is automatic once installed. The slash command lets you inspect and manage handoffs:
 
-```
+```text
 /relay:handoff status          # Most recent handoff for current directory
 /relay:handoff show            # Last 5 handoffs for current directory
 /relay:handoff show --all      # All handoffs
@@ -120,7 +120,7 @@ Use Lore when you want unresolved questions and contradiction-aware ranking to s
 
 At `SessionStart`, Claude sees:
 
-```
+```md
 RELAY HANDOFF — 2026-04-14T18:23:00Z
 
 Task: Refactoring auth middleware to use JWT [in_progress]

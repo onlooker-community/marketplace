@@ -21,6 +21,7 @@ Archivist solves the long-horizon problem: decisions that should inform all futu
 Relay solves the immediate resumption problem: "I was in the middle of editing `src/auth/middleware.ts`, I stopped at line 47, the test I was trying to fix is still failing because of the JWT expiry logic, and I haven't touched `UserController` yet." This information has zero value three sessions from now. It has maximum value in the next 30 minutes.
 
 The distinction maps to two different failure modes:
+
 1. **Long-horizon failure** (Archivist's domain): repeating a dead end that was tried two weeks ago; violating a project convention that was established in a session that was compacted away
 2. **Immediate resumption failure** (Relay's domain): spending the first 5-10 turns re-establishing what the developer already knew when they closed Claude Code yesterday
 

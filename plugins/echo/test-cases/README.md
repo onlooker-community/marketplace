@@ -77,6 +77,7 @@ If you specifically want to ensure that the Judge never flags verbosity bias on 
 ### Tag thoughtfully
 
 Tags drive filtering. Common conventions:
+
 - `tribunal-actor`, `tribunal-judge`, `tribunal-meta-judge` — which agent is being tested
 - `bias-detection` — tests for specific bias types
 - `code`, `adr`, `docs` — task domain

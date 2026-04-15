@@ -13,6 +13,7 @@ Accepted
 ## Context
 
 Every other plugin in the Onlooker ecosystem is reactive:
+
 - Sentinel fires when a dangerous command is attempted
 - Oracle fires when a prompt is ambiguous
 - Scribe fires when a file is written

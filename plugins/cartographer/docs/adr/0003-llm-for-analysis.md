@@ -15,10 +15,12 @@ Accepted
 Cartographer needs to detect six issue categories in instruction files: contradictions, stale file references, orphaned plugin references, dead tool references, duplicates, and hierarchy conflicts.
 
 Some of these can be detected deterministically:
+
 - **Stale file references**: extract path-like strings, check existence with Glob
 - **Orphaned plugin references**: extract `/plugin:command` patterns with regex, check if plugin directory exists
 
 Others require judgment that a deterministic parser cannot provide:
+
 - **Contradictions**: "always use tabs" + "use 2-space indentation" are contradictory. But "use tabs" + "use tabs in Python files only" are not. Determining whether two rules conflict requires understanding their scope, intent, and applicability
 - **Duplicates**: "use TypeScript strict mode" and "enable strict: true in tsconfig.json" are the same rule. No regex matches these as duplicates — they share no common string
 - **Dead tool references**: "run `npm test`" in a project with `bun.lockb` is a dead reference. Determining this requires understanding which lockfile corresponds to which package manager
@@ -28,11 +30,13 @@ Others require judgment that a deterministic parser cannot provide:
 The Cartographer Auditor will be a `type: agent` using Haiku at medium effort. The agent performs all six checks — both the deterministic ones (using Glob/Read tools) and the judgment-based ones (using language understanding).
 
 The mixed approach (agent for judgment, scripts for deterministic checks) was considered and rejected. The added complexity of maintaining two code paths (an agent prompt and shell scripts) is not justified when:
+
 1. Haiku is fast enough for the deterministic checks (the overhead is minimal)
 2. The agent must already read the instruction files for the judgment-based checks, so it can perform the deterministic checks in the same pass
 3. A single pass through the files is more accurate than separate passes — the agent can cross-reference findings (a stale reference to a file + a rule about that file = one coherent issue, not two separate issues)
 
 The agent is deliberately constrained:
+
 - `model: haiku` — adequate for text analysis; avoids Sonnet/Opus cost
 - `effort: medium` — enough for careful reading; not maximum which would be wasteful
 - `maxTurns: 8` — sufficient for reading several files and writing output

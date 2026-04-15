@@ -9,6 +9,7 @@ Evaluate the submitted Architectural Decision Record on the following criteria.
 All citations must be factually correct and verifiable. This criterion is critical for maintaining research integrity.
 
 Evaluate:
+
 - **Author names**: Match the actual paper authors (attributions are correct)
 - **Publication year**: Accurate to the paper's publication date
 - **Paper titles**: Exact or accurate paraphrasing
@@ -16,6 +17,7 @@ Evaluate:
 - **No fabrication**: All cited works must be real and verifiable
 
 Red flags:
+
 - Author names that don't match the actual paper (e.g., citing "Uesato et al." for a paper by "Fu et al.")
 - arXiv IDs that return 404 or point to different papers
 - DOIs that don't resolve
@@ -27,6 +29,7 @@ Red flags:
 All cross-references to other ADRs must resolve to existing files.
 
 Evaluate:
+
 - Links to other ADRs (e.g., `[ADR-0005](0005-judge-persona-panel.md)`) point to files that exist in the repository
 - Relative paths are correct from the ADR's location
 - No broken cross-references
@@ -39,6 +42,7 @@ Verification method: Check that each linked file path exists in the expected loc
 The Status field must conform to standard ADR status values.
 
 Valid statuses:
+
 - **Proposed**: Decision is under consideration
 - **Accepted**: Decision has been approved and is active
 - **Deprecated**: Decision is no longer recommended but not formally replaced
@@ -46,6 +50,7 @@ Valid statuses:
 - **Rejected**: Decision was considered but not adopted
 
 Requirements:
+
 - Status must be exactly one of the above values (case-sensitive)
 - If status is "Superseded", the ADR must link to the superseding ADR
 - Status should align with the document's content and context
@@ -55,6 +60,7 @@ Requirements:
 For each option considered but NOT chosen, the ADR must explain why it was rejected.
 
 Evaluate:
+
 - **Presence of alternatives**: At least 2-3 options should be considered
 - **Rejection rationale**: Each non-chosen option has clear reasons for rejection
 - **Substantive reasoning**: Rationale goes beyond "not chosen" or "less preferred"
@@ -62,10 +68,12 @@ Evaluate:
 - **Fairness**: Rejected options are presented fairly, not strawmanned
 
 Poor examples:
+
 - "Option B: Considered but rejected"
 - "Not as good as Option A"
 
 Strong examples:
+
 - "Option B: Rejected because it requires 3x more memory and our deployment environment has 8GB RAM limits"
 - "Option C: Adds unnecessary complexity for our current scale (10K requests/day); would be viable at 1M+ requests/day"
 
@@ -74,12 +82,14 @@ Strong examples:
 The Consequences section must acknowledge both benefits and costs of the decision.
 
 Requirements:
+
 - **At least one Good consequence**: Positive outcomes or benefits
 - **At least one Bad consequence**: Costs, risks, or limitations
 - **Honest assessment**: No decision is perfect; trade-offs must be acknowledged
 - **Neutral consequences**: Acceptable for uncertain or mixed outcomes
 
 Red flags:
+
 - Only "Good" consequences listed (unrealistic)
 - Bad consequences that are trivial or dismissive
 - Missing acknowledgment of technical debt, complexity, or maintenance burden
@@ -90,6 +100,7 @@ Red flags:
 The chosen option must logically connect to the stated problem and decision drivers.
 
 Evaluate:
+
 - **Problem alignment**: The decision addresses the problem stated in Context
 - **Driver coverage**: The decision responds to the Decision Drivers listed
 - **No scope creep**: The decision doesn't introduce unstated requirements
@@ -97,6 +108,7 @@ Evaluate:
 - **Consistency**: The decision doesn't contradict stated constraints or principles
 
 Questions to answer:
+
 - Does the decision solve the problem described in the Context section?
 - Do the Decision Drivers explain why this option was chosen?
 - Are there unstated assumptions that should have been in the Drivers?
@@ -121,7 +133,7 @@ Each criterion receives a score from 0.0 (completely fails) to 1.0 (exemplary), 
 
 If Citation Accuracy scores 0.6, Internal Links score 1.0, Status scores 1.0, Options score 0.8, Consequences score 0.7, and Traceability scores 0.9:
 
-```
+```text
 Final = (0.6 × 0.25) + (1.0 × 0.15) + (1.0 × 0.10) + (0.8 × 0.20) + (0.7 × 0.15) + (0.9 × 0.15)
       = 0.15 + 0.15 + 0.10 + 0.16 + 0.105 + 0.135
       = 0.80
@@ -151,13 +163,15 @@ Provide actionable, specific feedback for each failed or weak criterion.
 ### Citation Accuracy Feedback
 
 **For hallucinated or incorrect citations:**
+
 - Identify the specific citation with the error
 - State what is incorrect (author, year, title, identifier)
 - If possible, provide the correct citation or note that the work cannot be verified
 - Suggest verification steps (e.g., "Search arXiv for the provided ID")
 
 Example:
-```
+
+```md
 Citation Accuracy: FAIL (0.2/1.0)
 - The citation "Uesato et al. (2022)" in the Context section does not match the
   actual paper authors. The arXiv ID provided (arXiv:2212.09251) corresponds to
@@ -169,12 +183,14 @@ Citation Accuracy: FAIL (0.2/1.0)
 ### Internal Link Validity Feedback
 
 **For broken links:**
+
 - List each broken link with its target path
 - Note whether the file doesn't exist or the path is incorrect
 - If the ADR exists under a different name/path, suggest the correction
 
 Example:
-```
+
+```md
 Internal Link Validity: FAIL (0.0/1.0)
 - Link to [ADR-0003](0003-old-name.md) is broken. File does not exist in /docs/adr/
 - If this ADR has been renamed, update the link to the current filename.
@@ -183,12 +199,14 @@ Internal Link Validity: FAIL (0.0/1.0)
 ### Status Field Validity Feedback
 
 **For invalid status:**
+
 - State the current status value
 - List the valid status options
 - If the status is "Superseded", verify the link to the superseding ADR
 
 Example:
-```
+
+```md
 Status Field Validity: FAIL (0.0/1.0)
 - Status "In Progress" is not a valid ADR status.
 - Use one of: Proposed, Accepted, Deprecated, Superseded, Rejected
@@ -198,12 +216,14 @@ Status Field Validity: FAIL (0.0/1.0)
 ### Option Analysis Completeness Feedback
 
 **For weak or missing analysis:**
+
 - Identify options that lack rejection rationale
 - Point out dismissive or vague reasoning
 - Request specific technical, cost, or constraint-based justification
 
 Example:
-```
+
+```md
 Option Analysis Completeness: WEAK (0.5/1.0)
 - Option 2 states "Not selected" without explaining why
 - Option 3's rejection rationale is vague: "Adds complexity"
@@ -214,12 +234,14 @@ Option Analysis Completeness: WEAK (0.5/1.0)
 ### Consequences Balance Feedback
 
 **For unbalanced consequences:**
+
 - Note if only Good or only Bad consequences are listed
 - Request acknowledgment of trade-offs or costs
 - Highlight if consequences seem unrealistic or incomplete
 
 Example:
-```
+
+```md
 Consequences Balance: WEAK (0.4/1.0)
 - Only "Good" consequences listed (improved performance, easier testing)
 - Every decision has trade-offs. Consider:
@@ -232,12 +254,14 @@ Consequences Balance: WEAK (0.4/1.0)
 ### Decision Traceability Feedback
 
 **For weak traceability:**
+
 - Point out disconnects between decision and problem/drivers
 - Note if the decision introduces scope beyond stated requirements
 - Request clarification on how the decision addresses the drivers
 
 Example:
-```
+
+```md
 Decision Traceability: WEAK (0.5/1.0)
 - Decision Driver #2 states "Must support 1000 concurrent users" but the chosen
   option's justification doesn't address scalability

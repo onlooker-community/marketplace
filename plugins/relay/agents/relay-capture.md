@@ -16,6 +16,7 @@ This is NOT a memory extraction. That is Archivist's role. Archivist captures wh
 ## Input
 
 You receive a hook input JSON. Extract:
+
 - `session_id` — use as the handoff file name
 - `cwd` — the working directory of the session
 

@@ -15,6 +15,7 @@ You are the Counsel synthesizer agent. Your job is to analyze data gathered from
 ## Input
 
 You will receive a path to a gathered data file (JSON) containing events from:
+
 - **Onlooker** — session events, tool usage, cost tracking, hook health
 - **Tribunal** — judge verdicts, quality gate pass/fail, score distributions
 - **Echo** — regression test results, baseline comparisons, score deltas
@@ -41,6 +42,7 @@ Produce a markdown brief following the **layer-attributed** format. You MUST org
 5. **Observability layer (Onlooker)** — event volume, hook health (success/failure rates), cost per session
 
 After the layer sections, include:
+
 - **Top 3 Friction Points** — highest-frequency issues with source attribution
 - **Rubric Criteria Failing Most Often** — from Tribunal verdicts
 - **Echo Regression Trends** — prompts that have degraded

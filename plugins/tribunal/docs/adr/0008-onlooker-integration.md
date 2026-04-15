@@ -36,40 +36,40 @@ dependency — Tribunal must remain fully functional without it.
 
 ## Decision Drivers
 
-* Tribunal verdict data is more semantically rich than generic agent traces:
+- Tribunal verdict data is more semantically rich than generic agent traces:
   it includes per-persona scores, bias flags, rubric identity, and iteration
   counts that Onlooker's generic schema cannot represent without extension.
-* Onlooker is local-first and optional by design — its architecture explicitly
+- Onlooker is local-first and optional by design — its architecture explicitly
   supports being absent without breaking the instrumented system.
-* The integration should be zero-friction when Onlooker is not installed:
+- The integration should be zero-friction when Onlooker is not installed:
   no errors, no degraded performance, no configuration required.
-* When Onlooker is present, the integration should require minimal configuration:
+- When Onlooker is present, the integration should require minimal configuration:
   one endpoint URL and a workspace ID in `config.json`.
-* The verdict event schema must be stable enough to build Grafana panels against
+- The verdict event schema must be stable enough to build Grafana panels against
   — adding fields is fine, removing or renaming fields is a breaking change.
-* Tribunal should emit events whether or not anything is listening. The emitter
+- Tribunal should emit events whether or not anything is listening. The emitter
   is Tribunal's responsibility; the consumer is Onlooker's.
 
 ## Considered Options
 
-* **Option A: No integration — Tribunal stays ephemeral**
+- **Option A: No integration — Tribunal stays ephemeral**
   - Verdict data surfaces in the terminal only.
   - No persistence, no trends, no dashboard.
   - Simplest implementation, zero external dependencies.
   - Cannot answer any observability questions.
 
-* **Option B: Tribunal writes verdict logs to a local file**
+- **Option B: Tribunal writes verdict logs to a local file**
   - Append structured JSON to `~/.claude/tribunal/verdicts.jsonl`.
   - No external dependency, fully local.
   - Requires users to build their own tooling to query or visualize.
   - Solves persistence but not observability.
 
-* **Option C: Hard Onlooker integration**
+- **Option C: Hard Onlooker integration**
   - Tribunal requires Onlooker to be running to emit verdicts.
   - Fails or degrades if Onlooker is not present.
   - Creates a hard dependency that conflicts with standalone value proposition.
 
-* **Option D: Optional Onlooker integration with graceful fallback**
+- **Option D: Optional Onlooker integration with graceful fallback**
   - Tribunal emits verdict events to an Onlooker endpoint if configured.
   - If endpoint is absent or unreachable, Tribunal continues silently.
   - Configuration is opt-in via `config.json`.
@@ -152,17 +152,20 @@ emission — e.g., only emit on failures to reduce noise.
 The `tribunal_verdict` event type enables the following panels:
 
 **Quality trend panels**
+
 - Pass rate over time (7-day rolling average)
 - Average score by rubric over time
 - Iteration count distribution (how often does it take 1 vs 2 vs 3 iterations?)
 - Score improvement from iteration 1 to final (Actor learning signal)
 
 **Coverage panels (informed by Jung & Na, 2026 score–coverage dissociation)**
+
 - Unique bias flag categories discovered per week (are new issues being found?)
 - Bias flag frequency by judge persona (which persona flags most?)
 - Rubric criterion failure heatmap (which criteria fail most often?)
 
 **Adversarial pattern panels**
+
 - Files or task types that consistently fail the security judge persona
 - Tasks that pass the default judge but fail after Meta-Judge adjustment
   (indicates systematic Judge weakness in a category)
@@ -170,6 +173,7 @@ The `tribunal_verdict` event type enables the following panels:
   effectiveness once ADR-0007 is implemented)
 
 **Cost and efficiency panels**
+
 - Latency per pipeline run over time
 - Gate cost estimate (tokens × model cost) per run
 - Pass rate vs. panel size (validates the N=4 panel decision from ADR-0005)
@@ -177,6 +181,7 @@ The `tribunal_verdict` event type enables the following panels:
 ### Onlooker-side requirements
 
 Onlooker must register `tribunal_verdict` as a custom event type and provide:
+
 - A PostgreSQL table or JSONB column for the extended schema
 - A Grafana data source pointed at the Onlooker PostgreSQL instance
 - Dashboard provisioning file (to be maintained in the Onlooker repo, not Tribunal)
@@ -189,41 +194,41 @@ a major version bump and migration guidance.
 
 ### Consequences
 
-* Good: Tribunal remains fully functional without Onlooker — standalone value
+- Good: Tribunal remains fully functional without Onlooker — standalone value
   proposition is preserved.
-* Good: When Onlooker is present, Tribunal verdict data becomes the richest
+- Good: When Onlooker is present, Tribunal verdict data becomes the richest
   signal in the observability stack — more semantically meaningful than generic
   agent traces.
-* Good: The score–coverage dissociation panels (from Jung & Na, 2026) make the
+- Good: The score–coverage dissociation panels (from Jung & Na, 2026) make the
   judge panel investment visible — operators can see whether the 4-judge panel
   is discovering new issue categories or has saturated.
-* Good: The integration is opt-in and zero-friction — one config change to
+- Good: The integration is opt-in and zero-friction — one config change to
   enable, no code changes to Tribunal's core pipeline.
-* Good: `emitOnFail`-only mode allows high-signal low-noise operation for teams
+- Good: `emitOnFail`-only mode allows high-signal low-noise operation for teams
   that only want to track regressions.
-* Bad: The `tribunal_verdict` schema must be kept stable — any breaking change
+- Bad: The `tribunal_verdict` schema must be kept stable — any breaking change
   requires coordination with Onlooker consumers. This creates a lightweight
   contract maintenance burden.
-* Bad: Onlooker must implement custom event handling for `tribunal_verdict` —
+- Bad: Onlooker must implement custom event handling for `tribunal_verdict` —
   this is work on the Onlooker side that Tribunal cannot control.
-* Bad: Local-only Onlooker deployment means verdict telemetry is machine-scoped.
+- Bad: Local-only Onlooker deployment means verdict telemetry is machine-scoped.
   Shared team observability requires deploying Onlooker to a shared server,
   which is an Onlooker deployment concern, not a Tribunal one.
-* Neutral: Option B (local file logging) could be implemented alongside Option D
+- Neutral: Option B (local file logging) could be implemented alongside Option D
   as a zero-dependency fallback for users who want persistence without Onlooker.
   This is deferred but not excluded.
 
 ## Links
 
-* Onlooker README — local-first agent observability tool (onlooker.dev)
-* Jung, H. & Na, W. (2026). Logarithmic Scores, Power-Law Discoveries.
+- Onlooker README — local-first agent observability tool (onlooker.dev)
+- Jung, H. & Na, W. (2026). Logarithmic Scores, Power-Law Discoveries.
   arXiv:2604.00477 — informs score–coverage dissociation dashboard panels
-* He, M. et al. (2026). YC-Bench: Benchmarking AI Agents for Long-Term
+- He, M. et al. (2026). YC-Bench: Benchmarking AI Agents for Long-Term
   Planning and Consistent Execution. arXiv:2604.01212 — scratchpad usage
   as strongest predictor of success motivates long-horizon verdict tracking
-* Relates to: [0005 — Judge persona panel](0005-judge-persona-panel.md)
+- Relates to: [0005 — Judge persona panel](0005-judge-persona-panel.md)
   (`judge_verdicts` array in event schema is designed for multi-persona output)
-* Relates to: [0007 — Skeptical Actor](0007-skeptical-actor.md)
+- Relates to: [0007 — Skeptical Actor](0007-skeptical-actor.md)
   (iteration 1 vs. final score delta panel measures Actor self-challenge ROI)
-* Relates to: [0006 — Meta-Judge override thresholds](0006-meta-judge-override-thresholds.md)
+- Relates to: [0006 — Meta-Judge override thresholds](0006-meta-judge-override-thresholds.md)
   (Meta-Judge override events are separately trackable in the dashboard)

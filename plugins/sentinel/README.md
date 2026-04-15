@@ -19,7 +19,7 @@ Sentinel evaluates safety of intent before execution. It fires on `PreToolUse` f
 
 Install from the Onlooker Marketplace:
 
-```
+```text
 /plugin
 # Add marketplace → https://github.com/onlooker-community/marketplace
 # Then install sentinel from it
@@ -31,7 +31,7 @@ Sentinel is automatic once installed. Dangerous commands are intercepted before 
 
 Use the slash command to manage it:
 
-```
+```text
 /sentinel:guard show                  # Current config and overrides
 /sentinel:guard audit                 # Recent audit log entries
 /sentinel:guard patterns              # All loaded patterns with risk levels

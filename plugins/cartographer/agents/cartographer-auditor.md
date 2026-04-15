@@ -16,6 +16,7 @@ Instruction files (CLAUDE.md, `.claude/rules/*.md`, `.claude/agents/*.md`) accum
 ## Input
 
 You receive hook input JSON. Extract:
+
 - `session_id` — for context
 - `cwd` — the working directory to audit
 
@@ -24,10 +25,12 @@ You receive hook input JSON. Extract:
 Read `~/.claude/cartographer/state.json`. If it doesn't exist, skip to the audit.
 
 From state, extract:
+
 - `instruction_hash` — the hash from the last audit
 - `last_audit_at` — ISO 8601 timestamp
 
 Compute a hash of all current instruction files for this cwd:
+
 1. Use Glob to find: `CLAUDE.md` (in cwd), `.claude/rules/*.md` (in cwd), `.claude/agents/*.md` (in cwd)
 2. Also check `~/.claude/CLAUDE.md` (user-level)
 3. For each file found, read its content
@@ -56,6 +59,7 @@ For each category that is enabled in config, check for issues:
 ### 1. Contradictions
 
 Look for rules that cannot simultaneously be true. Indicators:
+
 - Same noun (tool, pattern, behavior) with opposing directives: "always use X" vs "never use X", "prefer X" vs "avoid X", "require X" vs "forbid X"
 - Scope matters: "use tabs" in user CLAUDE.md vs "use 2-space indentation" in project CLAUDE.md is a hierarchy conflict (category 6), not a contradiction, if one is scoped to override the other
 - True contradictions: both in the same file, or both in project-level files with no override language
@@ -67,6 +71,7 @@ Look for rules that cannot simultaneously be true. Indicators:
 Extract all path-like strings from instruction content: relative paths (contains `/` or `.`), filenames with extensions (`.rb`, `.ts`, `.md`, `.json`, `.sh`, etc.).
 
 For each extracted path:
+
 - If relative, resolve against the file's directory
 - Use Glob or Read to check if it exists
 - If it doesn't exist and it's clearly meant to be a real file path (not an example), report it
@@ -78,6 +83,7 @@ For each extracted path:
 Look for slash command patterns: `/plugin-name:command-name`. Extract the plugin name.
 
 Check if the plugin appears to be installed by looking for its directory. Common install locations:
+
 - Check if `~/.claude/plugins/<plugin-name>` exists, or similar patterns
 
 If a plugin is referenced but not installed, report it.
@@ -89,6 +95,7 @@ If a plugin is referenced but not installed, report it.
 Look for explicit tool/command references: `bun`, `npm`, `yarn`, `pnpm`, `jest`, `vitest`, `webpack`, `vite`, `docker`, `make`, `cargo`, `go`, etc.
 
 Cross-reference against signals in cwd:
+
 - `package.json` → what package manager does `scripts` use?
 - `bun.lock` or `bun.lockb` → bun
 - `yarn.lock` → yarn
@@ -154,6 +161,7 @@ Write the audit result to `~/.claude/cartographer/audits/<cwd-slug>-<timestamp>.
 **cwd-slug:** Replace `/` with `-`, strip leading `-`, max 40 chars.
 
 Also update `~/.claude/cartographer/state.json`:
+
 ```json
 {
   "last_audit_at": "ISO 8601",

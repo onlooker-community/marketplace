@@ -22,7 +22,7 @@ This starts a Bun API server and a Grafana container with pre-provisioned dashbo
 
 ## Architecture
 
-```
+```text
 JSONL files (host)          Bun API server (host:3457)      Grafana (container:3456)
 ~/.claude/logs/*.jsonl  -->  Bun.serve() routes        <--  JSON API datasource plugin
 ~/.claude/onlooker/*         /query, /metrics                Pre-provisioned dashboards
@@ -53,6 +53,7 @@ ONLOOKER_GRAFANA_PORT=4000 ONLOOKER_API_PORT=4001 onlooker-dashboard up
 ## Data Sources
 
 The API server reads from:
+
 - `~/.claude/logs/onlooker-events.jsonl` — all Onlooker telemetry events
 - `~/.claude/onlooker/metrics/costs.jsonl` — cost tracking per session
 

@@ -12,6 +12,7 @@ Manage Relay session continuity handoffs.
 ### `status`
 
 Show the most recent handoff for the current working directory. Display all fields in a readable format:
+
 - Task summary and status
 - Next action
 - Files in flight (with state and notes)
@@ -41,6 +42,7 @@ This is useful if the handoff is stale or if the task was completed and you don'
 ### `config`
 
 Display the current Relay configuration from `${CLAUDE_PLUGIN_ROOT}/config.json`:
+
 - enabled
 - storage_path
 - inject_on_start

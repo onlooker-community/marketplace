@@ -6,7 +6,7 @@ config:
   commands-show-output: false
   no-bare-urls: false
   line-length: false
-  no-emphasis-as-header: false
+  no-emphasis-as-heading: false
   no-duplicate-header: false
   no-duplicate-heading:
     siblings_only: true
@@ -16,6 +16,8 @@ config:
   first-line-heading: false
   first-lint-h1: false
   code-block-style: false
+  MD060: false
+
 ignores:
   - '**/node_modules/**'
   - '**/CHANGELOG.md' # generated
