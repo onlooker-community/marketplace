@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "engines": {
+    "typescript": {
+      "primary": "ctags",
+      "fallback": "rg",
+      "last_resort": "rg"
+    },
+    "javascript": {
+      "primary": "ctags",
+      "fallback": "rg",
+      "last_resort": "rg"
+    }
+  },
+  "index_path": ".claude/codemunch/index.json",
+  "last_indexed": null,
+  "stats": {
+    "total_symbols": 0,
+    "files_indexed": 0
+  }
+}
