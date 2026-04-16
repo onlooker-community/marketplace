@@ -361,8 +361,6 @@ Lore is the epistemic infrastructure layer: a local SQLite store for typed knowl
 
 This is a monorepo containing multiple plugins and tools. Plugins are in `plugins/`, standalone tools are in `tools/`.
 
-Contributor-focused documentation (repository layout, workflows, plugin index) lives in the [`docs/`](./docs/) directory as a [MkDocs](https://www.mkdocs.org/) project. See [`docs/README.md`](./docs/README.md) for how to build and serve it locally.
-
 ### Quick Start
 
 Clone this repository and run the following commands to get started:

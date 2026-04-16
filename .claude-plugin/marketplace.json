@@ -10,9 +10,19 @@
   },
   "plugins": [
     {
-      "name": "onlooker",
-      "description": "Local observability for agentic workflows — telemetry, friction analysis, cost tracking, and weekly insights",
-      "source": "./plugins/onlooker"
+      "name": "archivist",
+      "description": "Structured session memory across context truncation",
+      "source": "./plugins/archivist"
+    },
+    {
+      "name": "cartographer",
+      "description": "Periodic audit of CLAUDE.md and .claude/rules/ files for contradictions, stale references, and dead rules. The only proactive audit layer in the ecosystem — surfaces instruction health issues before they cause agent misbehavior.",
+      "source": "./plugins/cartographer"
+    },
+    {
+      "name": "counsel",
+      "description": "Weekly synthesis and recommendations — layer-attributed improvement briefs from your observability stack",
+      "source": "./plugins/counsel"
     },
     {
       "name": "cues",
@@ -20,29 +30,19 @@
       "source": "./plugins/cues"
     },
     {
-      "name": "tribunal",
-      "description": "Post-run evaluation and quality scoring for LLM outputs.",
-      "source": "./plugins/tribunal"
-    },
-    {
-      "name": "archivist",
-      "description": "Structured session memory across context truncation",
-      "source": "./plugins/archivist"
-    },
-    {
-      "name": "sentinel",
-      "description": "Pre-flight safety gate for destructive Bash operations",
-      "source": "./plugins/sentinel"
-    },
-    {
-      "name": "scribe",
-      "description": "Intent documentation from agent activity — captures why, not what",
-      "source": "./plugins/scribe"
-    },
-    {
       "name": "echo",
       "description": "Prompt regression testing — measurable before/after signals for agent file changes",
       "source": "./plugins/echo"
+    },
+    {
+      "name": "ledger",
+      "description": "Resource governance and budget enforcement for Claude Code. Tracks token consumption and cost across all plugin activity. Blocks agent spawning when session budgets are exceeded.",
+      "source": "./plugins/ledger"
+    },
+    {
+      "name": "onlooker",
+      "description": "Local observability for agentic workflows — telemetry, friction analysis, cost tracking, and weekly insights",
+      "source": "./plugins/onlooker"
     },
     {
       "name": "oracle",
@@ -50,14 +50,29 @@
       "source": "./plugins/oracle"
     },
     {
+      "name": "relay",
+      "description": "Session continuity bridge. Captures immediate task state at session end — what you were doing, what's next, what's blocking — and injects it as the first thing Claude sees when you reopen.",
+      "source": "./plugins/relay"
+    },
+    {
+      "name": "scribe",
+      "description": "Intent documentation from agent activity — captures why, not what",
+      "source": "./plugins/scribe"
+    },
+    {
+      "name": "sentinel",
+      "description": "Pre-flight safety gate for destructive Bash operations",
+      "source": "./plugins/sentinel"
+    },
+    {
+      "name": "tribunal",
+      "description": "Post-run evaluation and quality scoring for LLM outputs.",
+      "source": "./plugins/tribunal"
+    },
+    {
       "name": "warden",
       "description": "Indirect prompt injection detection — scans retrieved content and gates agent actions when threats are detected",
       "source": "./plugins/warden"
-    },
-    {
-      "name": "counsel",
-      "description": "Weekly synthesis and recommendations — layer-attributed improvement briefs from your observability stack",
-      "source": "./plugins/counsel"
     }
   ]
 }
