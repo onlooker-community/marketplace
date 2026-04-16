@@ -39,7 +39,9 @@
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
     "lint:format": "biome format",
     "lint:biome": "biome lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "bun test",
+    "test:ci": "bun test --bail"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.10",
