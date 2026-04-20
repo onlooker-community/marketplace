@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/onlooker-community/marketplace/compare/scribe-v0.4.0...scribe-v0.5.0) (2026-04-20)
+
+
+### Features
+
+* **scribe:** add Lore integration and configuration options ([0ba7d58](https://github.com/onlooker-community/marketplace/commit/0ba7d58ed2df31ae5cc8dacb8a736c81879c61a6))
+
 ## [0.4.0](https://github.com/onlooker-community/marketplace/compare/scribe-v0.3.0...scribe-v0.4.0) (2026-04-14)
 
 

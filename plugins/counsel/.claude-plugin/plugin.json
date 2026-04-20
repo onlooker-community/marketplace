@@ -1,6 +1,6 @@
 {
 	"name": "counsel",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Weekly synthesis and recommendation agent. Reads from Onlooker events, Tribunal verdicts, Echo regressions, and Sentinel audit logs to produce structured improvement briefs with layer-attributed friction analysis.",
 	"author": {
 		"name": "Onlooker Community",

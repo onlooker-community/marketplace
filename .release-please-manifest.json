@@ -1,17 +1,17 @@
 {
-  "plugins/archivist": "0.3.0",
+  "plugins/archivist": "0.4.0",
   "plugins/cues": "0.2.0",
-  "plugins/cartographer": "0.1.0",
+  "plugins/cartographer": "0.2.0",
   "plugins/echo": "0.4.0",
   "plugins/ledger": "0.3.0",
-  "plugins/relay": "0.2.0",
+  "plugins/relay": "0.3.0",
   "plugins/onlooker": "0.5.0",
-  "plugins/scribe": "0.4.0",
+  "plugins/scribe": "0.5.0",
   "plugins/sentinel": "0.4.0",
   "plugins/tribunal": "0.2.0",
   "plugins/oracle": "0.3.0",
   "plugins/warden": "0.2.0",
-  "plugins/counsel": "0.2.0",
+  "plugins/counsel": "0.3.0",
   "tools/dashboard": "0.2.0",
-  "tools/lore": "0.1.0"
+  "tools/lore": "0.2.0"
 }

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/onlooker-community/marketplace/compare/archivist-v0.3.0...archivist-v0.4.0) (2026-04-20)
+
+
+### Features
+
+* **archivist, relay:** add OIDA epistemic classes and sessions_unresolved urgency tracking ([bd41db0](https://github.com/onlooker-community/marketplace/commit/bd41db0948937110fb95a9de20a8153211537355))
+* **archivist:** enhance Lore integration and configuration options ([7bb65a2](https://github.com/onlooker-community/marketplace/commit/7bb65a22263a8f7cf8501cdb98b00d28da4fc98d))
+
 ## [0.3.0](https://github.com/onlooker-community/marketplace/compare/archivist-v0.2.0...archivist-v0.3.0) (2026-04-09)
 
 
