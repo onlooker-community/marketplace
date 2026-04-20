@@ -1,13 +1,21 @@
 {
   "name": "@onlooker-community/lore",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Lore — local epistemic knowledge store (Knowledge Gravity Engine) for the Onlooker ecosystem",
   "type": "module",
   "bin": {
     "lore": "./bin/cli.ts"
   },
-  "files": ["bin", "src"],
-  "keywords": ["onlooker", "knowledge", "epistemic", "sqlite"],
+  "files": [
+    "bin",
+    "src"
+  ],
+  "keywords": [
+    "onlooker",
+    "knowledge",
+    "epistemic",
+    "sqlite"
+  ],
   "author": {
     "name": "Onlooker Community",
     "url": "https://github.com/onlooker-community"

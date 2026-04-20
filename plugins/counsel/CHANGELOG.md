@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/onlooker-community/marketplace/compare/counsel-v0.2.0...counsel-v0.3.0) (2026-04-20)
+
+
+### Features
+
+* **counsel:** integrate Lore functionality for enhanced knowledge management ([bb031e8](https://github.com/onlooker-community/marketplace/commit/bb031e853ec953f6476f71a205ac72626d81d95e))
+
 ## [0.2.0](https://github.com/onlooker-community/marketplace/compare/counsel-v0.1.0...counsel-v0.2.0) (2026-04-09)
 
 

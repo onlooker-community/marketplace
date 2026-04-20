@@ -1,6 +1,6 @@
 {
 	"name": "relay",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Session continuity bridge. Captures immediate task state at session end — what you were doing, what's next, what's blocking — and injects it as the first thing Claude sees when you reopen.",
 	"author": {
 		"name": "Onlooker Community",

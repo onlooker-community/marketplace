@@ -1,6 +1,6 @@
 {
 	"name": "cartographer",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Periodic audit of CLAUDE.md and .claude/rules/ files for contradictions, stale references, and dead rules. The only proactive audit layer in the ecosystem — surfaces instruction health issues before they cause agent misbehavior.",
 	"author": {
 		"name": "Onlooker Community",
